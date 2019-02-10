@@ -1,7 +1,8 @@
-package com.communistutopia.spacetrader
+package com.communistutopia.spacetrader.view
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.communistutopia.spacetrader.R
 
 class MainActivity : AppCompatActivity() {
 
