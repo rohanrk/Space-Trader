@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.spacetrader"
+        applicationId "com.communistutopia.spacetrader"
         minSdkVersion 28
         targetSdkVersion 28
         versionCode 1
