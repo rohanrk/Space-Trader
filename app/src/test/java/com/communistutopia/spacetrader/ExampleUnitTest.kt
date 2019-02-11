@@ -1,4 +1,4 @@
-package com.example.spacetrader
+package com.communistutopia.spacetrader
 
 import org.junit.Test
 
