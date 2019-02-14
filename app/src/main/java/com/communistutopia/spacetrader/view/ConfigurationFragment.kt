@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.communistutopia.spacetrader.R
+import com.communistutopia.spacetrader.viewmodel.ConfigurationViewModel
 
 class ConfigurationFragment : Fragment() {
 
