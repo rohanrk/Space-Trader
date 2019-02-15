@@ -1,4 +1,4 @@
-package com.communistutopia.spacetrader.view.ui.configuration
+package com.communistutopia.spacetrader.view
 
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle

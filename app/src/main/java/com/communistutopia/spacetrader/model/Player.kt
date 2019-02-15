@@ -8,7 +8,9 @@ data class Player(
     var pilotSkill: Int = 0,
     var fighterSkill: Int = 0,
     var traderSkill: Int = 0,
-    var engineerSkill: Int = 0)
+    var engineerSkill: Int = 0) {
+
+}
 
 enum class Difficulty {
 	Beginner, Easy, Normal, Hard, Impossible
