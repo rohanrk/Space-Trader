@@ -57,7 +57,6 @@
             android:text="Finish"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/finish"
-            android:onClick="finishPressed"/>
+            android:id="@+id/finish"/>
 
 </LinearLayout>

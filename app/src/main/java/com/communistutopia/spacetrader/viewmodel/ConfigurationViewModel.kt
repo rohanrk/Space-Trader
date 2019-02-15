@@ -6,7 +6,7 @@ import com.communistutopia.spacetrader.model.Player
 
 class ConfigurationViewModel : ViewModel() {
 
-    private val player: Player
+    val player: Player
     private val TOTAL_POINTS = 16
 
     // TODO: Refactor ViewModel based on design principles
