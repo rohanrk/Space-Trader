@@ -11,7 +11,13 @@ import android.widget.Spinner
 import com.communistutopia.spacetrader.R
 import com.communistutopia.spacetrader.model.Difficulty
 import com.communistutopia.spacetrader.viewmodel.ConfigurationViewModel
-import kotlinx.android.synthetic.main.configuration_fragment.*
+import kotlinx.android.synthetic.main.configuration_fragment.player_name
+import kotlinx.android.synthetic.main.configuration_fragment.difficulty_spinner
+import kotlinx.android.synthetic.main.configuration_fragment.pilot_points
+import kotlinx.android.synthetic.main.configuration_fragment.trader_points
+import kotlinx.android.synthetic.main.configuration_fragment.fighter_points
+import kotlinx.android.synthetic.main.configuration_fragment.engineer_points
+import kotlinx.android.synthetic.main.configuration_fragment.finish
 
 class ConfigurationFragment : Fragment() {
 
@@ -34,6 +40,12 @@ class ConfigurationFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel::class.java)
 
         // TODO: Use the ViewModel
+    }
+
+    fun finishPressed(view: View) {
+
+        viewModel.updatePlayerFromView(difficulty_spinner.selectedItem as Difficulty, player_name.text as String,
+            pilot_points.text as Int, fighter_points.text as Int, trader_points.text as Int, engineer_points as Int)
     }
 
 }
