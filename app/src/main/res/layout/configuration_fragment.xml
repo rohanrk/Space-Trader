@@ -46,12 +46,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/difficulty_text"
-            android:text="Choose your difficulty below"/>
+            android:text="Choose your difficulty below"
+            android:layout_marginTop="16dp"/>
     <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/difficulty_spinner"
             android:layout_below="@+id/difficulty_text"/>
-
+    <Button
+            android:text="Finish"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/finish"/>
 
 </LinearLayout>

@@ -9,7 +9,7 @@ class ConfigurationViewModel : ViewModel() {
     private val player: Player
     private val TOTAL_POINTS = 16
 
-    // TODO: Implement the ViewModel
+    // TODO: Refactor ViewModel based on design principles
     init {
         player = Player()
     }
