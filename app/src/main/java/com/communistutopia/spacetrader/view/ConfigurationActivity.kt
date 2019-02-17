@@ -3,7 +3,6 @@ package com.communistutopia.spacetrader.view
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.communistutopia.spacetrader.R
-import com.communistutopia.spacetrader.view.ui.configuration.ConfigurationFragment
 
 class ConfigurationActivity : AppCompatActivity() {
 

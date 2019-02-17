@@ -1,15 +1,16 @@
 package com.communistutopia.spacetrader.model
 
 data class Player(
-	val difficulty: Difficulty? = Difficulty.Beginner,
-	val spaceship: String? = "Gnat",
-	val credits: Int? = 0,
-	val characterName: String? = "",
-	val pilotSkill: Int? = 0,
-	val fighterSkill: Int? = 0,
-	val traderSkill: Int? = 0,
-	val engineerSkill: Int? = 0
-)
+    var difficulty: Difficulty = Difficulty.Beginner,
+    var spaceship: String = "Gnat",
+    var credits: Int = 1000,
+    var charName: String = "",
+    var pilotSkill: Int = 0,
+    var fighterSkill: Int = 0,
+    var traderSkill: Int = 0,
+    var engineerSkill: Int = 0) {
+
+}
 
 enum class Difficulty {
 	Beginner, Easy, Normal, Hard, Impossible
