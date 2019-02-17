@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
+import android.widget.Toast
 import com.communistutopia.spacetrader.R
 import com.communistutopia.spacetrader.model.Difficulty
 import com.communistutopia.spacetrader.viewmodel.ConfigurationViewModel
@@ -57,10 +58,15 @@ class ConfigurationFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(p0: View?) {
-        viewModel.updatePlayerFromView(difficulty_spinner.selectedItem as Difficulty, player_name.text.toString(), pilot_points.text.toString().toInt(),
-            fighter_points.text.toString().toInt(), trader_points.text.toString().toInt(), engineer_points.text.toString().toInt())
+        if (viewModel.updatePlayerFromView(difficulty_spinner.selectedItem as Difficulty, player_name.text.toString(), pilot_points.text.toString().toInt(),
+            fighter_points.text.toString().toInt(), trader_points.text.toString().toInt(), engineer_points.text.toString().toInt())) {
 
-        print(viewModel.player)
+
+        } else {
+            var err: String = "Points must be nonnegative integers that add up to 16"
+            Toast.makeText(this.activity, "Player not created. " + err, Toast.LENGTH_LONG).show()
+        }
+
     }
 
 }
