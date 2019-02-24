@@ -46,9 +46,9 @@ object Universe {
                 var name: String = "System%d".format(i)
                 while (num_planets > 0) {
                     solarSystems.add(SolarSystem(planet = Planet(""), name = name, x = x, y = y))
-                    universe[pair] = name
                     num_planets--
                 }
+                universe[pair] = name
                 i--
             }
         }
