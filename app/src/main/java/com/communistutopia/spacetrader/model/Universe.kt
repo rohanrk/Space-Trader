@@ -35,6 +35,7 @@ object Universe {
                 solarSystems.add(SolarSystem(planet = Planet(""), name = name, x = x, y = y))
                 universe[pair] = name
             }
+            i--
         }
     }
 }
