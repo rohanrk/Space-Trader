@@ -34,6 +34,7 @@ object Universe {
                 var name: String = "System%d".format(i)
                 solarSystems.add(SolarSystem(planet = Planet(""), name = name, x = x, y = y))
                 universe[pair] = name
+                i--
             }
         }
     }
