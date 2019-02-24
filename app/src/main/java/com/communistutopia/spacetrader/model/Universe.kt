@@ -79,6 +79,16 @@ class SolarSystem(planet: Planet, name: String, x: Int, y: Int) {
         val y_dist = (this.coordinate.second - other.coordinate.second) as Double
         return sqrt(x_dist.pow(2) + y_dist.pow(2))
     }
+    
+    /**
+     * Method Overloading. Allows Solar System to get a distance given a point rather than
+     * a solar system object
+     */
+    fun getDistance(loc: Pair<Int, Int>): Double {
+        val x_dist: Double = (this.coordinate.first - loc.first) as Double
+        val y_dist = (this.coordinate.second - loc.second) as Double
+        return sqrt(x_dist.pow(2) + y_dist.pow(2))
+    }
 
     // TODO: Solar system should be able to add planets when we generate more complex universes
 
