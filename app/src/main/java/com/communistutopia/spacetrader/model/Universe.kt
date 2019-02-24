@@ -75,8 +75,18 @@ class SolarSystem(planet: Planet, name: String, x: Int, y: Int) {
      * TODO: Might want to place this in Companion obj. Equivalent to making it static. Not sure yet.
      */
     fun getDistance(other: SolarSystem): Double {
-        val x_dist: Double = (this.coordinate.first - other.coordinate.first) as Double
-        val y_dist = (this.coordinate.second - other.coordinate.second) as Double
+        val x_dist: Double = (this.coordinate.first - other.coordinate.first).toDouble()
+        val y_dist = (this.coordinate.second - other.coordinate.second).toDouble()
+        return sqrt(x_dist.pow(2) + y_dist.pow(2))
+    }
+    
+    /**
+     * Method Overloading. Allows Solar System to get a distance given a point rather than
+     * a solar system object
+     */
+    fun getDistance(loc: Pair<Int, Int>): Double {
+        val x_dist: Double = (this.coordinate.first - loc.first).toDouble()
+        val y_dist = (this.coordinate.second - loc.second).toDouble()
         return sqrt(x_dist.pow(2) + y_dist.pow(2))
     }
 
