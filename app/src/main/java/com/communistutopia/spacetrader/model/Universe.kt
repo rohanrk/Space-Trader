@@ -181,6 +181,7 @@ object Universe {
             if (!universe.containsKey(pair)) {
                 val planetSet = generatePlanets(num_planets)
                 val systemName: String = namesList[random.nextInt(namesList.size)]
+                namesList.remove(systemName)
                 solarSystems.add(SolarSystem(planets = planetSet , name = systemName, x = x, y = y))
                 universe[pair] = systemName
                 i--
