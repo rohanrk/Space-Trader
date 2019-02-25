@@ -170,7 +170,6 @@ object Universe {
     /**
      * Generates universe with constant number of solar systems. Each solar system can have one to three planets.
      *
-     * TODO: Right now, each solar system is initialized with the name 'System1', 'System2'... We will want to generate a random list of solar system and planet names to create our universe in the future.
      */
     fun generateUniverse() {
         var i: Int = NUM_SYSTEMS

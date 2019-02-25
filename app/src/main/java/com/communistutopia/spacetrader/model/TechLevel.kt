@@ -13,6 +13,7 @@ class TechLevel(private val techLevel: TechLevelType)
 
 enum class TechLevelType {
     PreAgricultural, Agricultural, Medieval, Renaissance, EarlyIndustrial, Industrial, PostIndustrial, HiTech;
+
     companion object {
         /**
          * @returns a random TechLevelType
