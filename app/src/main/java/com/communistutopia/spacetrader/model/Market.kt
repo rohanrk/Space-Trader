@@ -12,5 +12,11 @@ package com.communistutopia.spacetrader.model
  */
 class Market(private val techLevel: TechLevel, private val resourceLevel: ResourceLevel,
              private val government: Government) {
-
+    override fun toString(): String {
+        return "Market(" + "\n" +
+                "techLevel=$techLevel, " + "\n" +
+                "resourceLevel=$resourceLevel, " + "\n" +
+                "government=$government" + "\n" +
+                ")"
+    }
 }

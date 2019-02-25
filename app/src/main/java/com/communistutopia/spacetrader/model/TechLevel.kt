@@ -9,7 +9,11 @@ import kotlin.random.Random
  *  Initialization is done by the constructor, so all of these parameters are immutable properties
  *  of an instance of a Planet once it is created
  */
-class TechLevel(private val techLevel: TechLevelType)
+class TechLevel(private val techLevel: TechLevelType) {
+    override fun toString(): String {
+        return "TechLevel(techLevel=$techLevel)"
+    }
+}
 
 enum class TechLevelType {
     PreAgricultural, Agricultural, Medieval, Renaissance, EarlyIndustrial, Industrial, PostIndustrial, HiTech;
