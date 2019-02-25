@@ -14,7 +14,11 @@ enum class GovernmentType {
     Anarchy, CapitalistState, CommunistState, Confederacy, CorporateState, CyberneticState, Democracy, Dictatorship,
     FascistState, FeudalState, MilitaryState, Monarchy, PacifistState, SocialistState, StateOfSatori, Technocracy,
     Theocracy;
+
     companion object {
+        /**
+         * @returns a random GovernmentType
+         */
         fun randomGovernmentType(): GovernmentType {
             val values = GovernmentType.values()
             val random: Random = Random.Default

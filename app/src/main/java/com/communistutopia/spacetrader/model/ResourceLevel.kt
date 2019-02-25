@@ -15,7 +15,11 @@ enum class ResourceLevelType {
 
     NOSPECIALRESOURCES, MINERALRICH, MINERALPOOR, DESERT, LOTSOFWATER, RICHSOIL, POORSOIL, RICHFAUNA, LIFELESS,
     WEIRDMUSHROOMS, LOTSOFHERBS, ARTISTIC, WARLIKE;
+
     companion object {
+        /**
+         * @returns a random ResourceLevelType
+         */
         fun randomResourceLevelType(): ResourceLevelType {
             val values = ResourceLevelType.values()
             val random: Random = Random.Default

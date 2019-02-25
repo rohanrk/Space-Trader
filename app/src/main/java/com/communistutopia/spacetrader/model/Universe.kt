@@ -177,25 +177,37 @@ object Universe {
         while (i > 0) {
             val x = random.nextInt(X_SIZE)
             val y = random.nextInt(Y_SIZE)
-            var num_planets = random.nextInt(MAX_PLANETS) + 1
+            val num_planets = random.nextInt(MAX_PLANETS) + 1
             val pair = Pair(x, y)
             if (!universe.containsKey(pair)) {
-                var planetSet: MutableSet<Planet> = mutableSetOf()
-                while (num_planets > 0) {
-                    val planetName: String = namesList[random.nextInt(namesList.size)]
-                    namesList.remove(planetName)
-                    planetSet.add(Planet(name = planetName,
-                        techLevel = TechLevel(TechLevelType.randomTechLevelType()),
-                        resourceLevel = ResourceLevel(ResourceLevelType.randomResourceLevelType()),
-                        government = Government(GovernmentType.randomGovernmentType())))
-                    num_planets--
-                }
+                val planetSet = generatePlanets(num_planets)
                 val systemName: String = namesList[random.nextInt(namesList.size)]
                 solarSystems.add(SolarSystem(planets = planetSet , name = systemName, x = x, y = y))
                 universe[pair] = systemName
                 i--
             }
         }
+    }
+
+    /**
+     * @param num_planets the number of planets to generate
+     * @return planetSet, a set containing the generated planets
+     */
+    private fun generatePlanets(num_planets: Int): MutableSet<Planet> {
+        var planetSet: MutableSet<Planet> = mutableSetOf()
+        for(i in 0..num_planets) { //converted this to a for loop, might be an off by 1 error
+            val planetName: String = namesList[random.nextInt(namesList.size)]
+            namesList.remove(planetName)
+            planetSet.add(
+                Planet(
+                    name = planetName,
+                    techLevel = TechLevel(TechLevelType.randomTechLevelType()),
+                    resourceLevel = ResourceLevel(ResourceLevelType.randomResourceLevelType()),
+                    government = Government(GovernmentType.randomGovernmentType())
+                )
+            )
+        }
+        return planetSet
     }
 }
 
