@@ -32,6 +32,6 @@ class Market(val techLevel: TechLevel, val resourceLevel: ResourceLevel,
                 ")"
     }
     fun trade(player: Player, tradeGood: TradeGood, numGoods: Int) {
-        player.credits += (tradeGood.calculatePrice(tradeGood,)*numGoods)
+        player.credits += (tradeGood.calculatePrice(this) * numGoods)
     }
 }

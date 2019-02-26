@@ -1,12 +1,5 @@
 package com.communistutopia.spacetrader.model
 
-data class Water(val MTLP: Int, val MTLU: Int, val TTP: Int, val basePrice: Int, val IPL: Int, val variance: Int,
-                 val IE: Event, val CR: ResourceLevelType, val ER: ResourceLevelType, val MTL: Int, val MTH: Int)
-    : TradeGood {
-    override fun calculatePrice(
-        good: TradeGood,
-        market: Market
-    ) : Int {
-
-    }
-}
+class Water(MTLP: Int, MTLU: Int, TTP: Int, basePrice: Int, IPL: Int, variance: Int, IE: Event, CR: ResourceLevel,
+            ER: ResourceLevel, MTL: Int, MTH: Int)
+    : TradeGood(MTLP, MTLU, TTP, basePrice, IPL, variance, IE, CR, ER, MTL, MTH)
