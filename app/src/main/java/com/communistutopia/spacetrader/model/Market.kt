@@ -19,4 +19,7 @@ class Market(private val techLevel: TechLevel, private val resourceLevel: Resour
                 "government=$government" + "\n" +
                 ")"
     }
+    fun trade(player: Player, tradeGood: TradeGood, numGoods: Int) {
+        player.credits += (tradeGood.calculatePrice(tradeGood)*numGoods)
+    }
 }
