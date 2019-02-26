@@ -12,6 +12,21 @@ class Government(private val governmentType: GovernmentType) {
     override fun toString(): String {
         return "Government(governmentType=$governmentType)"
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Government
+
+        if (governmentType != other.governmentType) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return governmentType.hashCode()
+    }
 }
 
 enum class GovernmentType {

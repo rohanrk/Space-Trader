@@ -10,8 +10,20 @@ package com.communistutopia.spacetrader.model
  * Initialization is done by the constructor, so all of these parameters are immutable properties
  *  of an instance of a Market once it is created
  */
-class Market(private val techLevel: TechLevel, private val resourceLevel: ResourceLevel,
-             private val government: Government) {
+class Market(val techLevel: TechLevel, val resourceLevel: ResourceLevel,
+             val government: Government) {
+
+    var event: Event
+
+    init {
+        event = Event.None
+    }
+    constructor(techLevel: TechLevel, resourceLevel: ResourceLevel,
+                government: Government, event: Event) : this(techLevel, resourceLevel, government) {
+        this.event = event
+
+    }
+
     override fun toString(): String {
         return "Market(" + "\n" +
                 "techLevel=$techLevel, " + "\n" +
@@ -20,6 +32,6 @@ class Market(private val techLevel: TechLevel, private val resourceLevel: Resour
                 ")"
     }
     fun trade(player: Player, tradeGood: TradeGood, numGoods: Int) {
-        player.credits += (tradeGood.calculatePrice(tradeGood)*numGoods)
+        player.credits += (tradeGood.calculatePrice(tradeGood,)*numGoods)
     }
 }
