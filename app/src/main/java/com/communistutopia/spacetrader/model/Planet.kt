@@ -15,4 +15,15 @@ class Planet(private val name: String, private val techLevel: TechLevel, private
     //Initialize the market of the planet from it's properties
     private val market: Market = Market(techLevel, resourceLevel, government)
 
+    override fun toString(): String {
+        return "Planet(" + "\n" +
+                "name='$name', " + "\n" +
+                "techLevel=$techLevel, " + "\n" +
+                "resourceLevel=$resourceLevel, " + "\n" +
+                "government=$government, " + "\n" +
+                "market=$market" + "\n" +
+                ")"
+    }
+
+
 }

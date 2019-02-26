@@ -1,19 +1,13 @@
 package com.communistutopia.spacetrader.viewmodel
 
 import android.arch.lifecycle.ViewModel
-import android.widget.Toast
 import com.communistutopia.spacetrader.model.Difficulty
 import com.communistutopia.spacetrader.model.Player
 
 class ConfigurationViewModel : ViewModel() {
 
-    val player: Player
+    val player: Player = Player()
     private val TOTAL_POINTS = 16
-
-    // TODO: Refactor ViewModel based on design principles
-    init {
-        player = Player()
-    }
 
     fun updatePlayerFromView(difficulty: Difficulty, name: String, pilot: Int, fighter: Int, trader: Int, engineer: Int): Boolean {
         player.difficulty = difficulty
