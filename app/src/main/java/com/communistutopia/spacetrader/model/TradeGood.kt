@@ -23,6 +23,8 @@ open class TradeGood(val MTLP: Int, val MTLU: Int, val TTP: Int, val basePrice: 
      * A method that calculates the price of the trade good and returns it
      *
      * @param market the Market from the planet being traded into
+     *
+     * TODO take into account Government type
      */
     fun calculatePrice(
         market: Market
