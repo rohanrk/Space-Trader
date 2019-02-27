@@ -14,13 +14,7 @@ import android.widget.Toast
 import com.communistutopia.spacetrader.R
 import com.communistutopia.spacetrader.model.Difficulty
 import com.communistutopia.spacetrader.viewmodel.ConfigurationViewModel
-import kotlin.text.toInt
-import kotlinx.android.synthetic.main.configuration_fragment.player_name
-import kotlinx.android.synthetic.main.configuration_fragment.difficulty_spinner
-import kotlinx.android.synthetic.main.configuration_fragment.pilot_points
-import kotlinx.android.synthetic.main.configuration_fragment.trader_points
-import kotlinx.android.synthetic.main.configuration_fragment.fighter_points
-import kotlinx.android.synthetic.main.configuration_fragment.engineer_points
+import kotlinx.android.synthetic.main.configuration_fragment.*
 
 class ConfigurationFragment : Fragment(), View.OnClickListener {
 

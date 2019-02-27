@@ -1,7 +1,6 @@
 package com.communistutopia.spacetrader.viewmodel
 
 import android.arch.lifecycle.ViewModel
-import android.widget.Toast
 import com.communistutopia.spacetrader.model.Difficulty
 import com.communistutopia.spacetrader.model.Player
 

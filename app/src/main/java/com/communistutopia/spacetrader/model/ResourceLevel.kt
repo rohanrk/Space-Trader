@@ -13,6 +13,22 @@ class ResourceLevel(private val resourceLevel: ResourceLevelType) {
     override fun toString(): String {
         return "ResourceLevel(resourceLevel=$resourceLevel)"
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as ResourceLevel
+
+        if (resourceLevel != other.resourceLevel) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return resourceLevel.hashCode()
+    }
+
 }
 
 enum class ResourceLevelType {
