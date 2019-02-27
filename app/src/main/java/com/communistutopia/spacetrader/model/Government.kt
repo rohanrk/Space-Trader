@@ -8,7 +8,11 @@ import kotlin.random.Random
  * Initialization is done by the constructor, so all of these parameters are immutable properties
  *  of an instance of a Government once it is created
  */
-class Government(private val governmentType: GovernmentType)
+class Government(private val governmentType: GovernmentType) {
+    override fun toString(): String {
+        return "Government(governmentType=$governmentType)"
+    }
+}
 
 enum class GovernmentType {
     Anarchy, CapitalistState, CommunistState, Confederacy, CorporateState, CyberneticState, Democracy, Dictatorship,

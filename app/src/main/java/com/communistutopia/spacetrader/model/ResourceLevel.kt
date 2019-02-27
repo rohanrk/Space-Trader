@@ -9,7 +9,11 @@ import kotlin.random.Random
  * Initialization is done by the constructor, so all of these parameters are immutable properties
  *  of an instance of a ResourceLevel once it is created
  */
-class ResourceLevel(private val resourceLevel: ResourceLevelType)
+class ResourceLevel(private val resourceLevel: ResourceLevelType) {
+    override fun toString(): String {
+        return "ResourceLevel(resourceLevel=$resourceLevel)"
+    }
+}
 
 enum class ResourceLevelType {
 

@@ -19,7 +19,7 @@ object Universe {
     private var MAX_PLANETS: Int = 3
 
     // Objects to help generate universe and handle game events
-    private val solarSystems: HashSet<SolarSystem>
+    val solarSystems: HashSet<SolarSystem>
     private val universe: HashMap<Pair<Int, Int>, String> // Initializing a 2D array is the most frustrating ordeal. So this is a hacky solution
     private val random: Random
     private var namesList: MutableList<String>
@@ -209,6 +209,10 @@ object Universe {
         }
         return planetSet
     }
+    override fun toString(): String {
+        return solarSystems.toString() +
+                '\n' + universe.toString()
+    }
 }
 
 /**
@@ -250,5 +254,14 @@ class SolarSystem(planets: Set<Planet>, name: String, x: Int, y: Int) {
         val y_dist = (this.coordinate.second - loc.second).toDouble()
         return sqrt(x_dist.pow(2) + y_dist.pow(2))
     }
+
+    override fun toString(): String {
+        return "SolarSystem(" + "\n" +
+                "name='$name', " + "\n" +
+                "coordinate=$coordinate" + "\n" +
+                "planets=$planets, " + "\n" +
+                ")"
+    }
+
 
 }
