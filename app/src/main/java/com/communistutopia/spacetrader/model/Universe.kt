@@ -167,9 +167,10 @@ object Universe {
 
     /**
      * Generates universe with constant number of solar systems. Each solar system can have one to three planets.
-     *
+     * Also initializes the player's starting location on the first planet
+     * @param player the player
      */
-    fun generateUniverse() {
+    fun generateUniverse(player: Player) {
         var i: Int = NUM_SYSTEMS
         while (i > 0) {
             val x = random.nextInt(X_SIZE)
@@ -185,6 +186,7 @@ object Universe {
                 i--
             }
         }
+        updateLocation(player)
     }
 
     /**
@@ -206,6 +208,14 @@ object Universe {
             )
         }
         return planetSet
+    }
+
+    /**
+     * This method updates a player's location. The location is set to the first planet created in the first solar system
+     */
+    fun updateLocation(player: Player) {
+        player.location = solarSystems.first().planets.first()
+
     }
     override fun toString(): String {
         return solarSystems.toString() +
