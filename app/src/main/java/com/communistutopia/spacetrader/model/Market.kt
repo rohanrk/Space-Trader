@@ -46,6 +46,7 @@ class Market(val techLevel: TechLevel, val resourceLevel: ResourceLevel,
      * A player cannot sell a good if the planet's tech level is too low or if they do not have enough money
      * TODO add functionality to decrement quantity of good in player's cargo
      * TODO add functionality to increment quantity of good in this Market's inventory
+     * TODO add error messages so the player knows why they cannot sell an item
      * @param player the player selling the good
      * @param tradeGood the good being sold
      * @param numGoods the number of things being sold
@@ -62,6 +63,7 @@ class Market(val techLevel: TechLevel, val resourceLevel: ResourceLevel,
      * A player cannot buy items if they do not have enough cargo space.
      * TODO add functionality to increment quantity of good in player's cargo
      * TODO add functionality to decrement quantity of good in this Market's inventory
+     * * TODO add error (toast?) messages so the player knows why they cannot buy an item
      * @param player the player selling the good
      * @param tradeGood the good being sold
      * @param numGoods the number of things being sold
