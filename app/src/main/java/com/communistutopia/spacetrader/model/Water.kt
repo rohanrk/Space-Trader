@@ -19,4 +19,4 @@ package com.communistutopia.spacetrader.model
 
 class Water(MTLP: Int, MTLU: Int, TTP: Int, basePrice: Int, IPL: Int, variance: Int, IE: Event, CR: ResourceLevel,
                ER: ResourceLevel, MTL: Int, MTH: Int, GTD: Government, GTS: Government
-) : TradeGood(MTLP, MTLU, TTP, basePrice, IPL, variance, IE, CR, ER, MTL, MTH, GTD, GTS)
+) : TradeGood(MTLP, MTLU, TTP, basePrice, IPL, variance, IE, CR, ER, MTL, MTH, GTD, GTS, "water")
