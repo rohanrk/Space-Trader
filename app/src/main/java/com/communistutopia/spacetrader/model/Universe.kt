@@ -17,15 +17,15 @@ object Universe {
     private var MAX_PLANETS: Int = 3
 
     // Objects to help generate universe and handle game events
-    val solarSystems: HashSet<SolarSystem>
-    private val universe: HashMap<Pair<Int, Int>, String> // Initializing a 2D array is the most frustrating ordeal. So this is a hacky solution
+    val solarSystems: MutableSet<SolarSystem>
+    private val universe: MutableMap<Pair<Int, Int>, String> // Initializing a 2D array is the most frustrating ordeal. So this is a hacky solution
     private val random: Random
     private var namesList: MutableList<String>
 
 
     init {
-        solarSystems = hashSetOf()
-        universe = hashMapOf()
+        solarSystems = mutableSetOf()
+        universe = mutableMapOf()
         random = Random.Default
         namesList = mutableListOf(
             "Acamar",
