@@ -9,6 +9,9 @@ import android.widget.TextView
 import com.communistutopia.spacetrader.R
 import com.communistutopia.spacetrader.model.SolarSystem
 
+/**
+ * Adapter for a list, used for the debug fragment
+ */
 class SolarSystemAdapter(private var context: Context,
                          private var dataSource: List<SolarSystem>) : BaseAdapter() {
 

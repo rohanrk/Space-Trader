@@ -14,7 +14,7 @@ class Market(val techLevel: TechLevel, val resourceLevel: ResourceLevel,
              val government: Government) {
 
     var event: Event
-    var inventory: Inventory
+    // var inventory: Inventory
 
     init {
         event = Event.None
