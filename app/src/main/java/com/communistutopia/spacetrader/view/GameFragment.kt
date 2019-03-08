@@ -1,6 +1,7 @@
 package com.communistutopia.spacetrader.view
 
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import com.communistutopia.spacetrader.R
 import com.communistutopia.spacetrader.model.SolarSystem
 import com.communistutopia.spacetrader.viewmodel.GameViewModel
+import kotlinx.android.synthetic.main.game_fragment.*
 
 class GameFragment : Fragment() {
     companion object {
@@ -26,11 +28,11 @@ class GameFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-//        viewModel = ViewModelProviders.of(this).get(DebugGameViewModel::class.java)
-        // TODO: Use the ViewModel
-//        val solarSystems: List<SolarSystem> = ArrayList<SolarSystem>(viewModel.solarSystems)
-//        val adapter = SolarSystemAdapter(context!!, solarSystems)
-//        solar_systems_list.adapter = adapter
+        viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
+        viewModel.goToSpace(context)
+        market_button.setOnClickListener {
+            val intent = Intent(context!!, MarketplaceActivity::class.java)
+            startActivity(intent)
+        }
     }
-
 }

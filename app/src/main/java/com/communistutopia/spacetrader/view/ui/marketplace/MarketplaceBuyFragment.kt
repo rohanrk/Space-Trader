@@ -6,12 +6,12 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.communistutopia.spacetrader.view.R
+import com.communistutopia.spacetrader.R
 
-class MarketplaceFragment : Fragment() {
+class MarketplaceBuyFragment : Fragment() {
 
     companion object {
-        fun newInstance() = MarketplaceFragment()
+        fun newInstance() = MarketplaceBuyFragment()
     }
 
     private lateinit var viewModel: MarketplaceViewModel
@@ -20,7 +20,7 @@ class MarketplaceFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.marketplace_fragment, container, false)
+        return inflater.inflate(R.layout.marketplace_buy_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

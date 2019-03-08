@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Space-Trader.iml" filepath="$PROJECT_DIR$/Space-Trader.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/SpaceTrader.iml" filepath="$PROJECT_DIR$/.idea/SpaceTrader.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
