@@ -8,10 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.communistutopia.spacetrader.R
-import com.communistutopia.spacetrader.model.SolarSystem
 import com.communistutopia.spacetrader.viewmodel.GameViewModel
 import kotlinx.android.synthetic.main.game_fragment.*
 
+/**
+ * This displays the main game screen
+ */
 class GameFragment : Fragment() {
     companion object {
         fun newInstance() = GameFragment()
@@ -29,6 +31,7 @@ class GameFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
+        // Start audio
         viewModel.goToSpace(context)
         market_button.setOnClickListener {
             val intent = Intent(context!!, MarketplaceActivity::class.java)

@@ -1,30 +1,39 @@
 package com.communistutopia.spacetrader.view
 
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
+import android.support.v7.app.AppCompatActivity
 import com.communistutopia.spacetrader.R
-import com.communistutopia.spacetrader.view.ui.marketplace.MarketplaceSellFragment
-import android.support.v4.view.ViewPager
 import com.communistutopia.spacetrader.adapter.MarketplacePagerAdapter
 import kotlinx.android.synthetic.main.marketplace_activity.*
 
-class MarketplaceActivity : FragmentActivity() {
+/**
+ * Activity that wraps the two fragments (buy and sell)
+ */
+class MarketplaceActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.marketplace_activity)
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MarketplaceSellFragment.newInstance())
-                .commitNow()
-        }
 
+        //actionbar
+        val actionbar = supportActionBar
+        //set actionbar title
+        actionbar!!.title = "Marketplace"
+        //set back button
+        actionbar.setDisplayHomeAsUpEnabled(true)
+        actionbar.setDisplayHomeAsUpEnabled(true)
+
+        // Set up the ViewPager (the tabs)
         val fragmentAdapter = MarketplacePagerAdapter(supportFragmentManager)
         pager.adapter = fragmentAdapter
 
         tabs_main.setupWithViewPager(pager)
+    }
 
-        // viewPager = findViewById(R.id.pager)
+    // Make back button work
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
 }

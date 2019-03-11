@@ -22,12 +22,12 @@ class GameViewModel : ViewModel() {
     }
 
     fun goToSpace(context: Context?) {
+        print("WARP FACTOR 9")
         // WARP FACTOR 9
         val mp = MediaPlayer.create(context, R.raw.nasa)
         mp.setOnPreparedListener {
             println("Wesley Snipes is coming, GO GO GO GO!")
             mp.start()
         }
-
     }
 }

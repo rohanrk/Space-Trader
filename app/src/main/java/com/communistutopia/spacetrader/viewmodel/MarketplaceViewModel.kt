@@ -1,4 +1,4 @@
-package com.communistutopia.spacetrader.view.ui.marketplace
+package com.communistutopia.spacetrader.viewmodel
 
 import android.arch.lifecycle.ViewModel
 
