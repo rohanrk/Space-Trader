@@ -1,5 +1,7 @@
 package com.communistutopia.spacetrader.model
 
+import android.os.Parcelable
+
 /**
  * This class represents a player with default values.
  *@param difficulty difficulty of game
@@ -12,6 +14,7 @@ package com.communistutopia.spacetrader.model
  * @param traderSkill points attributed to the trader category
  * @param engineerSkill points attributed to the engineer category
  */
+//TODO: Implement Parcelable so we can pass Player data between views
 data class Player(
     var difficulty: Difficulty = Difficulty.Beginner,
     var spaceship: Ship = Ship(Inventory(0,0,0,0,0,0,0,0,0,0),
@@ -32,6 +35,8 @@ data class Player(
     fun availableCargo(): Int {
         return spaceship.cargoCapacity
     }
+
+
 
 }
 
