@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Space Trader</string>
+    <string name="travelBtnStr">Travel</string>
+    <string name="marketBtnStr">Market</string>
+    <string name="shipyardBtnStr">Shipyard</string>
+    <string name="playerBtnStr">Player Info</string>
+    <string name="debugBtnStr">Debug Info</string>
 </resources>
