@@ -151,48 +151,6 @@ class Market(val techLevel: TechLevel, val resourceLevel: ResourceLevel,
     }
 
     /**
-     * A function that buys goods from a Market
-     * A player cannot buy items if they do not have enough cargo space.
-     * TODO add error messages so the player knows why they cannot sell an item in view
-     * @param player the player selling the good
-     * @param tradeGood the good being sold
-     * @param numGoods the number of things being sold
-     * @return true if action was successful, false otherwise
-     */
-    fun sell(player: Player, tradeGood: TradeGood, numGoods: Int): Boolean {
-        val total: Int = tradeGood.calculatePrice(this) * numGoods
-        if (!canSell(tradeGood.MTLU) || player.credits < total || player.spaceship.hold.getValue(tradeGood) < numGoods) {
-            return false
-        } else {
-            player.credits -= total
-            this.inventory.removeSupplies(tradeGood, numGoods)
-            player.spaceship.hold.addSupplies(tradeGood, numGoods)
-            return true
-        }
-    }
-
-    /**
-     * A function that sells goods to a Market
-     * A player cannot sell a good if the planet's tech level is too low or if they do not have enough money
-     * TODO add error messages so the player knows why they cannot sell an item in view
-     * @param player the player selling the good
-     * @param tradeGood the good being sold
-     * @param numGoods the number of things being sold
-     * @return true if action was successful, false otherwise
-     */
-    fun buy(player: Player, tradeGood: TradeGood, numGoods: Int): Boolean {
-        val total: Int = tradeGood.calculatePrice(this) * numGoods
-        if(player.availableCargo() < numGoods) {
-            return false
-        } else {
-            player.credits += total
-            this.inventory.addSupplies(tradeGood, numGoods)
-            player.spaceship.hold.removeSupplies(tradeGood, numGoods)
-            return true
-        }
-    }
-
-    /**
      * This method finds if an item can be sold on this planet based on this planet's tech level.
      * If the planet's tech level is below the MTLU, the item cannot be sold.
      */
