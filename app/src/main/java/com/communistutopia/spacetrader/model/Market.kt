@@ -42,43 +42,43 @@ class Market(val techLevel: TechLevel, val resourceLevel: ResourceLevel,
     private fun initializeInventory() {
         val baseAmount = 20
         var water = baseAmount
-        val initWater = Water(0,0,1,0,0,0, Event.None,
+        val initWater = Water(0,0,2,0,0,0, Event.None,
             ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES), ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES),
             0,0, Government(GovernmentType.Anarchy), Government(GovernmentType.Anarchy))
         var furs = baseAmount
-        val initFurs = Furs(0,0,4,0,0,0, Event.None,
+        val initFurs = Furs(0,0,0,0,0,0, Event.None,
             ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES), ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES),
             0,0, Government(GovernmentType.Anarchy), Government(GovernmentType.Anarchy))
         var food = baseAmount
-        val initFood = Food(0,0,1,0,0,0, Event.None,
+        val initFood = Food(1,0,1,0,0,0, Event.None,
             ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES), ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES),
             0,0, Government(GovernmentType.Anarchy), Government(GovernmentType.Anarchy))
         var ore = baseAmount
-        val initOre = Ore(4,0,6,0,0,0, Event.None,
+        val initOre = Ore(2,0,3,0,0,0, Event.None,
             ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES), ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES),
             0,0, Government(GovernmentType.Anarchy), Government(GovernmentType.Anarchy))
         var games = baseAmount
-        val initGames = Games(6,0,7,0,0,0, Event.None,
+        val initGames = Games(3,0,6,0,0,0, Event.None,
             ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES), ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES),
             0,0, Government(GovernmentType.Anarchy), Government(GovernmentType.Anarchy))
         var firearms = baseAmount
-        val initFirearms = Firearms(3,0,7,0,0,0, Event.None,
+        val initFirearms = Firearms(3,0,5,0,0,0, Event.None,
             ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES), ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES),
             0,0, Government(GovernmentType.Anarchy), Government(GovernmentType.Anarchy))
         var medicine = baseAmount
-        val initMedicine = Medicine(4,0,7,0,0,0, Event.None,
+        val initMedicine = Medicine(4,0,6,0,0,0, Event.None,
             ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES), ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES),
             0,0, Government(GovernmentType.Anarchy), Government(GovernmentType.Anarchy))
         var machines = baseAmount
-        val initMachines = Machines(5,0,5,0,0,0, Event.None,
+        val initMachines = Machines(4,0,5,0,0,0, Event.None,
             ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES), ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES),
             0,0, Government(GovernmentType.Anarchy), Government(GovernmentType.Anarchy))
         var narcotics = baseAmount
-        val initNarcotics = Narcotics(1,0,1,0,0,0, Event.None,
+        val initNarcotics = Narcotics(5,0,5,0,0,0, Event.None,
             ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES), ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES),
             0,0, Government(GovernmentType.Anarchy), Government(GovernmentType.Anarchy))
         var robots = baseAmount
-        val initRobots = Robots(7,0,7,0,0,0, Event.None,
+        val initRobots = Robots(6,0,7,0,0,0, Event.None,
             ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES), ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES),
             0,0, Government(GovernmentType.Anarchy), Government(GovernmentType.Anarchy))
 
