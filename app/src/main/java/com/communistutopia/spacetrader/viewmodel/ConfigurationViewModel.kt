@@ -22,7 +22,6 @@ class ConfigurationViewModel : ViewModel() {
     fun updatePoints(pilot: Int, fighter: Int, trader: Int, engineer: Int): Boolean {
 
         if (pilot < 0 || fighter < 0 || trader < 0 || engineer < 0 || pilot + fighter + trader + engineer != TOTAL_POINTS) {
-            // TODO: Error handling. Max points exceed 16
             return false
         } else {
             player.pilotSkill = pilot
