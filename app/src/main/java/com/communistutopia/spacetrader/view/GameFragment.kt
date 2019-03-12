@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.communistutopia.spacetrader.R
+import com.communistutopia.spacetrader.model.Player
 import com.communistutopia.spacetrader.viewmodel.GameViewModel
 import kotlinx.android.synthetic.main.game_fragment.*
 
@@ -33,9 +34,11 @@ class GameFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
         // Start audio
         viewModel.goToSpace(context)
+        viewModel.player = activity!!.intent.getParcelableExtra("player")
         market_button.setOnClickListener {
             val intent = Intent(context!!, MarketplaceActivity::class.java)
-            viewModel.player = intent.getParcelableExtra("player")
+            intent.putExtra("", )
+            intent.putExtra("credits", viewModel.player.credits)
             startActivity(intent)
         }
     }
