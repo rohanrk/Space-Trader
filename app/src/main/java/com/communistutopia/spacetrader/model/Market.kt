@@ -1,5 +1,8 @@
 package com.communistutopia.spacetrader.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 /**
  * @param techLevel a TechLevel object
  * @param resourceLevel a ResourceLevel object
@@ -10,8 +13,9 @@ package com.communistutopia.spacetrader.model
  * Initialization is done by the constructor, so all of these parameters are immutable properties
  *  of an instance of a Market once it is created
  */
+@Parcelize
 class Market(val techLevel: TechLevel, val resourceLevel: ResourceLevel,
-             val government: Government) {
+             val government: Government): Parcelable {
 
     var event: Event
     lateinit var inventory: Inventory

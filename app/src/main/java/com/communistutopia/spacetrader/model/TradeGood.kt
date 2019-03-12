@@ -18,7 +18,7 @@ package com.communistutopia.spacetrader.model
  * @param GTS = Government Type which heavily supplies this resource, when the same as the market, decrease price
  */
 
-open abstract class TradeGood(val MTLP: Int, val MTLU: Int, val TTP: Int, val basePrice: Int, val IPL: Int, val variance: Int,
+abstract class TradeGood(val MTLP: Int, val MTLU: Int, val TTP: Int, val basePrice: Int, val IPL: Int, val variance: Int,
                      val IE: Event, val CR: ResourceLevel, val ER: ResourceLevel, val MTL: Int, val MTH: Int,
                      val GTD: Government, val GTS: Government, val name: String) {
 

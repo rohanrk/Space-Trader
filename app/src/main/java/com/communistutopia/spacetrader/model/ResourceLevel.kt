@@ -1,5 +1,7 @@
 package com.communistutopia.spacetrader.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 import kotlin.random.Random
 
 /**
@@ -9,7 +11,8 @@ import kotlin.random.Random
  * Initialization is done by the constructor, so all of these parameters are immutable properties
  *  of an instance of a ResourceLevel once it is created
  */
-class ResourceLevel(private val resourceLevel: ResourceLevelType) {
+@Parcelize
+class ResourceLevel(private val resourceLevel: ResourceLevelType): Parcelable {
     override fun toString(): String {
         return "ResourceLevel(resourceLevel=$resourceLevel)"
     }

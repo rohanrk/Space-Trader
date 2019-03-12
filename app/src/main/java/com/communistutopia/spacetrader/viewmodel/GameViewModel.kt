@@ -6,6 +6,7 @@ import com.communistutopia.spacetrader.model.Universe
 import android.media.MediaPlayer
 import android.content.Context
 import com.communistutopia.spacetrader.R
+import com.communistutopia.spacetrader.model.Player
 
 
 /**
@@ -14,10 +15,11 @@ import com.communistutopia.spacetrader.R
  */
 
 class GameViewModel : ViewModel() {
-    private val solarSystems: HashSet<SolarSystem>
+
+    private val solarSystems: MutableSet<SolarSystem>
 
     init {
-        Universe.generateUniverse()
+        Universe.generateUniverse() // Replace Player ASAP
         solarSystems = Universe.solarSystems
     }
 

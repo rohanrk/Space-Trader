@@ -1,5 +1,8 @@
 package com.communistutopia.spacetrader.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 /**
  * A class to hold the number of each trade good a player, planet, or trader has
  * @param water int representing the number of goods in this inventory
@@ -14,9 +17,10 @@ package com.communistutopia.spacetrader.model
  * @param robots int representing the number of goods in this inventory
  *
  */
+@Parcelize
 class Inventory(
     var water: Int, var furs: Int, var food: Int, var ore: Int, var games: Int, var firearms: Int,
-                var medicine: Int, var machines: Int, var narcotics: Int, var robots: Int) {
+                var medicine: Int, var machines: Int, var narcotics: Int, var robots: Int): Parcelable {
 
 
     private var supplies: MutableMap<String, Int>
