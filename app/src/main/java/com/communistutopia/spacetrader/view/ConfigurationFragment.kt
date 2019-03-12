@@ -56,7 +56,7 @@ class ConfigurationFragment : Fragment(), View.OnClickListener {
             fighter_points.text.toString().toInt(), trader_points.text.toString().toInt(), engineer_points.text.toString().toInt())) {
             // If the player is valid, go to the GameActivity (which at the moment just has a debug fragment
             val intent = Intent(context!!, GameActivity::class.java)
-            //intent.putExtra("player", viewModel.player as? Any)
+            intent.putExtra("player", viewModel.player)
             startActivity(intent)
 
         } else {

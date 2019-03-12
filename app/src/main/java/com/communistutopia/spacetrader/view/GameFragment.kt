@@ -35,6 +35,7 @@ class GameFragment : Fragment() {
         viewModel.goToSpace(context)
         market_button.setOnClickListener {
             val intent = Intent(context!!, MarketplaceActivity::class.java)
+            viewModel.player = intent.getParcelableExtra("player")
             startActivity(intent)
         }
     }

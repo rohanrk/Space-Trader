@@ -17,6 +17,7 @@ import com.communistutopia.spacetrader.model.Player
 class GameViewModel : ViewModel() {
 
     private val solarSystems: MutableSet<SolarSystem>
+    lateinit var player: Player
 
     init {
         Universe.generateUniverse() // Replace Player ASAP
