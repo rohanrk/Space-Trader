@@ -20,7 +20,7 @@ package com.communistutopia.spacetrader.model
 
 abstract class TradeGood(val MTLP: Int, val MTLU: Int, val TTP: Int, val basePrice: Int, val IPL: Int, val variance: Int,
                      val IE: Event, val CR: ResourceLevel, val ER: ResourceLevel, val MTL: Int, val MTH: Int,
-                     val GTD: Government, val GTS: Government, val name: String) {
+                     val GTD: Government, val GTS: Government, val name: String, var amount: Int) {
 
     /**
      * A method that calculates the price of the trade good and returns it
@@ -70,10 +70,7 @@ abstract class TradeGood(val MTLP: Int, val MTLU: Int, val TTP: Int, val basePri
      *
      */
     fun isMTLP(market: Market): Boolean {
-        if (MTLP.equals(market.techLevel)) {
-            return true
-        }
-        return false
+        return MTLP <= market.techLevel.value()
     }
 
     /**
@@ -84,10 +81,7 @@ abstract class TradeGood(val MTLP: Int, val MTLU: Int, val TTP: Int, val basePri
      *
      */
     fun isTTP(market: Market): Boolean {
-        if(TTP.equals(market.techLevel)) {
-            return true
-        }
-        return false
+        return TTP <= market.techLevel.value()
     }
 
 }

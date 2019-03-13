@@ -18,5 +18,5 @@ package com.communistutopia.spacetrader.model
  */
 
 class Food(MTLP: Int, MTLU: Int, TTP: Int, basePrice: Int, IPL: Int, variance: Int, IE: Event, CR: ResourceLevel,
-               ER: ResourceLevel, MTL: Int, MTH: Int, GTD: Government, GTS: Government
-) : TradeGood(MTLP, MTLU, TTP, basePrice, IPL, variance, IE, CR, ER, MTL, MTH, GTD, GTS, "food")
+               ER: ResourceLevel, MTL: Int, MTH: Int, GTD: Government, GTS: Government, amount: Int
+) : TradeGood(MTLP, MTLU, TTP, basePrice, IPL, variance, IE, CR, ER, MTL, MTH, GTD, GTS, "food", amount)
