@@ -19,7 +19,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Player(
     var difficulty: Difficulty = Difficulty.Beginner,
-    var spaceship: Ship = Ship(Inventory(0,0,0,0,0,0,0,0,0,0),
+    var spaceship: Ship = Ship(Inventory(),
         "Gnat", 0,100, false, false, 14, listOf(Weapon.NONE), listOf(Shield.NONE),
         listOf(Gadgets.NONE), 15, 1, 0, 1, 1),
     var location: Planet =

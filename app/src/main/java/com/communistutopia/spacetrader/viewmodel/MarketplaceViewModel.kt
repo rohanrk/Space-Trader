@@ -7,10 +7,11 @@ import com.communistutopia.spacetrader.model.*
 import kotlin.properties.Delegates
 
 class MarketplaceViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
 
     lateinit var player: Player
     lateinit var market: Market
+
+    val BASE_AMOUNT = 20
 
     /**
      * A function that buys goods from a Market
@@ -23,7 +24,7 @@ class MarketplaceViewModel : ViewModel() {
      */
     fun sellToPlayer(player: Player, tradeGood: TradeGood, numGoods: Int): Boolean {
         val total: Int = tradeGood.calculatePrice(market) * numGoods
-        if (!market.canSell(tradeGood.MTLU) || player.credits < total || player.spaceship.hold.getValue(tradeGood) < numGoods) {
+        if (!canBeSold(tradeGood.MTLU) || player.credits < total || player.spaceship.hold.getValue(tradeGood) < numGoods) {
             return false
         } else {
             player.credits -= total
@@ -54,5 +55,27 @@ class MarketplaceViewModel : ViewModel() {
         }
     }
 
+    /**
+     * Goods that meet the tech level which produces the most are initialized to 5 * the base value.
+     *
+     */
+    fun initializeInventory() {
+        for (entry in market.inventory) {
+            if (entry.value.isMTLP(market)) {
+                entry.value.amount = BASE_AMOUNT * 5
+            }
+        }
+    }
+
+    /**
+     * This method finds if an item can be sold on this planet based on this planet's tech level.
+     * If the planet's tech level is below the MTLU, the item cannot be sold.
+     */
+    fun canBeSold(itemMTLU: Int): Boolean {
+        if (market.techLevel.value() < itemMTLU) {
+            return false
+        }
+        return true
+    }
 
 }
