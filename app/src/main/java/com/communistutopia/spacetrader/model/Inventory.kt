@@ -16,4 +16,33 @@ package com.communistutopia.spacetrader.model
  */
 class Inventory(
     var water: Int, var furs: Int, var food: Int, var ore: Int, var games: Int, var firearms: Int,
-                var medicine: Int, var machines: Int, var narcotics: Int, var robots: Int)
+                var medicine: Int, var machines: Int, var narcotics: Int, var robots: Int) {
+
+
+    private var supplies: MutableMap<String, Int>
+
+    init {
+        //TODO: Refactor this. It's real bad hardcoding but should be acceptable for the purposes of M7 demo
+        supplies = mutableMapOf("water" to water, "furs" to furs, "food" to food, "ore" to ore, "games" to games, "firearms" to firearms,
+                        "medicine" to medicine, "machines" to machines, "narcotics" to narcotics, "robots" to robots)
+    }
+
+    fun getValue(good: TradeGood): Int {
+        return supplies[good.name]!!
+    }
+
+    fun addSupplies(good: TradeGood, amount: Int) {
+        val numGoods = supplies[good.name]!!
+        supplies[good.name] = numGoods + amount
+    }
+
+    fun removeSupplies(good: TradeGood, amount: Int) {
+        val numGoods = supplies[good.name]!!
+        supplies[good.name] = numGoods - amount
+    }
+
+    fun getTotalSupplies(): Int {
+        return supplies.map { it.value }.sum()
+    }
+}
+

@@ -17,15 +17,15 @@ object Universe {
     private var MAX_PLANETS: Int = 3
 
     // Objects to help generate universe and handle game events
-    val solarSystems: HashSet<SolarSystem>
-    private val universe: HashMap<Pair<Int, Int>, String> // Initializing a 2D array is the most frustrating ordeal. So this is a hacky solution
+    val solarSystems: MutableSet<SolarSystem>
+    private val universe: MutableMap<Pair<Int, Int>, String> // Initializing a 2D array is the most frustrating ordeal. So this is a hacky solution
     private val random: Random
     private var namesList: MutableList<String>
 
 
     init {
-        solarSystems = hashSetOf()
-        universe = hashMapOf()
+        solarSystems = mutableSetOf()
+        universe = mutableMapOf()
         random = Random.Default
         namesList = mutableListOf(
             "Acamar",
@@ -167,7 +167,8 @@ object Universe {
 
     /**
      * Generates universe with constant number of solar systems. Each solar system can have one to three planets.
-     *
+     * Also initializes the player's starting location on the first planet
+     * @param player the player TO-DO
      */
     fun generateUniverse() {
         var i: Int = NUM_SYSTEMS
@@ -185,6 +186,7 @@ object Universe {
                 i--
             }
         }
+        // TODO: updateLocation(player) For now, I'm commenting this out till M8
     }
 
     /**
@@ -206,6 +208,14 @@ object Universe {
             )
         }
         return planetSet
+    }
+
+    /**
+     * This method updates a player's location. The location is set to the first planet created in the first solar system
+     */
+    fun updateLocation(player: Player) {
+        player.location = solarSystems.first().planets.first()
+
     }
     override fun toString(): String {
         return solarSystems.toString() +
