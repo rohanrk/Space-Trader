@@ -23,6 +23,9 @@ class TechLevel(private val techLevel: TechLevelType): Parcelable {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
+
+        if (other is Int) return other == this.value()
+
         if (javaClass != other?.javaClass) return false
 
         other as TechLevel
