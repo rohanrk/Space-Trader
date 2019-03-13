@@ -1,20 +1,26 @@
 package com.communistutopia.spacetrader.adapter
 
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
+import android.support.v4.app.FragmentActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import com.communistutopia.spacetrader.R
+import com.communistutopia.spacetrader.viewmodel.MarketplaceViewModel
 
 /**
  * Adapter for a list, used for the debug fragment
  * @author Drake Witt
  */
 class MarketItemAdapter(private var context: Context,
-                        private var dataSource: List<MarketItem>) : BaseAdapter() {
+                        private var dataSource: List<MarketItem>, private var sell: Boolean) : BaseAdapter() {
+
+    private var marketplaceViewModel: MarketplaceViewModel
 
     private class ViewHolder(row: View?) {
         var name: TextView? = null
@@ -31,7 +37,13 @@ class MarketItemAdapter(private var context: Context,
             this.quantity = row?.findViewById<TextView>(R.id.item_quantity)
             this.price = row?.findViewById<TextView>(R.id.item_price)
             this.actionButton = row?.findViewById<Button>(R.id.item_action_button)
+
         }
+    }
+
+
+    init {
+        marketplaceViewModel = ViewModelProviders.of(context as FragmentActivity).get(MarketplaceViewModel::class.java)
     }
 
     private val inflater: LayoutInflater
@@ -55,6 +67,33 @@ class MarketItemAdapter(private var context: Context,
         viewHolder.price?.text = item.price.toString() + " credits"
         viewHolder.actionButton?.text = item.action.toString()
 
+        if (sell) {
+            viewHolder.actionButton?.setOnClickListener {
+                if (marketplaceViewModel.buyFromPlayer(item.name, marketplaceViewModel.market.inventory.getMTLU(item.name), 1)) {
+                    item.quantity = marketplaceViewModel.market.inventory.getAmount(item.name)
+                    viewHolder.quantity?.text = item.quantity.toString()
+                    val out: String = "You now have %d credits and %d %s resource".format(marketplaceViewModel.player.credits,
+                        marketplaceViewModel.player.spaceship.hold.getAmount((item.name)), item.name)
+                    Toast.makeText(context, out, Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(context, "Cannot sell item", Toast.LENGTH_LONG).show()
+                }
+            }
+
+        } else {
+            viewHolder.actionButton?.setOnClickListener {
+                if (marketplaceViewModel.sellToPlayer(item.name, 1)) {
+                    item.quantity = marketplaceViewModel.market.inventory.getAmount(item.name)
+                    viewHolder.quantity?.text = item.quantity.toString()
+                    val out: String = "You now have %d credits and %d %s resource".format(marketplaceViewModel.player.credits,
+                        marketplaceViewModel.player.spaceship.hold.getAmount((item.name)), item.name)
+                    Toast.makeText(context, out, Toast.LENGTH_LONG)
+                        .show()
+                } else {
+                    Toast.makeText(context, "Cannot buy item", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
         return view as View
     }
 
@@ -81,6 +120,6 @@ enum class MarketAction {
 }
 
 data class MarketItem (
-    val name: String, val quantity: Number, val price: Number, val action: MarketAction
+    val name: String, var quantity: Number, val price: Number, val action: MarketAction
 )
 

@@ -1,6 +1,5 @@
 package com.communistutopia.spacetrader.view
 
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -10,8 +9,6 @@ import com.communistutopia.spacetrader.R
 import com.communistutopia.spacetrader.adapter.MarketAction
 import com.communistutopia.spacetrader.adapter.MarketItem
 import com.communistutopia.spacetrader.adapter.MarketItemAdapter
-import com.communistutopia.spacetrader.model.Market
-import com.communistutopia.spacetrader.viewmodel.MarketplaceViewModel
 import kotlinx.android.synthetic.main.marketplace_buy_fragment.*
 
 /**
@@ -42,8 +39,7 @@ class MarketplaceBuyFragment : Fragment() {
         }
 
         // Create the adapter with our dummy data and bind it to the view
-        val adapter = MarketItemAdapter(context!!, marketItems)
+        val adapter = MarketItemAdapter(context!!, marketItems, false)
         market_buy_list.adapter = adapter
     }
-
 }
