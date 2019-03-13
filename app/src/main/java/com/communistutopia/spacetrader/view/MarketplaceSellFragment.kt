@@ -19,8 +19,6 @@ class MarketplaceSellFragment : Fragment() {
         fun newInstance() = MarketplaceSellFragment()
     }
 
-    private lateinit var viewModel: MarketplaceViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,16 +28,14 @@ class MarketplaceSellFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MarketplaceViewModel::class.java)
-        // TODO: Use the ViewModel
 
-        // Below is just dummy data for the purpose of showing that the adapter works.
-        // TODO: Replace this with functioning information (in the ViewModel)
         val marketItems: ArrayList<MarketItem> = ArrayList<MarketItem>()
-        marketItems.add(MarketItem("Water", 10, 2, MarketAction.SELL))
-        marketItems.add(MarketItem("Robots", 4, 68, MarketAction.SELL))
-        marketItems.add(MarketItem("Medicine", 3, 12, MarketAction.SELL))
-        marketItems.add(MarketItem("Narcotics", 40, 32, MarketAction.SELL))
+        var vm = activity as MarketplaceActivity
+        for (item in vm.viewModel.player.spaceship.hold) {
+            if (item.value.amount > 0) {
+                marketItems.add(MarketItem(item.key, item.value.amount, item.value.calculatePrice(vm.viewModel.market), MarketAction.SELL))
+            }
+        }
 
         // Create the adapter with our dummy data and bind it to the view
         val adapter = MarketItemAdapter(context!!, marketItems)

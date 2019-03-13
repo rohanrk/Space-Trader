@@ -37,8 +37,8 @@ class GameFragment : Fragment() {
         viewModel.player = activity!!.intent.getParcelableExtra("player")
         market_button.setOnClickListener {
             val intent = Intent(context!!, MarketplaceActivity::class.java)
-            intent.putExtra("", )
-            intent.putExtra("credits", viewModel.player.credits)
+            intent.putExtra("market", viewModel.player.location.market)
+            intent.putExtra("player", viewModel.player)
             startActivity(intent)
         }
     }
