@@ -18,7 +18,7 @@ class Market(val techLevel: TechLevel, val resourceLevel: ResourceLevel,
              val government: Government): Parcelable {
 
     var event: Event
-    lateinit var inventory: Inventory
+    var inventory: Inventory
 
     init {
         event = Event.None
