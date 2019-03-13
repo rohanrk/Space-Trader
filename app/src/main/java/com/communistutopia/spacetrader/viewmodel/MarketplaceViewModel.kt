@@ -3,13 +3,16 @@ package com.communistutopia.spacetrader.viewmodel
 import android.arch.lifecycle.ViewModel
 import com.communistutopia.spacetrader.model.Market
 import com.communistutopia.spacetrader.model.Player
-import com.communistutopia.spacetrader.model.*
-import kotlin.properties.Delegates
 
 class MarketplaceViewModel : ViewModel() {
 
     lateinit var player: Player
     lateinit var market: Market
+    private var prices: MutableMap<String, Int>
+
+    init {
+        prices = mutableMapOf()
+    }
 
     val BASE_AMOUNT = 20
 
@@ -22,9 +25,9 @@ class MarketplaceViewModel : ViewModel() {
      * @param numGoods the number of things being sold
      * @return true if action was successful, false otherwise
      */
-    fun sellToPlayer(player: Player, tradeGood: TradeGood, numGoods: Int): Boolean {
-        val total: Int = tradeGood.calculatePrice(market) * numGoods
-        if (!canBeSold(tradeGood.MTLU) || player.credits < total || player.spaceship.hold.getValue(tradeGood) < numGoods) {
+    fun sellToPlayer(tradeGood: String, numGoods: Int): Boolean {
+        val total: Int = prices[tradeGood]!! * numGoods
+        if (player.credits < total || this.player.availableCargo() < numGoods) {
             return false
         } else {
             player.credits -= total
@@ -43,9 +46,9 @@ class MarketplaceViewModel : ViewModel() {
      * @param numGoods the number of things being sold
      * @return true if action was successful, false otherwise
      */
-    fun buyFromPlayer(player: Player, tradeGood: TradeGood, numGoods: Int): Boolean {
-        val total: Int = tradeGood.calculatePrice(market) * numGoods
-        if(player.availableCargo() < numGoods) {
+    fun buyFromPlayer(tradeGood: String, minTechToBuy: Int, numGoods: Int): Boolean {
+        val total: Int = prices[tradeGood]!! * numGoods
+        if(!canBeBought(minTechToBuy) || player.spaceship.hold.getValue(tradeGood) < numGoods) {
             return false
         } else {
             player.credits += total
@@ -63,19 +66,16 @@ class MarketplaceViewModel : ViewModel() {
         for (entry in market.inventory) {
             if (entry.value.isMTLP(market)) {
                 entry.value.amount = BASE_AMOUNT * 5
+                prices.put(entry.key, entry.value.calculatePrice(market))
             }
         }
     }
 
     /**
-     * This method finds if an item can be sold on this planet based on this planet's tech level.
+     * This method finds if the market can buy an item on this planet based on this planet's tech level.
      * If the planet's tech level is below the MTLU, the item cannot be sold.
      */
-    fun canBeSold(itemMTLU: Int): Boolean {
-        if (market.techLevel.value() < itemMTLU) {
-            return false
-        }
-        return true
+    fun canBeBought(itemMTLU: Int): Boolean {
+        return market.techLevel.value() > itemMTLU
     }
-
 }
