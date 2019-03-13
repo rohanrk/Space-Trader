@@ -89,22 +89,34 @@ class Inventory: Parcelable, Iterable<MutableMap.MutableEntry<String, TradeGood>
         return supplies.iterator()
     }
 
-    fun getAmount(good: TradeGood): Int {
-        return supplies[good.name]!!.amount
+    override fun toString(): String {
+        return supplies.toString()
     }
 
-    fun getValue(good: TradeGood): Int {
-        return supplies[good.name]!!.basePrice
+    fun getAmount(good: String): Int {
+        return supplies[good]!!.amount
     }
 
-    fun addSupplies(good: TradeGood, amount: Int) {
-        val numGoods = supplies[good.name]!!.amount
-        supplies[good.name]!!.amount = numGoods + amount
+    fun getValue(good: String): Int {
+        return supplies[good]!!.basePrice
     }
 
-    fun removeSupplies(good: TradeGood, amount: Int) {
-        val numGoods = supplies[good.name]!!.amount
-        supplies[good.name]!!.amount = numGoods - amount
+    fun getMTLP(good: String): Int {
+        return supplies[good]!!.MTLP
+    }
+
+    fun getMTLU(good: String): Int {
+        return supplies[good]!!.MTLU
+    }
+
+    fun addSupplies(good: String, amount: Int) {
+        val numGoods = supplies[good]!!.amount
+        supplies[good]!!.amount = numGoods + amount
+    }
+
+    fun removeSupplies(good: String, amount: Int) {
+        val numGoods = supplies[good]!!.amount
+        supplies[good]!!.amount = numGoods - amount
     }
 
     fun getTotalSupplies(): Int {
