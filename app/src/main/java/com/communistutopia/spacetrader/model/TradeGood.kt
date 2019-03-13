@@ -22,6 +22,7 @@ abstract class TradeGood(val MTLP: Int, val MTLU: Int, val TTP: Int, val basePri
                      val IE: Event, val CR: ResourceLevel, val ER: ResourceLevel, val MTL: Int, val MTH: Int,
                      val GTD: Government, val GTS: Government, val name: String, var amount: Int) {
 
+    val BASE_PRICE = 20
     /**
      * A method that calculates the price of the trade good and returns it
      *
@@ -59,7 +60,7 @@ abstract class TradeGood(val MTLP: Int, val MTLU: Int, val TTP: Int, val basePri
             price = basePrice - (basePrice * variance)
         }
 
-        return price
+        if (price > 0) return price else return BASE_PRICE // Closest thing to a ternary operator in Kotlin
     }
 
     /**
