@@ -11,7 +11,6 @@ class GameActivity : AppCompatActivity() {
         setContentView(R.layout.game_activity)
 
         if (savedInstanceState == null) {
-            var player = intent.getParcelableArrayExtra("player")
             supportFragmentManager.beginTransaction()
                 .replace(R.id.container, GameFragment.newInstance())
                 .commitNow()
