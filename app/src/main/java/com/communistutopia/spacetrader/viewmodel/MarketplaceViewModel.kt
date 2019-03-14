@@ -1,5 +1,6 @@
 package com.communistutopia.spacetrader.viewmodel
 
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.communistutopia.spacetrader.model.Market
 import com.communistutopia.spacetrader.model.Player
@@ -7,7 +8,9 @@ import com.communistutopia.spacetrader.model.Player
 class MarketplaceViewModel : ViewModel() {
 
     lateinit var player: Player
+    val playerObservable: MutableLiveData<Player> = MutableLiveData()
     lateinit var market: Market
+    val marketObservable: MutableLiveData<Market> = MutableLiveData()
     private var prices: MutableMap<String, Int>
 
     init {
@@ -27,12 +30,14 @@ class MarketplaceViewModel : ViewModel() {
      */
     fun sellToPlayer(tradeGood: String, numGoods: Int): Boolean {
         val total: Int = prices[tradeGood]!! * numGoods
-        if (player.credits < total || this.player.availableCargo() < numGoods) {
+        if (player.credits < total || player.availableCargo() < numGoods) {
             return false
         } else {
             player.credits -= total
             market.inventory.removeSupplies(tradeGood, numGoods)
             player.spaceship.hold.addSupplies(tradeGood, numGoods)
+            playerObservable.value = player
+            marketObservable.value = market
             return true
         }
     }
@@ -48,13 +53,15 @@ class MarketplaceViewModel : ViewModel() {
      */
     fun buyFromPlayer(tradeGood: String, minTechToBuy: Int, numGoods: Int): Boolean {
         val total: Int = prices[tradeGood]!! * numGoods
-        if(!canBeBought(minTechToBuy) || player.spaceship.hold.getValue(tradeGood) < numGoods) {
-            return false
+        return if(!canBeBought(minTechToBuy) || player.spaceship.hold.getValue(tradeGood) < numGoods) {
+            false
         } else {
             player.credits += total
             market.inventory.addSupplies(tradeGood, numGoods)
             player.spaceship.hold.removeSupplies(tradeGood, numGoods)
-            return true
+            playerObservable.value = player
+            marketObservable.value = market
+            true
         }
     }
 

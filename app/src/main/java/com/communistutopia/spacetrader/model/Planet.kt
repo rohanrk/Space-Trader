@@ -13,7 +13,7 @@ import kotlinx.android.parcel.Parcelize
  *  of an instance of a Planet once it is created
  */
 @Parcelize
-class Planet(private val name: String, private val techLevel: TechLevel, private val resourceLevel: ResourceLevel,
+class Planet(val name: String, private val techLevel: TechLevel, private val resourceLevel: ResourceLevel,
              private val government: Government): Parcelable {
 
     //Initialize the market of the planet from it's properties
