@@ -23,6 +23,8 @@ class MarketplaceActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(MarketplaceViewModel::class.java)
         viewModel.market = intent.getParcelableExtra("market")
         viewModel.player = intent.getParcelableExtra("player")
+        viewModel.playerObservable.value = viewModel.player
+        viewModel.marketObservable.value = viewModel.market
         viewModel.initializeInventory() // Should always be called after market is set
 
         //actionbar

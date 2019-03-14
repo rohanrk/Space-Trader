@@ -65,7 +65,7 @@
             android:text="Planet Name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView"
+            android:id="@+id/planet_name"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3"
             android:textColor="@android:color/white" android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView" android:layout_marginStart="4dp"
