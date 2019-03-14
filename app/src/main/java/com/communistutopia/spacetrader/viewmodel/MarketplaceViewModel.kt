@@ -78,4 +78,8 @@ class MarketplaceViewModel : ViewModel() {
     fun canBeBought(itemMTLU: Int): Boolean {
         return market.techLevel.value() > itemMTLU
     }
+
+    fun getPrice(item: String): Int {
+        return prices[item]!!
+    }
 }
