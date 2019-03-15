@@ -5,6 +5,9 @@ import android.arch.lifecycle.ViewModel
 import com.communistutopia.spacetrader.model.Market
 import com.communistutopia.spacetrader.model.Player
 
+/**
+ *
+ */
 class MarketplaceViewModel : ViewModel() {
 
     lateinit var player: Player
@@ -22,7 +25,6 @@ class MarketplaceViewModel : ViewModel() {
     /**
      * A function that buys goods from a Market
      * A player cannot buy items if they do not have enough cargo space.
-     * TODO add error messages so the player knows why they cannot buy an item in view
      * @param player the player selling the good
      * @param tradeGood the good being sold
      * @param numGoods the number of things being sold
@@ -36,6 +38,7 @@ class MarketplaceViewModel : ViewModel() {
             player.credits -= total
             market.inventory.removeSupplies(tradeGood, numGoods)
             player.spaceship.hold.addSupplies(tradeGood, numGoods)
+            player.spaceship.cargoCapacity--
             playerObservable.value = player
             marketObservable.value = market
             return true

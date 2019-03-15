@@ -19,14 +19,14 @@ import kotlinx.android.parcel.Parcelize
  * @param weaponSlots the number of weapons a ship can have
  * @param shieldSlots the number of shields a ship can have
  * @param gadgetSlots the number of gadgets a ship can have
- *@param crewQuarters the numver of crew memebers a ship can have
+ * @param crewQuarters the numver of crew memebers a ship can have
  *
  */
 @Parcelize
 data class Ship(
     val hold: Inventory, val name: String, val fuelCapacity: Int, val hullStrength: Int,
     val hasInsurance: Boolean, val hasEscapePods: Boolean, val range: Int, val weapons: List<Weapon>, val shields: List<Shield>,
-    val gadgets: List<Gadgets>, val cargoCapacity: Int, val weaponSlots: Int, val shieldSlots: Int, val gadgetSlots: Int,
+    val gadgets: List<Gadgets>, var cargoCapacity: Int, val weaponSlots: Int, val shieldSlots: Int, val gadgetSlots: Int,
     val crewQuarters: Int
 ): Parcelable
 
