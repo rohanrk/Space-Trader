@@ -6,7 +6,7 @@ import kotlin.random.Random
  * Singleton object representing Game universe
  *
  * Handles all the logic for generating universe and other events
- * @author Rohan Rk
+ * @author Rohan Rk <rohanrk@gatech.edu>
  */
 object Universe {
 

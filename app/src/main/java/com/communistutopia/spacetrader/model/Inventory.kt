@@ -15,7 +15,8 @@ import kotlinx.android.parcel.Parcelize
  * @param machines int representing the number of goods in this inventory
  * @param narcotics int representing the number of goods in this inventory
  * @param robots int representing the number of goods in this inventory
- *
+ * @constructor Creates inventory with 0 goods
+ * @author Rohan Rk <rohanrk@gatech.edu>
  */
 @Parcelize
 class Inventory: Parcelable, Iterable<MutableMap.MutableEntry<String, TradeGood>> {
@@ -31,7 +32,6 @@ class Inventory: Parcelable, Iterable<MutableMap.MutableEntry<String, TradeGood>
     /**
      * Initializes the inventory. All goods are initialized to 0.
      * The market or cargo hold will modify this logic as needed
-     *
      */
     private fun initialize() {
         val initWater = Water(0,0,2,30,3,4, Event.Drought,
@@ -85,6 +85,9 @@ class Inventory: Parcelable, Iterable<MutableMap.MutableEntry<String, TradeGood>
         supplies[initRobots.name] = initRobots
     }
 
+    /**
+     * Iterator method allows Inventory to iterate through supplies without accessing private variable
+     */
     override fun iterator(): Iterator<MutableMap.MutableEntry<String, TradeGood>> {
         return supplies.iterator()
     }

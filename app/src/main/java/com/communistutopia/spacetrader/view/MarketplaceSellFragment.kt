@@ -13,6 +13,11 @@ import com.communistutopia.spacetrader.adapter.MarketItemAdapter
 import com.communistutopia.spacetrader.model.Player
 import kotlinx.android.synthetic.main.marketplace_sell_fragment.*
 
+/**
+ * Fragment for selling items
+ *
+ * @author Drake Witt
+ */
 class MarketplaceSellFragment : Fragment() {
 
     companion object {

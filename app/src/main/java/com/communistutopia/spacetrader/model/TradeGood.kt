@@ -22,17 +22,15 @@ abstract class TradeGood(val MTLP: Int, val MTLU: Int, val TTP: Int, val basePri
                      val IE: Event, val CR: ResourceLevel, val ER: ResourceLevel, val MTL: Int, val MTH: Int,
                      val GTD: Government, val GTS: Government, val name: String, var amount: Int) {
 
-    val BASE_PRICE = 20
+    val MIN_PRICE = 20
     /**
      * A method that calculates the price of the trade good and returns it
+     * Prices are calculated by the following model
+     * price =
      *
      * @param market the Market from the planet being traded into
-     *
-     *
      */
-    fun calculatePrice(
-        market: Market
-    ): Int {
+    fun calculatePrice(market: Market): Int {
         var price: Int = basePrice
 
         price += IPL * market.techLevel.value() //add price increase per techlevel
@@ -60,7 +58,7 @@ abstract class TradeGood(val MTLP: Int, val MTLU: Int, val TTP: Int, val basePri
             price = basePrice - (basePrice * variance)
         }
 
-        if (price > 0) return price else return BASE_PRICE // Closest thing to a ternary operator in Kotlin
+        if (price > 0) return price else return MIN_PRICE // Closest thing to a ternary operator in Kotlin
     }
 
     /**

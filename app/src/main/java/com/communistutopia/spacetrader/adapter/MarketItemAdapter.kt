@@ -15,6 +15,9 @@ import com.communistutopia.spacetrader.viewmodel.MarketplaceViewModel
 
 /**
  * Adapter for a list, used for the debug fragment
+ * @param context The current view containing the adapter
+ * @param dataSource The structure containing the data for the adaper to display
+ * @param sell boolean representing if market is selling or buying
  * @author Drake Witt
  */
 class MarketItemAdapter(private var context: Context,

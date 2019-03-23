@@ -10,6 +10,8 @@ import kotlinx.android.synthetic.main.marketplace_activity.*
 
 /**
  * Activity that wraps the two fragments (buy and sell)
+ *
+ * @author Drake Witt
  */
 class MarketplaceActivity : AppCompatActivity() {
 

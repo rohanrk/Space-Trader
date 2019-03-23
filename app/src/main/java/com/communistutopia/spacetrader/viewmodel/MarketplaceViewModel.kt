@@ -6,7 +6,9 @@ import com.communistutopia.spacetrader.model.Market
 import com.communistutopia.spacetrader.model.Player
 
 /**
+ * Viewmodel that handlses all marketplace functions
  *
+ * @author Rohan Rk <rohanrk@gatech.edu>
  */
 class MarketplaceViewModel : ViewModel() {
 

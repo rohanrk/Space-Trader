@@ -17,6 +17,8 @@ import kotlinx.android.synthetic.main.marketplace_sell_fragment.*
 
 /**
  * Fragment for buying items.
+ *
+ * @author Drake Witt
  */
 class MarketplaceBuyFragment : Fragment() {
 

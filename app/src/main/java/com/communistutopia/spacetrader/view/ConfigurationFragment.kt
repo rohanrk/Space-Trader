@@ -16,6 +16,11 @@ import com.communistutopia.spacetrader.model.Difficulty
 import com.communistutopia.spacetrader.viewmodel.ConfigurationViewModel
 import kotlinx.android.synthetic.main.configuration_fragment.*
 
+/**
+ * Fragment that shows all elements of player creation
+ *
+ * @author Rohan Rk <rohanrk@gatech.edu>
+ */
 class ConfigurationFragment : Fragment(), View.OnClickListener {
 
     private lateinit var button: Button

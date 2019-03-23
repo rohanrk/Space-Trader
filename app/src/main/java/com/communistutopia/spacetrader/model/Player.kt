@@ -15,7 +15,6 @@ import kotlinx.android.parcel.Parcelize
  * @param traderSkill points attributed to the trader category
  * @param engineerSkill points attributed to the engineer category
  */
-//TODO: Implement Parcelable so we can pass Player data between views
 @Parcelize
 data class Player(
     var difficulty: Difficulty = Difficulty.Beginner,
@@ -33,12 +32,6 @@ data class Player(
     var fighterSkill: Int = 0,
     var traderSkill: Int = 0,
     var engineerSkill: Int = 0): Parcelable {
-
-    fun availableCargo(): Int {
-        return spaceship.cargoCapacity
-    }
-
-
 
 }
 
