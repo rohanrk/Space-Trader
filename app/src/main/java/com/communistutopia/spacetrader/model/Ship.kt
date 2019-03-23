@@ -5,6 +5,7 @@ package com.communistutopia.spacetrader.model
  * @param hold a ship's cargohold
  * @param name the type of a ship
  * @param fuelCapacity amount of fuel a ship can hold
+ * @param fuelCount amount of fuel a ship currently has
  * @param hullStrength current health of ship
  * @param hasInsurance if a ship is covered by insurance
  * @param hasEscapePods if there is an available escape pod on the ship
@@ -16,15 +17,29 @@ package com.communistutopia.spacetrader.model
  * @param weaponSlots the number of weapons a ship can have
  * @param shieldSlots the number of shields a ship can have
  * @param gadgetSlots the number of gadgets a ship can have
- *@param crewQuarters the numver of crew memebers a ship can have
+ * @param crewQuarters the number of crew members a ship can have
  *
  */
 data class Ship(
-    val hold: Inventory, val name: String, val fuelCapacity: Int, val hullStrength: Int,
+    val hold: Inventory, val name: String, val fuelCapacity: Int, var fuelCount: Int, val hullStrength: Int,
     val hasInsurance: Boolean, val hasEscapePods: Boolean, val range: Int, val weapons: List<Weapon>, val shields: List<Shield>,
     val gadgets: List<Gadgets>, val cargoCapacity: Int, val weaponSlots: Int, val shieldSlots: Int, val gadgetSlots: Int,
-    val crewQuarters: Int
-)
+    val crewQuarters: Int) {
+
+    fun canTravelTo(me: Player, destinationSystem: SolarSystem): Boolean {
+        var dist = me.locationSystem.getDistance(destinationSystem)
+        var rangeLeft = (fuelCount / fuelCapacity) * range
+        if(dist <= rangeLeft) {
+            return true
+        }
+        return false
+    }
+
+    fun updateFuelForTravel(me: Player, destinationSystem: SolarSystem) {
+        var dist = me.locationSystem.getDistance(destinationSystem)
+        fuelCount -= ((dist / range) * fuelCapacity).toInt()
+    }
+}
 
 enum class Weapon {
     PULSE_LASER, BEAM_LASER, MILITARY_LASER, NONE
