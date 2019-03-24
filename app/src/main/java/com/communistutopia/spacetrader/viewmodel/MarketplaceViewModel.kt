@@ -34,7 +34,7 @@ class MarketplaceViewModel : ViewModel() {
      */
     fun sellToPlayer(tradeGood: String, numGoods: Int): Boolean {
         val total: Int = prices[tradeGood]!! * numGoods
-        if (player.credits < total || player.availableCargo() < numGoods) {
+        if (player.credits < total || player.spaceship.cargoCapacity < numGoods) {
             return false
         } else {
             player.credits -= total

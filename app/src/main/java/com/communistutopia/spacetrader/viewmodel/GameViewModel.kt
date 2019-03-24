@@ -21,7 +21,7 @@ class GameViewModel : ViewModel() {
     lateinit var player: Player
 
     init {
-        Universe.generateUniverse() // Replace Player ASAP
+        Universe.generateUniverse()
         solarSystems = Universe.solarSystems
     }
 
@@ -34,5 +34,8 @@ class GameViewModel : ViewModel() {
         }
     }
 
+    fun setStartLoc() {
+        this.player.generateStartLoc(solarSystems)
+    }
 
 }

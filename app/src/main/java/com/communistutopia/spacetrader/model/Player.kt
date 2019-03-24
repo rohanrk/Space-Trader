@@ -2,6 +2,7 @@ package com.communistutopia.spacetrader.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
+import kotlin.random.Random
 
 /**
  * This class represents a player with default values.
@@ -21,11 +22,6 @@ data class Player(
     var spaceship: Ship = Ship(Inventory(),
         "Gnat", 0,100, false, false, 14, listOf(Weapon.NONE), listOf(Shield.NONE),
         listOf(Gadgets.NONE), 15, 1, 0, 1, 1),
-    var location: Planet =
-    Planet(name = "Initial",
-        techLevel = TechLevel(TechLevelType.randomTechLevelType()),
-        resourceLevel = ResourceLevel(ResourceLevelType.randomResourceLevelType()),
-        government = Government(GovernmentType.randomGovernmentType())),
     var credits: Int = 1000,
     var charName: String = "",
     var pilotSkill: Int = 0,
@@ -33,6 +29,15 @@ data class Player(
     var traderSkill: Int = 0,
     var engineerSkill: Int = 0): Parcelable {
 
+    lateinit var location: Planet
+
+    fun generateStartLoc(solarSystems: Set<SolarSystem>) {
+        var random: Random = Random.Default
+        val solarIndex = random.nextInt(solarSystems.size)
+        val system = solarSystems.elementAt(solarIndex)
+        val planetIndex = random.nextInt(system.planets.size)
+        this.location = system.planets.elementAt(random.nextInt(planetIndex))
+    }
 }
 
 
