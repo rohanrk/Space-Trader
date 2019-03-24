@@ -1,5 +1,7 @@
 package com.communistutopia.spacetrader.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 import kotlin.random.Random
 
 /**
@@ -9,7 +11,8 @@ import kotlin.random.Random
  *  Initialization is done by the constructor, so all of these parameters are immutable properties
  *  of an instance of a Planet once it is created
  */
-class TechLevel(private val techLevel: TechLevelType) {
+@Parcelize
+class TechLevel(private val techLevel: TechLevelType): Parcelable {
     override fun toString(): String {
         return "TechLevel(techLevel=$techLevel)"
     }
@@ -20,6 +23,9 @@ class TechLevel(private val techLevel: TechLevelType) {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
+
+        if (other is Int) return other == this.value()
+
         if (javaClass != other?.javaClass) return false
 
         other as TechLevel

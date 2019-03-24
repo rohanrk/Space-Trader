@@ -6,6 +6,8 @@ import com.communistutopia.spacetrader.model.Universe
 import android.media.MediaPlayer
 import android.content.Context
 import com.communistutopia.spacetrader.R
+import com.communistutopia.spacetrader.model.Planet
+import com.communistutopia.spacetrader.model.Player
 
 
 /**
@@ -14,15 +16,16 @@ import com.communistutopia.spacetrader.R
  */
 
 class GameViewModel : ViewModel() {
-    private val solarSystems: HashSet<SolarSystem>
+
+    private val solarSystems: MutableSet<SolarSystem>
+    lateinit var player: Player
 
     init {
-        Universe.generateUniverse()
+        Universe.generateUniverse() // Replace Player ASAP
         solarSystems = Universe.solarSystems
     }
 
     fun goToSpace(context: Context?) {
-        print("WARP FACTOR 9")
         // WARP FACTOR 9
         val mp = MediaPlayer.create(context, R.raw.nasa)
         mp.setOnPreparedListener {
@@ -30,4 +33,6 @@ class GameViewModel : ViewModel() {
             mp.start()
         }
     }
+
+
 }

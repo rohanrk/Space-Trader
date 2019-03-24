@@ -4,11 +4,26 @@ import android.arch.lifecycle.ViewModel
 import com.communistutopia.spacetrader.model.Difficulty
 import com.communistutopia.spacetrader.model.Player
 
+/**
+ * Viewmodel that handles player creation
+ *
+ * @author Rohan Rk <rohanrk@gatech.edu>
+ */
 class ConfigurationViewModel : ViewModel() {
 
     val player: Player = Player()
     private val TOTAL_POINTS = 16
 
+    /**
+     * Creates player from view data
+     *
+     * @param difficulty selected difficulty
+     * @param name player's name
+     * @param pilot number of pilot points
+     * @param fighter number of fighter points
+     * @param trader number of trader points
+     * @param engineer number of engineer points
+     */
     fun updatePlayerFromView(difficulty: Difficulty, name: String, pilot: Int, fighter: Int, trader: Int, engineer: Int): Boolean {
         player.difficulty = difficulty
         player.charName = name
@@ -22,7 +37,6 @@ class ConfigurationViewModel : ViewModel() {
     fun updatePoints(pilot: Int, fighter: Int, trader: Int, engineer: Int): Boolean {
 
         if (pilot < 0 || fighter < 0 || trader < 0 || engineer < 0 || pilot + fighter + trader + engineer != TOTAL_POINTS) {
-            // TODO: Error handling. Max points exceed 16
             return false
         } else {
             player.pilotSkill = pilot

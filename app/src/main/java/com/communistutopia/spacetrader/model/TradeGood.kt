@@ -18,20 +18,19 @@ package com.communistutopia.spacetrader.model
  * @param GTS = Government Type which heavily supplies this resource, when the same as the market, decrease price
  */
 
-open abstract class TradeGood(val MTLP: Int, val MTLU: Int, val TTP: Int, val basePrice: Int, val IPL: Int, val variance: Int,
+abstract class TradeGood(val MTLP: Int, val MTLU: Int, val TTP: Int, val basePrice: Int, val IPL: Int, val variance: Int,
                      val IE: Event, val CR: ResourceLevel, val ER: ResourceLevel, val MTL: Int, val MTH: Int,
-                     val GTD: Government, val GTS: Government, val name: String) {
+                     val GTD: Government, val GTS: Government, val name: String, var amount: Int) {
 
+    val MIN_PRICE = 20
     /**
      * A method that calculates the price of the trade good and returns it
+     * Prices are calculated by the following model
+     * price =
      *
      * @param market the Market from the planet being traded into
-     *
-     *
      */
-    fun calculatePrice(
-        market: Market
-    ): Int {
+    fun calculatePrice(market: Market): Int {
         var price: Int = basePrice
 
         price += IPL * market.techLevel.value() //add price increase per techlevel
@@ -59,7 +58,7 @@ open abstract class TradeGood(val MTLP: Int, val MTLU: Int, val TTP: Int, val ba
             price = basePrice - (basePrice * variance)
         }
 
-        return price
+        if (price > 0) return price else return MIN_PRICE // Closest thing to a ternary operator in Kotlin
     }
 
     /**
@@ -70,10 +69,7 @@ open abstract class TradeGood(val MTLP: Int, val MTLU: Int, val TTP: Int, val ba
      *
      */
     fun isMTLP(market: Market): Boolean {
-        if (MTLP.equals(market.techLevel)) {
-            return true
-        }
-        return false
+        return MTLP <= market.techLevel.value()
     }
 
     /**
@@ -84,10 +80,7 @@ open abstract class TradeGood(val MTLP: Int, val MTLU: Int, val TTP: Int, val ba
      *
      */
     fun isTTP(market: Market): Boolean {
-        if(TTP.equals(market.techLevel)) {
-            return true
-        }
-        return false
+        return TTP <= market.techLevel.value()
     }
 
 }

@@ -9,7 +9,7 @@ import kotlin.math.sqrt
  * @property name: Name of the solar system
  * @property x: x coordinate of solar system's location
  * @property y: y coordinate of solar system's location
- * @author Rohan Rk
+ * @author Rohan Rk <rohanrk@gatech.edu>
  */
 class SolarSystem(planets: Set<Planet>, name: String, x: Int, y: Int) {
 
@@ -26,6 +26,8 @@ class SolarSystem(planets: Set<Planet>, name: String, x: Int, y: Int) {
     /**
      * Function to calculate Euclidean distance between 2 Solar Systems
      * TODO: Might want to place this in Companion obj. Equivalent to making it static. Not sure yet.
+     *
+     * @param other solar system to compare location to
      */
     fun getDistance(other: SolarSystem): Double {
         val x_dist: Double = (this.coordinate.first - other.coordinate.first).toDouble()
@@ -36,6 +38,8 @@ class SolarSystem(planets: Set<Planet>, name: String, x: Int, y: Int) {
     /**
      * Method Overloading. Allows Solar System to get a distance given a point rather than
      * a solar system object
+     *
+     * @param loc other location to compare
      */
     fun getDistance(loc: Pair<Int, Int>): Double {
         val x_dist: Double = (this.coordinate.first - loc.first).toDouble()
