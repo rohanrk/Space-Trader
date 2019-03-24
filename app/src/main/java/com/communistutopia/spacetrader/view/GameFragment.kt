@@ -35,14 +35,20 @@ class GameFragment : Fragment() {
         // Start audio
         viewModel.goToSpace(context)
         viewModel.player = activity!!.intent.getParcelableExtra("player")
+        viewModel.setStartLoc()
 
         // TODO: Resource string placeholder
-        planet_name.text = viewModel.player.location.name + " Planet"
+        planet_name.text = "Planet: %s".format(viewModel.player.location.name)
 
         market_button.setOnClickListener {
             val intent = Intent(context!!, MarketplaceActivity::class.java)
             intent.putExtra("market", viewModel.player.location.market)
             intent.putExtra("player", viewModel.player)
+            startActivity(intent)
+        }
+
+        travel_button.setOnClickListener {
+            val intent = Intent(context!!, LocationActivity::class.java)
             startActivity(intent)
         }
     }
