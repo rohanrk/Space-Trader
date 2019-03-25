@@ -64,6 +64,7 @@ class MarketplaceViewModel : ViewModel() {
             player.credits += total
             market.inventory.addSupplies(tradeGood, numGoods)
             player.spaceship.hold.removeSupplies(tradeGood, numGoods)
+            player.spaceship.cargoCapacity++
             playerObservable.value = player
             marketObservable.value = market
             true
