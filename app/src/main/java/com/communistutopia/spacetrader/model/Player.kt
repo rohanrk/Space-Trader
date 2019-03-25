@@ -2,6 +2,7 @@ package com.communistutopia.spacetrader.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
 
 /**
  * This class represents a player with default values.
@@ -19,7 +20,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Player(
     var difficulty: Difficulty = Difficulty.Beginner,
-    var spaceship: Ship = Ship(Inventory(0,0,0,0,0,0,0,0,0,0),
+    var spaceship: Ship = Ship(Inventory(),
         "Gnat", 0, 0,100, false, false, 14, listOf(Weapon.NONE), listOf(Shield.NONE),
         listOf(Gadgets.NONE), 15, 1, 0, 1, 1),
     var locationPlanet: Planet =
@@ -27,7 +28,7 @@ data class Player(
         techLevel = TechLevel(TechLevelType.randomTechLevelType()),
         resourceLevel = ResourceLevel(ResourceLevelType.randomResourceLevelType()),
         government = Government(GovernmentType.randomGovernmentType())),
-    var locationSystem: SolarSystem,
+    var locationSystem: @RawValue SolarSystem,
     var credits: Int = 1000,
     var charName: String = "",
     var pilotSkill: Int = 0,
