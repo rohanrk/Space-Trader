@@ -6,7 +6,7 @@ import kotlin.random.Random
  * Singleton object representing Game universe
  *
  * Handles all the logic for generating universe and other events
- * @author Rohan Rk
+ * @author Rohan Rk <rohanrk@gatech.edu>
  */
 object Universe {
 
@@ -18,14 +18,14 @@ object Universe {
 
     // Objects to help generate universe and handle game events
     val solarSystems: MutableSet<SolarSystem>
-    private val universe: MutableMap<Pair<Int, Int>, String> // Initializing a 2D array is the most frustrating ordeal. So this is a hacky solution
+    private val locations: MutableMap<Pair<Int, Int>, String> // Initializing a 2D array is the most frustrating ordeal. So this is a hacky solution
     private val random: Random
     private var namesList: MutableList<String>
 
 
     init {
         solarSystems = mutableSetOf()
-        universe = mutableMapOf()
+        locations = mutableMapOf()
         random = Random.Default
         namesList = mutableListOf(
             "Acamar",
@@ -177,12 +177,12 @@ object Universe {
             val y = random.nextInt(Y_SIZE)
             val num_planets = random.nextInt(MAX_PLANETS) + 1
             val pair = Pair(x, y)
-            if (!universe.containsKey(pair)) {
+            if (!locations.containsKey(pair)) {
                 val planetSet = generatePlanets(num_planets)
                 val systemName: String = namesList[random.nextInt(namesList.size)]
                 namesList.remove(systemName)
                 solarSystems.add(SolarSystem(planets = planetSet , name = systemName, x = x, y = y))
-                universe[pair] = systemName
+                locations[pair] = systemName
                 i--
             }
         }
@@ -221,6 +221,6 @@ object Universe {
     }
     override fun toString(): String {
         return solarSystems.toString() +
-                '\n' + universe.toString()
+                '\n' + locations.toString()
     }
 }

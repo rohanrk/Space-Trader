@@ -1,5 +1,7 @@
 package com.communistutopia.spacetrader.model
 
+import java.time.temporal.TemporalAmount
+
 /**
  * subclass of TradeGood, used to represent a good of type Medicine
  *
@@ -18,5 +20,5 @@ package com.communistutopia.spacetrader.model
  */
 
 class Medicine(MTLP: Int, MTLU: Int, TTP: Int, basePrice: Int, IPL: Int, variance: Int, IE: Event, CR: ResourceLevel,
-               ER: ResourceLevel, MTL: Int, MTH: Int, GTD: Government, GTS: Government
-) : TradeGood(MTLP, MTLU, TTP, basePrice, IPL, variance, IE, CR, ER, MTL, MTH, GTD, GTS, "medicine")
+               ER: ResourceLevel, MTL: Int, MTH: Int, GTD: Government, GTS: Government, amount: Int
+) : TradeGood(MTLP, MTLU, TTP, basePrice, IPL, variance, IE, CR, ER, MTL, MTH, GTD, GTS, "medicine", amount)

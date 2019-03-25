@@ -1,6 +1,6 @@
 package com.communistutopia.spacetrader.view
 
-import android.arch.lifecycle.ViewModelProviders
+import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -10,16 +10,19 @@ import com.communistutopia.spacetrader.R
 import com.communistutopia.spacetrader.adapter.MarketAction
 import com.communistutopia.spacetrader.adapter.MarketItem
 import com.communistutopia.spacetrader.adapter.MarketItemAdapter
-import com.communistutopia.spacetrader.viewmodel.MarketplaceViewModel
+import com.communistutopia.spacetrader.model.Player
 import kotlinx.android.synthetic.main.marketplace_sell_fragment.*
 
+/**
+ * Fragment for selling items
+ *
+ * @author Drake Witt
+ */
 class MarketplaceSellFragment : Fragment() {
 
     companion object {
         fun newInstance() = MarketplaceSellFragment()
     }
-
-    private lateinit var viewModel: MarketplaceViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,20 +33,20 @@ class MarketplaceSellFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MarketplaceViewModel::class.java)
-        // TODO: Use the ViewModel
+        var vm = activity as MarketplaceActivity
 
-        // Below is just dummy data for the purpose of showing that the adapter works.
-        // TODO: Replace this with functioning information (in the ViewModel)
-        val marketItems: ArrayList<MarketItem> = ArrayList<MarketItem>()
-        marketItems.add(MarketItem("Water", 10, 2, MarketAction.SELL))
-        marketItems.add(MarketItem("Robots", 4, 68, MarketAction.SELL))
-        marketItems.add(MarketItem("Medicine", 3, 12, MarketAction.SELL))
-        marketItems.add(MarketItem("Narcotics", 40, 32, MarketAction.SELL))
+        val playerObserver = Observer<Player> { newPlayer: Player? ->
+            val marketItems: ArrayList<MarketItem> = ArrayList()
+            val inventory = newPlayer!!.spaceship.hold
+            inventory.forEach { item ->
+                if (item.value.amount > 0) {
+                    marketItems.add(MarketItem(item.key, item.value.amount, item.value.calculatePrice(vm.viewModel.market), MarketAction.SELL))
+                }
+            }
+            val adapter = MarketItemAdapter(context!!, marketItems, true)
+            market_sell_list.adapter = adapter
+        }
 
-        // Create the adapter with our dummy data and bind it to the view
-        val adapter = MarketItemAdapter(context!!, marketItems)
-        market_sell_list.adapter = adapter
+        vm.viewModel.playerObservable.observe(this, playerObserver)
     }
-
 }

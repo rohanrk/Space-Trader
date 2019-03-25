@@ -1,6 +1,7 @@
 package com.communistutopia.spacetrader.model
 
 import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
 /**
  * This class represents a player with default values.
@@ -15,7 +16,7 @@ import android.os.Parcelable
  * @param traderSkill points attributed to the trader category
  * @param engineerSkill points attributed to the engineer category
  */
-//TODO: Implement Parcelable so we can pass Player data between views
+@Parcelize
 data class Player(
     var difficulty: Difficulty = Difficulty.Beginner,
     var spaceship: Ship = Ship(Inventory(0,0,0,0,0,0,0,0,0,0),
@@ -32,7 +33,7 @@ data class Player(
     var pilotSkill: Int = 0,
     var fighterSkill: Int = 0,
     var traderSkill: Int = 0,
-    var engineerSkill: Int = 0) {
+    var engineerSkill: Int = 0): Parcelable {
 
     fun availableCargo(): Int {
         return spaceship.cargoCapacity

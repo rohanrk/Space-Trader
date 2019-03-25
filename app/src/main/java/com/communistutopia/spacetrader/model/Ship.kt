@@ -1,5 +1,8 @@
 package com.communistutopia.spacetrader.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 /**
  * This class represents a player's ship.
  * @param hold a ship's cargohold
@@ -20,11 +23,12 @@ package com.communistutopia.spacetrader.model
  * @param crewQuarters the number of crew members a ship can have
  *
  */
+@Parcelize
 data class Ship(
     val hold: Inventory, val name: String, val fuelCapacity: Int, var fuelCount: Int, val hullStrength: Int,
     val hasInsurance: Boolean, val hasEscapePods: Boolean, val range: Int, val weapons: List<Weapon>, val shields: List<Shield>,
     val gadgets: List<Gadgets>, val cargoCapacity: Int, val weaponSlots: Int, val shieldSlots: Int, val gadgetSlots: Int,
-    val crewQuarters: Int) {
+    val crewQuarters: Int): Parcelable {
 
     fun canTravelTo(me: Player, destinationSystem: SolarSystem): Boolean {
         var dist = me.locationSystem.getDistance(destinationSystem)
