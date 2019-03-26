@@ -2,6 +2,8 @@ package com.communistutopia.spacetrader.model
 
 import kotlin.math.pow
 import kotlin.math.sqrt
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
 /**
  * Class containing planets, tech level, and location of a Solar System
@@ -11,10 +13,10 @@ import kotlin.math.sqrt
  * @property y: y coordinate of solar system's location
  * @author Rohan Rk <rohanrk@gatech.edu>
  */
-class SolarSystem(planets: Set<Planet>, name: String, x: Int, y: Int) {
+@Parcelize
+class SolarSystem(var planets: Set<Planet>, var name: String, val x: Int,val  y: Int): Parcelable {
 
-    var planets: Set<Planet>
-    var name: String
+
     var coordinate: Pair<Int, Int>
 
     init {

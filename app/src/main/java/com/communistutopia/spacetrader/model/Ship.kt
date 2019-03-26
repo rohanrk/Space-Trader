@@ -30,6 +30,10 @@ data class Ship(
     val gadgets: List<Gadgets>, val cargoCapacity: Int, val weaponSlots: Int, val shieldSlots: Int, val gadgetSlots: Int,
     val crewQuarters: Int): Parcelable {
 
+    /**
+     * Returns whether the ship has enough fuel / range to get to a system
+     *
+     */
     fun canTravelTo(me: Player, destinationSystem: SolarSystem): Boolean {
         var dist = me.locationSystem.getDistance(destinationSystem)
         var rangeLeft = (fuelCount / fuelCapacity) * range
@@ -39,6 +43,10 @@ data class Ship(
         return false
     }
 
+    /**
+     * Lowers the fuelCount of the ship for going to a given destination system
+     *
+     */
     fun updateFuelForTravel(me: Player, destinationSystem: SolarSystem) {
         var dist = me.locationSystem.getDistance(destinationSystem)
         fuelCount -= ((dist / range) * fuelCapacity).toInt()

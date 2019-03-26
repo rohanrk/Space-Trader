@@ -217,7 +217,6 @@ object Universe {
     fun updateLocation(player: Player) {
         player.locationPlanet = solarSystems.first().planets.first()
         player.locationSystem = solarSystems.first()
-
     }
     override fun toString(): String {
         return solarSystems.toString() +

@@ -2,7 +2,7 @@ package com.communistutopia.spacetrader.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
-import kotlinx.android.parcel.RawValue
+
 
 /**
  * This class represents a player with default values.
@@ -28,7 +28,7 @@ data class Player(
         techLevel = TechLevel(TechLevelType.randomTechLevelType()),
         resourceLevel = ResourceLevel(ResourceLevelType.randomResourceLevelType()),
         government = Government(GovernmentType.randomGovernmentType())),
-    var locationSystem: @RawValue SolarSystem,
+    var locationSystem: SolarSystem,
     var credits: Int = 1000,
     var charName: String = "",
     var pilotSkill: Int = 0,
@@ -40,14 +40,30 @@ data class Player(
         return spaceship.cargoCapacity
     }
 
+    /**
+     * Changes the location of the player and calls the method to lower fuel if travel is possible
+     *
+     */
     fun travelToPlanet(destinationSystem: SolarSystem, destinationPlanet: Planet) {
         if(spaceship.canTravelTo(this, destinationSystem)) {
             locationSystem = destinationSystem
             locationPlanet = destinationPlanet
             spaceship.updateFuelForTravel(this, destinationSystem)
-        } else {
-            //TODO let the player know they cannot travel
         }
+    }
+
+    /**
+     * Returns a set of the systems reachable by the player
+     *
+     */
+    fun findReachableSystems(): MutableSet<SolarSystem> {
+        val reachableSolarSystems: MutableSet<SolarSystem> = mutableSetOf()
+        for(system: SolarSystem in Universe.solarSystems) {
+            if(spaceship.canTravelTo(this, system)) {
+                reachableSolarSystems.add(system);
+            }
+        }
+        return reachableSolarSystems
     }
 
 }
