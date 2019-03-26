@@ -1,6 +1,7 @@
 package com.communistutopia.spacetrader.viewmodel
 
 import android.arch.lifecycle.ViewModel
+import com.communistutopia.spacetrader.model.Player
 import com.communistutopia.spacetrader.model.SolarSystem
 import com.communistutopia.spacetrader.model.Universe
 
@@ -11,7 +12,7 @@ import com.communistutopia.spacetrader.model.Universe
  */
 
 class DebugGameViewModel : ViewModel() {
-    val solarSystems: HashSet<SolarSystem>
+    val solarSystems: MutableSet<SolarSystem>
 
     init {
         Universe.generateUniverse()

@@ -16,6 +16,11 @@ import com.communistutopia.spacetrader.model.Difficulty
 import com.communistutopia.spacetrader.viewmodel.ConfigurationViewModel
 import kotlinx.android.synthetic.main.configuration_fragment.*
 
+/**
+ * Fragment that shows all elements of player creation
+ *
+ * @author Rohan Rk <rohanrk@gatech.edu>
+ */
 class ConfigurationFragment : Fragment(), View.OnClickListener {
 
     private lateinit var button: Button
@@ -56,6 +61,7 @@ class ConfigurationFragment : Fragment(), View.OnClickListener {
             fighter_points.text.toString().toInt(), trader_points.text.toString().toInt(), engineer_points.text.toString().toInt())) {
             // If the player is valid, go to the GameActivity (which at the moment just has a debug fragment
             val intent = Intent(context!!, GameActivity::class.java)
+            intent.putExtra("player", viewModel.player)
             startActivity(intent)
 
         } else {

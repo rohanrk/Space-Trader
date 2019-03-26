@@ -14,21 +14,23 @@ package com.communistutopia.spacetrader.model
  * @param ER = When this condition is present, the resource is expensive
  * @param MTL = Min price offered in space trade with random trader (not on a planet)
  * @param MTH = Max price offered in space trade with random trader (not on a planet)
+ * @param GTD = Government Type which heavily demands this resource, when the same as the market, increase price
+ * @param GTS = Government Type which heavily supplies this resource, when the same as the market, decrease price
  */
 
-open class TradeGood(val MTLP: Int, val MTLU: Int, val TTP: Int, val basePrice: Int, val IPL: Int, val variance: Int,
-                     val IE: Event, val CR: ResourceLevel, val ER: ResourceLevel, val MTL: Int, val MTH: Int) {
+abstract class TradeGood(val MTLP: Int, val MTLU: Int, val TTP: Int, val basePrice: Int, val IPL: Int, val variance: Int,
+                     val IE: Event, val CR: ResourceLevel, val ER: ResourceLevel, val MTL: Int, val MTH: Int,
+                     val GTD: Government, val GTS: Government, val name: String, var amount: Int) {
 
+    val MIN_PRICE = 20
     /**
      * A method that calculates the price of the trade good and returns it
+     * Prices are calculated by the following model
+     * price =
      *
      * @param market the Market from the planet being traded into
-     *
-     * TODO take into account Government type
      */
-    fun calculatePrice(
-        market: Market
-    ): Int {
+    fun calculatePrice(market: Market): Int {
         var price: Int = basePrice
 
         price += IPL * market.techLevel.value() //add price increase per techlevel
@@ -43,6 +45,12 @@ open class TradeGood(val MTLP: Int, val MTLU: Int, val TTP: Int, val basePrice: 
             price += price * (variance / 2) //increase price accordingly
         }
 
+        if (market.government.equals(GTD)) { //checks for government type demanding
+            price += price * (variance / 2) //increase price accordingly
+        } else if (market.government.equals(GTS)) { //checks for government type supplying
+            price -= price * (variance / 2) // decrease price accordingly
+        }
+
         //check if price is within acceptable variance range
         if (price > basePrice + (basePrice * variance)) {
             price = basePrice + (basePrice * variance)
@@ -50,6 +58,29 @@ open class TradeGood(val MTLP: Int, val MTLU: Int, val TTP: Int, val basePrice: 
             price = basePrice - (basePrice * variance)
         }
 
-        return price
+        if (price > 0) return price else return MIN_PRICE // Closest thing to a ternary operator in Kotlin
     }
+
+    /**
+     * A method that returns whether the MTLP equals that of a market
+     *
+     * @param market the Market from the planet being traded into
+     *
+     *
+     */
+    fun isMTLP(market: Market): Boolean {
+        return MTLP <= market.techLevel.value()
+    }
+
+    /**
+     * A method that returns whether the TTP equals that of a market
+     *
+     * @param market the Market from the planet being traded into
+     *
+     *
+     */
+    fun isTTP(market: Market): Boolean {
+        return TTP <= market.techLevel.value()
+    }
+
 }

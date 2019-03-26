@@ -13,7 +13,10 @@ package com.communistutopia.spacetrader.model
  * @param ER = When this condition is present, the resource is expensive
  * @param MTL = Min price offered in space trade with random trader (not on a planet)
  * @param MTH = Max price offered in space trade with random trader (not on a planet)
+ * @param GTD = Government Type which heavily demands this resource, when the same as the market, increase price
+ * @param GTS = Government Type which heavily supplies this resource, when the same as the market, decrease price
  */
+
 class Narcotics(MTLP: Int, MTLU: Int, TTP: Int, basePrice: Int, IPL: Int, variance: Int, IE: Event, CR: ResourceLevel,
-                ER: ResourceLevel, MTL: Int, MTH: Int
-) : TradeGood(MTLP, MTLU, TTP, basePrice, IPL, variance, IE, CR, ER, MTL, MTH)
+               ER: ResourceLevel, MTL: Int, MTH: Int, GTD: Government, GTS: Government, amount: Int
+) : TradeGood(MTLP, MTLU, TTP, basePrice, IPL, variance, IE, CR, ER, MTL, MTH, GTD, GTS, "narcotics", amount)
