@@ -8,6 +8,7 @@ import android.content.Context
 import com.communistutopia.spacetrader.R
 import com.communistutopia.spacetrader.model.Planet
 import com.communistutopia.spacetrader.model.Player
+import kotlin.random.Random
 
 
 /**
@@ -35,7 +36,12 @@ class GameViewModel : ViewModel() {
     }
 
     fun setStartLoc() {
-        this.player.generateStartLoc(solarSystems)
+        var random: Random = Random.Default
+        val solarIndex = random.nextInt(solarSystems.size)
+        val system = solarSystems.elementAt(solarIndex)
+        player.system = system
+        val planetIndex = random.nextInt(system.planets.size)
+        player.location = system.planets.elementAt(random.nextInt(planetIndex))
     }
 
 }

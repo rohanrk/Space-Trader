@@ -27,15 +27,15 @@ import kotlinx.android.parcel.Parcelize
 data class Ship(
     val hold: Inventory, val name: String, val fuelCapacity: Int, var fuelCount: Int, val hullStrength: Int,
     val hasInsurance: Boolean, val hasEscapePods: Boolean, val range: Int, val weapons: List<Weapon>, val shields: List<Shield>,
-    val gadgets: List<Gadgets>, val cargoCapacity: Int, val weaponSlots: Int, val shieldSlots: Int, val gadgetSlots: Int,
+    val gadgets: List<Gadgets>, var cargoCapacity: Int, val weaponSlots: Int, val shieldSlots: Int, val gadgetSlots: Int,
     val crewQuarters: Int): Parcelable {
 
     /**
      * Returns whether the ship has enough fuel / range to get to a system
      *
      */
-    fun canTravelTo(me: Player, destinationSystem: SolarSystem): Boolean {
-        var dist = me.locationSystem.getDistance(destinationSystem)
+    fun canTravelTo(source: SolarSystem, destinationSystem: SolarSystem): Boolean {
+        var dist = source.getDistance(destinationSystem)
         var rangeLeft = (fuelCount / fuelCapacity) * range
         if(dist <= rangeLeft) {
             return true
@@ -44,11 +44,10 @@ data class Ship(
     }
 
     /**
-     * Lowers the fuelCount of the ship for going to a given destination system
+     * Lowers the fuelCount of the ship for traveling a specified distance
      *
      */
-    fun updateFuelForTravel(me: Player, destinationSystem: SolarSystem) {
-        var dist = me.locationSystem.getDistance(destinationSystem)
+    fun updateFuelForTravel(dist: Double) {
         fuelCount -= ((dist / range) * fuelCapacity).toInt()
     }
 }

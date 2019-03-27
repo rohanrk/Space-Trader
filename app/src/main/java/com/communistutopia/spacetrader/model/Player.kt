@@ -33,40 +33,7 @@ data class Player(
 
     lateinit var system: SolarSystem
     lateinit var location: Planet
-    /**
-     * Changes the location of the player and calls the method to lower fuel if travel is possible
-     *
-     */
-    fun travelToPlanet(destinationSystem: SolarSystem, destinationPlanet: Planet) {
-        if(spaceship.canTravelTo(this, destinationSystem)) {
-            system = destinationSystem
-            location = destinationPlanet
-            spaceship.updateFuelForTravel(this, destinationSystem)
-        }
-    }
 
-    /**
-     * Returns a set of the systems reachable by the player
-     *
-     */
-    fun findReachableSystems(): MutableSet<SolarSystem> {
-        val reachableSolarSystems: MutableSet<SolarSystem> = mutableSetOf()
-        for(system: SolarSystem in Universe.solarSystems) {
-            if(spaceship.canTravelTo(this, system)) {
-                reachableSolarSystems.add(system);
-            }
-        }
-        return reachableSolarSystems
-    }
-
-    fun generateStartLoc(solarSystems: Set<SolarSystem>) {
-        var random: Random = Random.Default
-        val solarIndex = random.nextInt(solarSystems.size)
-        val system = solarSystems.elementAt(solarIndex)
-        this.system = system
-        val planetIndex = random.nextInt(system.planets.size)
-        this.location = system.planets.elementAt(random.nextInt(planetIndex))
-    }
 }
 
 
