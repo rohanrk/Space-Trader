@@ -49,6 +49,9 @@ class GameFragment : Fragment() {
 
         travel_button.setOnClickListener {
             val intent = Intent(context!!, LocationActivity::class.java)
+            intent.putExtra("player", viewModel.player)
+            intent.putExtra("location", viewModel.player.location)
+            intent.putExtra("system", viewModel.player.system)
             startActivity(intent)
         }
     }

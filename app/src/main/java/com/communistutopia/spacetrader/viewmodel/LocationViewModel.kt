@@ -35,10 +35,27 @@ class LocationViewModel: ViewModel() {
         val reachableSolarSystems: MutableSet<SolarSystem> = mutableSetOf()
         for(system: SolarSystem in Universe.solarSystems) {
             if(player.system != system && player.spaceship.canTravelTo(player.system, system)) {
-                reachableSolarSystems.add(system);
+                reachableSolarSystems.add(system)
             }
         }
         return reachableSolarSystems
+    }
+
+    data class TravelSpinnerEntry(val planet: Planet, val solarSystem: SolarSystem, val title: String) {
+        override fun toString(): String {
+            return title
+        }
+    }
+
+    fun getAllReachablePlanets(): MutableSet<TravelSpinnerEntry> {
+        val reachablePlanets: MutableSet<TravelSpinnerEntry> = mutableSetOf()
+        val reachableSystems = findReachableSystems()
+        reachableSystems.forEach { system ->
+            system.planets.forEach { planet ->
+                reachablePlanets.add(TravelSpinnerEntry(planet, system, "${system.name} - ${planet.name}"))
+            }
+        }
+        return reachablePlanets
     }
 
     /**
