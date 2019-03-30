@@ -186,7 +186,6 @@ object Universe {
                 i--
             }
         }
-        // TODO: updateLocation(player) For now, I'm commenting this out till M8
     }
 
     /**
@@ -210,13 +209,6 @@ object Universe {
         return planetSet
     }
 
-    /**
-     * This method updates a player's location. The location is set to the first planet created in the first solar system
-     */
-    fun updateLocation(player: Player) {
-        player.location = solarSystems.first().planets.first()
-
-    }
     override fun toString(): String {
         return solarSystems.toString() +
                 '\n' + locations.toString()

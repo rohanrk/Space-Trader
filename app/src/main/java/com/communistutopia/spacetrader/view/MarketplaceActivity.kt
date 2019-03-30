@@ -23,10 +23,6 @@ class MarketplaceActivity : AppCompatActivity() {
 
         // Configure Viewmodel
         viewModel = ViewModelProviders.of(this).get(MarketplaceViewModel::class.java)
-        viewModel.market = intent.getParcelableExtra("market")
-        viewModel.player = intent.getParcelableExtra("player")
-        viewModel.playerObservable.value = viewModel.player
-        viewModel.marketObservable.value = viewModel.market
         viewModel.initializeInventory() // Should always be called after market is set
 
         //actionbar
@@ -34,7 +30,6 @@ class MarketplaceActivity : AppCompatActivity() {
         //set actionbar title
         actionbar!!.title = "Marketplace"
         //set back button
-        actionbar.setDisplayHomeAsUpEnabled(true)
         actionbar.setDisplayHomeAsUpEnabled(true)
 
         // Set up the ViewPager (the tabs)

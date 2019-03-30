@@ -7,7 +7,8 @@ import kotlinx.android.parcel.Parcelize
  * This class represents a player with default values.
  *@param difficulty difficulty of game
  * @param spaceship player's ship, default ship is a gnat
- * @param location player initial location, updated to a real planet after the universe is created
+ * @param locationPlanet player initial planet, updated to a real planet after the universe is created
+ * @param locationSystem player initial system, updated to a real system after the universe is created
  * @param credits players starting money
  * @param charName name
  * @param pilotSkill points attributed to the pilot category
@@ -19,19 +20,17 @@ import kotlinx.android.parcel.Parcelize
 data class Player(
     var difficulty: Difficulty = Difficulty.Beginner,
     var spaceship: Ship = Ship(Inventory(),
-        "Gnat", 0,100, false, false, 14, listOf(Weapon.NONE), listOf(Shield.NONE),
+        "Gnat", 1000, 1000, 100, false, false, 30, listOf(Weapon.NONE), listOf(Shield.NONE),
         listOf(Gadgets.NONE), 15, 1, 0, 1, 1),
-    var location: Planet =
-    Planet(name = "Initial",
-        techLevel = TechLevel(TechLevelType.randomTechLevelType()),
-        resourceLevel = ResourceLevel(ResourceLevelType.randomResourceLevelType()),
-        government = Government(GovernmentType.randomGovernmentType())),
     var credits: Int = 1000,
     var charName: String = "",
     var pilotSkill: Int = 0,
     var fighterSkill: Int = 0,
     var traderSkill: Int = 0,
     var engineerSkill: Int = 0): Parcelable {
+
+    lateinit var system: SolarSystem
+    lateinit var location: Planet
 
 }
 

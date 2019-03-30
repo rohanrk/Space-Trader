@@ -72,11 +72,11 @@ class MarketItemAdapter(private var context: Context,
 
         if (sell) {
             viewHolder.actionButton?.setOnClickListener {
-                if (marketplaceViewModel.buyFromPlayer(item.name, marketplaceViewModel.market.inventory.getMTLU(item.name), 1)) {
-                    item.quantity = marketplaceViewModel.market.inventory.getAmount(item.name)
+                if (marketplaceViewModel.buyFromPlayer(item.name, marketplaceViewModel.player.value!!.location.market.inventory.getMTLU(item.name), 1)) {
+                    item.quantity = marketplaceViewModel.player.value!!.location.market.inventory.getAmount(item.name)
                     viewHolder.quantity?.text = item.quantity.toString()
-                    val out: String = "You now have %d credits and %d %s resource".format(marketplaceViewModel.player.credits,
-                        marketplaceViewModel.player.spaceship.hold.getAmount((item.name)), item.name)
+                    val out: String = "You now have %d credits and %d %s resource".format(marketplaceViewModel.player.value!!.credits,
+                        marketplaceViewModel.player.value!!.spaceship.hold.getAmount((item.name)), item.name)
                     Toast.makeText(context, out, Toast.LENGTH_LONG).show()
                 } else {
                     Toast.makeText(context, "Cannot sell item", Toast.LENGTH_LONG).show()
@@ -86,10 +86,10 @@ class MarketItemAdapter(private var context: Context,
         } else {
             viewHolder.actionButton?.setOnClickListener {
                 if (marketplaceViewModel.sellToPlayer(item.name, 1)) {
-                    item.quantity = marketplaceViewModel.market.inventory.getAmount(item.name)
+                    item.quantity = marketplaceViewModel.player.value!!.location.market.inventory.getAmount(item.name)
                     viewHolder.quantity?.text = item.quantity.toString()
-                    val out: String = "You now have %d credits and %d %s resource".format(marketplaceViewModel.player.credits,
-                        marketplaceViewModel.player.spaceship.hold.getAmount((item.name)), item.name)
+                    val out: String = "You now have %d credits and %d %s resource".format(marketplaceViewModel.player.value!!.credits,
+                        marketplaceViewModel.player.value!!.spaceship.hold.getAmount((item.name)), item.name)
                     Toast.makeText(context, out, Toast.LENGTH_LONG)
                         .show()
                 } else {
