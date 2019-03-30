@@ -31,22 +31,25 @@ class MarketplaceSellFragment : Fragment() {
         return inflater.inflate(R.layout.marketplace_sell_fragment, container, false)
     }
 
+    /**
+     * Subscribes to the player to update the marketplace whenever conditions change.
+     */
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        var vm = activity as MarketplaceActivity
+        val vm = activity as MarketplaceActivity
 
         val playerObserver = Observer<Player> { newPlayer: Player? ->
             val marketItems: ArrayList<MarketItem> = ArrayList()
             val inventory = newPlayer!!.spaceship.hold
             inventory.forEach { item ->
                 if (item.value.amount > 0) {
-                    marketItems.add(MarketItem(item.key, item.value.amount, item.value.calculatePrice(vm.viewModel.market), MarketAction.SELL))
+                    marketItems.add(MarketItem(item.key, item.value.amount, item.value.calculatePrice(vm.viewModel.player.value!!.location.market), MarketAction.SELL))
                 }
             }
             val adapter = MarketItemAdapter(context!!, marketItems, true)
             market_sell_list.adapter = adapter
         }
 
-        vm.viewModel.playerObservable.observe(this, playerObserver)
+        vm.viewModel.player.observe(this, playerObserver)
     }
 }

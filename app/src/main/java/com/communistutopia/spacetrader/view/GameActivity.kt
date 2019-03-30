@@ -1,8 +1,10 @@
 package com.communistutopia.spacetrader.view
 
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.communistutopia.spacetrader.R
+import com.communistutopia.spacetrader.viewmodel.GameViewModel
 
 class GameActivity : AppCompatActivity() {
 

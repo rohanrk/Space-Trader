@@ -4,6 +4,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.communistutopia.spacetrader.model.Market
 import com.communistutopia.spacetrader.model.Player
+import com.communistutopia.spacetrader.repository.PlayerRepository
 
 /**
  * Viewmodel that handlses all marketplace functions
@@ -11,11 +12,8 @@ import com.communistutopia.spacetrader.model.Player
  * @author Rohan Rk <rohanrk@gatech.edu>
  */
 class MarketplaceViewModel : ViewModel() {
+    val player = PlayerRepository.player
 
-    lateinit var player: Player
-    val playerObservable: MutableLiveData<Player> = MutableLiveData()
-    lateinit var market: Market
-    val marketObservable: MutableLiveData<Market> = MutableLiveData()
     private var prices: MutableMap<String, Int>
 
     init {
@@ -34,16 +32,15 @@ class MarketplaceViewModel : ViewModel() {
      */
     fun sellToPlayer(tradeGood: String, numGoods: Int): Boolean {
         val total: Int = prices[tradeGood]!! * numGoods
-        if (player.credits < total || player.spaceship.cargoCapacity < numGoods) {
-            return false
+        return if (player.value!!.credits < total || player.value!!.spaceship.cargoCapacity < numGoods) {
+            false
         } else {
-            player.credits -= total
-            market.inventory.removeSupplies(tradeGood, numGoods)
-            player.spaceship.hold.addSupplies(tradeGood, numGoods)
-            player.spaceship.cargoCapacity--
-            playerObservable.value = player
-            marketObservable.value = market
-            return true
+            player.value!!.credits -= total
+            player.value!!.location.market.inventory.removeSupplies(tradeGood, numGoods)
+            player.value!!.spaceship.hold.addSupplies(tradeGood, numGoods)
+            player.value!!.spaceship.cargoCapacity--
+            player.value = player.value
+            true
         }
     }
 
@@ -58,15 +55,14 @@ class MarketplaceViewModel : ViewModel() {
      */
     fun buyFromPlayer(tradeGood: String, minTechToBuy: Int, numGoods: Int): Boolean {
         val total: Int = prices[tradeGood]!! * numGoods
-        return if(!canBeBought(minTechToBuy) || player.spaceship.hold.getValue(tradeGood) < numGoods) {
+        return if(!canBeBought(minTechToBuy) || player.value!!.spaceship.hold.getValue(tradeGood) < numGoods) {
             false
         } else {
-            player.credits += total
-            market.inventory.addSupplies(tradeGood, numGoods)
-            player.spaceship.hold.removeSupplies(tradeGood, numGoods)
-            player.spaceship.cargoCapacity++
-            playerObservable.value = player
-            marketObservable.value = market
+            player.value!!.credits += total
+            player.value!!.location.market.inventory.addSupplies(tradeGood, numGoods)
+            player.value!!.spaceship.hold.removeSupplies(tradeGood, numGoods)
+            player.value!!.spaceship.cargoCapacity++
+            player.value = player.value
             true
         }
     }
@@ -76,10 +72,10 @@ class MarketplaceViewModel : ViewModel() {
      *
      */
     fun initializeInventory() {
-        for (entry in market.inventory) {
-            if (entry.value.isMTLP(market)) {
+        for (entry in player.value!!.location.market.inventory) {
+            if (entry.value.isMTLP(player.value!!.location.market)) {
                 entry.value.amount = BASE_AMOUNT * 5
-                prices.put(entry.key, entry.value.calculatePrice(market))
+                prices.put(entry.key, entry.value.calculatePrice(player.value!!.location.market))
             }
         }
     }
@@ -89,7 +85,7 @@ class MarketplaceViewModel : ViewModel() {
      * If the planet's tech level is below the MTLU, the item cannot be sold.
      */
     fun canBeBought(itemMTLU: Int): Boolean {
-        return market.techLevel.value() > itemMTLU
+        return player.value!!.location.market.techLevel.value() > itemMTLU
     }
 
     fun getPrice(item: String): Int {

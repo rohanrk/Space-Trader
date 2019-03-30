@@ -2,7 +2,7 @@ package com.communistutopia.spacetrader.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import com.communistutopia.spacetrader.model.Difficulty
-import com.communistutopia.spacetrader.model.Player
+import com.communistutopia.spacetrader.repository.PlayerRepository
 
 /**
  * Viewmodel that handles player creation
@@ -10,8 +10,8 @@ import com.communistutopia.spacetrader.model.Player
  * @author Rohan Rk <rohanrk@gatech.edu>
  */
 class ConfigurationViewModel : ViewModel() {
+    val player = PlayerRepository.player
 
-    val player: Player = Player()
     private val TOTAL_POINTS = 16
 
     /**
@@ -25,13 +25,15 @@ class ConfigurationViewModel : ViewModel() {
      * @param engineer number of engineer points
      */
     fun updatePlayerFromView(difficulty: Difficulty, name: String, pilot: Int, fighter: Int, trader: Int, engineer: Int): Boolean {
-        player.difficulty = difficulty
-        player.charName = name
+        player.value?.difficulty = difficulty
+        player.value?.charName = name
+        player.value = player.value
         return updatePoints(pilot, fighter, trader, engineer)
     }
 
     fun updateCredits(credits: Int) {
-        player.credits = credits
+        player.value?.credits = credits
+        player.value = player.value
     }
 
     fun updatePoints(pilot: Int, fighter: Int, trader: Int, engineer: Int): Boolean {
@@ -39,10 +41,11 @@ class ConfigurationViewModel : ViewModel() {
         if (pilot < 0 || fighter < 0 || trader < 0 || engineer < 0 || pilot + fighter + trader + engineer != TOTAL_POINTS) {
             return false
         } else {
-            player.pilotSkill = pilot
-            player.fighterSkill = fighter
-            player.traderSkill = trader
-            player.engineerSkill = engineer
+            player.value?.pilotSkill = pilot
+            player.value?.fighterSkill = fighter
+            player.value?.traderSkill = trader
+            player.value?.engineerSkill = engineer
+            player.value = player.value
             return true
         }
     }

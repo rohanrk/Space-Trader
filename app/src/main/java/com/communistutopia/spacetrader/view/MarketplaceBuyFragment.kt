@@ -37,19 +37,20 @@ class MarketplaceBuyFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         var vm = activity as MarketplaceActivity
 
-        val marketObserver = Observer<Market> { newMarket: Market? ->
+        val marketObserver = Observer<Player> { newPlayer: Player? ->
+            val newMarket = newPlayer!!.location.market
             val marketItems: ArrayList<MarketItem> = ArrayList()
             // market.inventory
             val inventory = newMarket!!.inventory
             inventory.forEach { item ->
                 if (item.value.amount > 0) {
-                    marketItems.add(MarketItem(item.key, item.value.amount, item.value.calculatePrice(vm.viewModel.market), MarketAction.BUY))
+                    marketItems.add(MarketItem(item.key, item.value.amount, item.value.calculatePrice(vm.viewModel.player.value!!.location.market), MarketAction.BUY))
                 }
             }
             val adapter = MarketItemAdapter(context!!, marketItems, false)
             market_buy_list.adapter = adapter
         }
 
-        vm.viewModel.marketObservable.observe(this, marketObserver)
+        vm.viewModel.player.observe(this, marketObserver)
     }
 }
