@@ -4,5 +4,13 @@
     <string name="marketBtnStr">Market</string>
     <string name="shipyardBtnStr">Shipyard</string>
     <string name="playerBtnStr">Player Info</string>
-    <string name="debugBtnStr">Debug Info</string>
+    <string name="name_config">Enter your name player!</string>
+    <string name="pilot_points">Enter number of pilot points</string>
+    <string name="fighter_points">Enter number of fighter points</string>
+    <string name="trader_points">Enter number of trader points</string>
+    <string name="engineer_points">Enter number of engineer points</string>
+    <string name="difficulty">Choose your difficulty below</string>
+    <string name="finish">Finish</string>
+
+
 </resources>

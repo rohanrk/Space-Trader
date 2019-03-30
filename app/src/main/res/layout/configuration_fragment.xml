@@ -10,35 +10,40 @@
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter your name player!"
+            android:importantForAutofill="no"
+            android:hint="@string/name_config"
             android:inputType="text"
             android:id="@+id/player_name"/>
 
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter number of pilot points"
+            android:importantForAutofill="no"
+            android:hint="@string/pilot_points"
             android:inputType="number"
             android:id="@+id/pilot_points"/>
 
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter number of fighter points"
+            android:importantForAutofill="no"
+            android:hint="@string/fighter_points"
             android:inputType="number"
             android:id="@+id/fighter_points"/>
 
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter number of trader points"
+            android:importantForAutofill="no"
+            android:hint="@string/trader_points"
             android:inputType="number"
             android:id="@+id/trader_points"/>
 
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter number of engineer points"
+            android:importantForAutofill="no"
+            android:hint="@string/engineer_points"
             android:inputType="number"
             android:id="@+id/engineer_points"/>
 
@@ -46,15 +51,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/difficulty_text"
-            android:text="Choose your difficulty below"
+            android:text="@string/difficulty"
             android:layout_marginTop="16dp"/>
     <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/difficulty_spinner"
-            android:layout_below="@+id/difficulty_text"/>
+            android:id="@+id/difficulty_spinner"/>
     <Button
-            android:text="Finish"
+            android:text="@string/finish"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/finish"/>
