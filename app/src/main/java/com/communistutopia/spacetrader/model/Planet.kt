@@ -2,6 +2,7 @@ package com.communistutopia.spacetrader.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
+import kotlin.random.Random
 
 /**
  * @param name the name of the Planet
@@ -18,6 +19,11 @@ class Planet(val name: String, private val techLevel: TechLevel, private val res
 
     //Initialize the market of the planet from it's properties
     val market: Market = Market(techLevel, resourceLevel, government)
+
+    fun rollForRandomEvent() {
+        val randomEventNumber = Random.nextInt(0, Event.values().size)
+        market.event = Event.values()[randomEventNumber]
+    }
 
     override fun toString(): String {
         return "Planet(" + "\n" +

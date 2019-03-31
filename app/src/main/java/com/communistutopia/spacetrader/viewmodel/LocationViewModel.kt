@@ -21,6 +21,7 @@ class LocationViewModel: ViewModel() {
         if(player.value!!.spaceship.canTravelTo(player.value!!.system, destinationSystem)) {
             var dist = player.value!!.system.getDistance(destinationSystem)
             updateLocation(destinationSystem, destinationPlanet)
+            player.value!!.location.rollForRandomEvent()
             player.value!!.spaceship.updateFuelForTravel(dist)
             player.value = player.value
         }

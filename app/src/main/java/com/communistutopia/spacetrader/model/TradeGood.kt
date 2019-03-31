@@ -80,7 +80,7 @@ abstract class TradeGood(val MTLP: Int, val MTLU: Int, val TTP: Int, val basePri
      *
      */
     fun isTTP(market: Market): Boolean {
-        return TTP <= market.techLevel.value()
+        return TTP == market.techLevel.value()
     }
 
 }
