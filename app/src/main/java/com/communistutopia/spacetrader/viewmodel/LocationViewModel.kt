@@ -32,7 +32,7 @@ class LocationViewModel: ViewModel() {
     fun findReachableSystems(): MutableSet<SolarSystem> {
         val reachableSolarSystems: MutableSet<SolarSystem> = mutableSetOf()
         for(system: SolarSystem in Universe.solarSystems) {
-            if(player.value!!.system != system && player.value!!.spaceship.canTravelTo(player.value!!.system, system)) {
+            if(player.value!!.spaceship.canTravelTo(player.value!!.system, system)) {
                 reachableSolarSystems.add(system)
             }
         }
