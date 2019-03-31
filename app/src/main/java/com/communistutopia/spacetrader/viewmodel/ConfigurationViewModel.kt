@@ -24,7 +24,8 @@ class ConfigurationViewModel : ViewModel() {
      * @param trader number of trader points
      * @param engineer number of engineer points
      */
-    fun updatePlayerFromView(difficulty: Difficulty, name: String, pilot: Int, fighter: Int, trader: Int, engineer: Int): Boolean {
+    fun updatePlayerFromView(difficulty: Difficulty, name: String, pilot: Int, fighter: Int,
+                             trader: Int, engineer: Int): Boolean {
         player.value?.difficulty = difficulty
         player.value?.charName = name
         player.value = player.value
@@ -38,7 +39,8 @@ class ConfigurationViewModel : ViewModel() {
 
     fun updatePoints(pilot: Int, fighter: Int, trader: Int, engineer: Int): Boolean {
 
-        if (pilot < 0 || fighter < 0 || trader < 0 || engineer < 0 || pilot + fighter + trader + engineer != TOTAL_POINTS) {
+        if (pilot < 0 || fighter < 0 || trader < 0 || engineer < 0
+            || pilot + fighter + trader + engineer != TOTAL_POINTS) {
             return false
         } else {
             player.value?.pilotSkill = pilot

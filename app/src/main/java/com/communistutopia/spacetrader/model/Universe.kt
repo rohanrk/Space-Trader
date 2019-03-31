@@ -18,7 +18,8 @@ object Universe {
 
     // Objects to help generate universe and handle game events
     val solarSystems: MutableSet<SolarSystem>
-    private val locations: MutableMap<Pair<Int, Int>, String> // Initializing a 2D array is the most frustrating ordeal. So this is a hacky solution
+    private val locations: MutableMap<Pair<Int, Int>, String>
+    // Initializing a 2D array is the most frustrating ordeal. So this is a hacky solution
     private val random: Random
     private var namesList: MutableList<String>
 
