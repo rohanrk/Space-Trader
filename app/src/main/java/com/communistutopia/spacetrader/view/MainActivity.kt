@@ -15,7 +15,8 @@ class MainActivity : AppCompatActivity() {
          * TODO: In the future it needs to decide which screen to go on based on state. Is there a user? Then don't
          * go to the config screen.
          */
-        val intent = Intent(this, ConfigurationActivity::class.java)
+        //val intent = Intent(this, ConfigurationActivity::class.java)
+        val intent = Intent(this, SelectionActivity::class.java)
         startActivity(intent)
     }
 }

@@ -5,4 +5,13 @@
     <string name="shipyardBtnStr">Shipyard</string>
     <string name="playerBtnStr">Player Info</string>
     <string name="debugBtnStr">Debug Info</string>
+    <string name="newgame">NEW GAME</string>
+    <string name="loadgame">LOAD GAME</string>
+    <string name="savegame">SAVE GAME</string>
+    <string name = "selection">Please Select/Save Your Game Below!</string>
+    <string name = "haley">Haley</string>
+    <string name="Drake">Drake</string>
+    <string name= "Rohan">Rohan</string>
+    <string name = "loadsave">LOAD/SAVE GAME</string>
+
 </resources>
