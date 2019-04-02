@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "696225920693",
+    "firebase_url": "https://space-trader-c9784.firebaseio.com",
+    "project_id": "space-trader-c9784",
+    "storage_bucket": "space-trader-c9784.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:696225920693:android:bc84e4307bc59e43",
+        "android_client_info": {
+          "package_name": "com.communistutopia.spacetrader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "696225920693-5su6d0bm3t2eb0vqcnu0suetc2m9ufc1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.communistutopia.spacetrader",
+            "certificate_hash": "90d8ded431d479289c00838952602213d8557b16"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwKIodYiswnesBIMQRzxwRk3eIdyv49NY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "696225920693-kuhgp64p5qpr4om1qebu1o79f31ku69b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
