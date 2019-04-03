@@ -41,7 +41,7 @@ class GameViewModel : ViewModel() {
      * Sets the start location randomly
      */
     fun setStartLoc() {
-        var random: Random = Random.Default
+        val random: Random = Random.Default
         val solarIndex = random.nextInt(solarSystems.size)
         val system = solarSystems.elementAt(solarIndex)
         player.value?.system = system

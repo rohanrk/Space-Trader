@@ -84,3 +84,4 @@ lint/tmp/
 
 # firebase
 app/google-services.json
+**/*/res/values/secrets.xml
