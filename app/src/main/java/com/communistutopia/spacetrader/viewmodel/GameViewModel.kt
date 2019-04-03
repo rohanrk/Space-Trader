@@ -8,6 +8,9 @@ import android.content.Context
 import com.communistutopia.spacetrader.R
 import com.communistutopia.spacetrader.repository.PlayerRepository
 import kotlin.random.Random
+import com.google.firebase.firestore.FirebaseFirestore
+
+
 
 
 /**
@@ -45,5 +48,8 @@ class GameViewModel : ViewModel() {
         val planetIndex = random.nextInt(system.planets.size)
         player.value?.location = system.planets.elementAt(planetIndex)
         player.value = player.value
+
+        val db = FirebaseFirestore.getInstance()
+        db.collection("players").add(player.value!!)
     }
 }

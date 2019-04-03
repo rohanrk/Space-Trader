@@ -12,7 +12,7 @@ import kotlin.random.Random
  *  of an instance of a Planet once it is created
  */
 @Parcelize
-class TechLevel(private val techLevel: TechLevelType): Parcelable {
+class TechLevel(val techLevel: TechLevelType): Parcelable {
     override fun toString(): String {
         return "TechLevel(techLevel=$techLevel)"
     }

@@ -11,7 +11,7 @@ import kotlin.random.Random
  *  of an instance of a Government once it is created
  */
 @Parcelize
-class Government(private val governmentType: GovernmentType): Parcelable {
+class Government(val governmentType: GovernmentType): Parcelable {
     override fun toString(): String {
         return "Government(governmentType=$governmentType)"
     }

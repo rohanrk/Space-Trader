@@ -192,7 +192,7 @@ object Universe {
      * @param num_planets the number of planets to generate
      * @return planetSet, a set containing the generated planets
      */
-    private fun generatePlanets(num_planets: Int): MutableSet<Planet> {
+    private fun generatePlanets(num_planets: Int): List<Planet> {
         var planetSet: MutableSet<Planet> = mutableSetOf()
         for(i in 0..num_planets) { //converted this to a for loop, might be an off by 1 error
             val planetName: String = namesList[random.nextInt(namesList.size)]
@@ -206,7 +206,7 @@ object Universe {
                 )
             )
         }
-        return planetSet
+        return planetSet.toList()
     }
 
     override fun toString(): String {

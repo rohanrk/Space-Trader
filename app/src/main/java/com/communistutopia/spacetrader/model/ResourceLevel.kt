@@ -12,7 +12,7 @@ import kotlin.random.Random
  *  of an instance of a ResourceLevel once it is created
  */
 @Parcelize
-class ResourceLevel(private val resourceLevel: ResourceLevelType): Parcelable {
+class ResourceLevel(val resourceLevel: ResourceLevelType): Parcelable {
     override fun toString(): String {
         return "ResourceLevel(resourceLevel=$resourceLevel)"
     }

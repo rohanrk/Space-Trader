@@ -4,6 +4,7 @@ import kotlin.math.pow
 import kotlin.math.sqrt
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
+import java.util.*
 
 /**
  * Class containing planets, tech level, and location of a Solar System
@@ -14,8 +15,7 @@ import kotlinx.android.parcel.Parcelize
  * @author Rohan Rk <rohanrk@gatech.edu>
  */
 @Parcelize
-class SolarSystem(var planets: Set<Planet>, var name: String, val x: Int,val  y: Int): Parcelable {
-
+class SolarSystem(var planets: List<Planet>, var name: String, val x: Int,val  y: Int): Parcelable {
 
     var coordinate: Pair<Int, Int>
 
