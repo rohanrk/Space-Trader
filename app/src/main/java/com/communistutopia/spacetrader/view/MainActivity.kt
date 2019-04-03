@@ -1,6 +1,5 @@
 package com.communistutopia.spacetrader.view
 
-import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -18,7 +17,8 @@ class MainActivity : AppCompatActivity() {
          * go to the config screen.
          */
         FirebaseApp.initializeApp(this)
-        val intent = Intent(this, ConfigurationActivity::class.java)
+        //SelectionActivity
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
 }
