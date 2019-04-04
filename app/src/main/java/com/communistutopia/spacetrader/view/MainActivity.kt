@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.communistutopia.spacetrader.R
+import com.google.firebase.FirebaseApp
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,7 +16,9 @@ class MainActivity : AppCompatActivity() {
          * TODO: In the future it needs to decide which screen to go on based on state. Is there a user? Then don't
          * go to the config screen.
          */
-        val intent = Intent(this, ConfigurationActivity::class.java)
+        FirebaseApp.initializeApp(this)
+        //SelectionActivity
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
 }

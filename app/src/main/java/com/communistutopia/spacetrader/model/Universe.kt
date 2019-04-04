@@ -173,10 +173,10 @@ object Universe {
     fun generateUniverse() {
         var i: Int = NUM_SYSTEMS
         while (i > 0) {
-            val x = random.nextInt(X_SIZE)
-            val y = random.nextInt(Y_SIZE)
+            val x: Int = random.nextInt(X_SIZE)
+            val y: Int = random.nextInt(Y_SIZE)
             val num_planets = random.nextInt(MAX_PLANETS) + 1
-            val pair = Pair(x, y)
+            val pair: Pair<Int, Int> = Pair(x, y)
             if (!locations.containsKey(pair)) {
                 val planetSet = generatePlanets(num_planets)
                 val systemName: String = namesList[random.nextInt(namesList.size)]
@@ -192,7 +192,7 @@ object Universe {
      * @param num_planets the number of planets to generate
      * @return planetSet, a set containing the generated planets
      */
-    private fun generatePlanets(num_planets: Int): MutableSet<Planet> {
+    private fun generatePlanets(num_planets: Int): List<Planet> {
         var planetSet: MutableSet<Planet> = mutableSetOf()
         for(i in 0..num_planets) { //converted this to a for loop, might be an off by 1 error
             val planetName: String = namesList[random.nextInt(namesList.size)]
@@ -206,7 +206,7 @@ object Universe {
                 )
             )
         }
-        return planetSet
+        return planetSet.toList()
     }
 
     override fun toString(): String {

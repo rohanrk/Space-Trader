@@ -17,6 +17,8 @@ class GameActivity : AppCompatActivity() {
                 .replace(R.id.container, GameFragment.newInstance())
                 .commitNow()
         }
+
     }
+
 
 }
