@@ -36,7 +36,7 @@ class Planet(val name: String, val techLevel: TechLevel, val resourceLevel: Reso
         } else if (government.governmentType == GovernmentType.Monarchy) {
             chance += 1
         }
-        return chance > 19
+        return chance > -1
     }
 
     fun rollForPolice(): Boolean {

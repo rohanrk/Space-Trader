@@ -1,7 +1,9 @@
 package com.communistutopia.spacetrader.viewmodel
 
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
 import com.communistutopia.spacetrader.model.Planet
+import com.communistutopia.spacetrader.model.SingleLiveEvent
 import com.communistutopia.spacetrader.model.SolarSystem
 import com.communistutopia.spacetrader.repository.PlayerRepository
 
@@ -12,6 +14,14 @@ import com.communistutopia.spacetrader.repository.PlayerRepository
  */
 class LocationViewModel: ViewModel() {
     val player = PlayerRepository.player
+
+    private val _pirateEvent = SingleLiveEvent<Any>()
+    private val _policeEvent = SingleLiveEvent<Any>()
+
+    val pirateEvent: LiveData<Any>
+        get() = _pirateEvent
+    val policeEvent: LiveData<Any>
+        get() = _policeEvent
 
     /**
      * Changes the location of the player and calls the method to lower fuel if travel is possible
@@ -24,11 +34,13 @@ class LocationViewModel: ViewModel() {
             val pirates = player.value!!.location.rollForPirates()
             if (pirates) {
                 player.value!!.spaceship.hold.removeHalfOfCargo()
+                _pirateEvent.call()
             }
             val police = player.value!!.location.rollForPolice()
             if (police && !pirates) {
                 player.value!!.spaceship.hold.removeHalfOfCargo()
                 player.value!!.removeHalfOfCredits()
+                _policeEvent.call()
             }
             player.value!!.spaceship.updateFuelForTravel(dist)
             player.value = player.value
