@@ -28,7 +28,8 @@ class LocationViewModel: ViewModel() {
      */
     fun travelToPlanet(destinationSystem: SolarSystem, destinationPlanet: Planet) {
         if(player.value!!.spaceship.canTravelTo(player.value!!.system, destinationSystem)) {
-            var dist = player.value!!.system.getDistance(destinationSystem)
+            val dist = player.value!!.system.getDistance(destinationSystem)
+            println("DIST: $dist")
             updateLocation(destinationSystem, destinationPlanet)
             player.value!!.location.rollForRandomEvent()
             val pirates = player.value!!.location.rollForPirates()
