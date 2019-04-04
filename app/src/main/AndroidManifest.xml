@@ -24,7 +24,8 @@
         </activity>
         <activity android:name=".view.LocationActivity">
         </activity>
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.MainActivity"
+                    android:theme="@style/LaunchTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
