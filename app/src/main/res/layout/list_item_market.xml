@@ -5,23 +5,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:columnCount="4"
+        android:background="@color/pitch_black"
         app:rowCount="1">
 
     <TextView
             android:text="Item Name"
+            android:fontFamily="@font/andromeda"
+            android:textColor="@color/white"
             app:layout_column="0"
             android:id="@+id/item_name"
             android:textAppearance="@android:style/TextAppearance.Material.Large" android:layout_width="164dp"/>
 
     <TextView
             android:text="Qty"
+            android:fontFamily="@font/andromeda"
             app:layout_column="1"
+            android:textColor="@color/white"
             android:id="@+id/item_quantity"
             android:textAppearance="@android:style/TextAppearance.Material.Large" android:layout_width="56dp"/>
 
     <TextView
             android:text="10 credits"
             android:layout_width="94dp"
+            android:fontFamily="@font/andromeda"
+            android:textColor="@color/white"
             android:layout_height="wrap_content"
             app:layout_column="2"
             android:id="@+id/item_price"
@@ -29,6 +36,8 @@
 
     <Button
             android:text="Sell"
+            android:fontFamily="@font/andromeda"
+            android:background="@color/common_google_signin_btn_text_dark_disabled"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_column="3"
