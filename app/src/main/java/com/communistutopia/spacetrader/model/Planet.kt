@@ -20,9 +20,10 @@ class Planet(val name: String, private val techLevel: TechLevel, private val res
     //Initialize the market of the planet from it's properties
     val market: Market = Market(techLevel, resourceLevel, government)
 
-    fun rollForRandomEvent() {
+    fun rollForRandomEvent(): Event {
         val randomEventNumber = Random.nextInt(0, Event.values().size)
         market.event = Event.values()[randomEventNumber]
+        return Event.values()[randomEventNumber]
     }
 
     override fun toString(): String {

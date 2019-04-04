@@ -35,10 +35,19 @@ class LocationActivity: AppCompatActivity() {
         planetsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         planets_spinner.adapter = planetsAdapter
 
+
         travel_planet_button.setOnClickListener {
-            Toast.makeText(this, "Traveled!", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this, "Traveled!", Toast.LENGTH_SHORT).show()
             var item = planets_spinner.selectedItem as LocationViewModel.TravelSpinnerEntry
             viewModel.travelToPlanet(item.solarSystem, item.planet)
+            val event = viewModel.player.value!!.location.market.event.toString()
+            val planet = item.planet.name
+            val duration = Toast.LENGTH_SHORT
+            Toast.makeText(
+                this,
+                "Traveled to $planet, which is experiencing a $event",
+                duration
+            ).show()
             finish()
         }
     }
