@@ -1,5 +1,7 @@
 package com.communistutopia.spacetrader.model
 
+import kotlin.random.Random
+
 /**
  * @param name the name of the Planet
  * @param techLevel the TechLevel of the Planet
@@ -23,6 +25,32 @@ class Planet(val name: String, val techLevel: TechLevel, val resourceLevel: Reso
         val randomEventNumber = Random.nextInt(0, Event.values().size)
         market.event = Event.values()[randomEventNumber]
         return Event.values()[randomEventNumber]
+    }
+
+    fun rollForPirates(): Boolean {
+        var chance = Random.nextInt(20)
+        if (government.governmentType == GovernmentType.Anarchy) {
+            chance += 3
+        } else if (government.governmentType == GovernmentType.Confederacy) {
+            chance += 2
+        } else if (government.governmentType == GovernmentType.Monarchy) {
+            chance += 1
+        }
+        return chance > 19
+    }
+
+    fun rollForPolice(): Boolean {
+        var chance = Random.nextInt(20)
+        if (government.governmentType == GovernmentType.Dictatorship) {
+            chance += 4
+        } else if (government.governmentType == GovernmentType.FascistState) {
+            chance += 3
+        } else if (government.governmentType == GovernmentType.MilitaryState) {
+            chance += 2
+        } else if (government.governmentType == GovernmentType.Theocracy) {
+            chance += 1
+        }
+        return chance > 19
     }
 
     override fun toString(): String {

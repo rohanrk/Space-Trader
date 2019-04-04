@@ -68,6 +68,11 @@ class Inventory: Iterable<MutableMap.MutableEntry<String, TradeGood>> {
         supplies[initRobots.name] = initRobots
     }
 
+    fun removeHalfOfCargo() {
+        for ((_, cargoItem) in supplies.toList()) {
+            cargoItem.amount /= 2
+        }
+    }
     /**
      * Iterator method allows Inventory to iterate through supplies without accessing private variable
      */
@@ -103,6 +108,10 @@ class Inventory: Iterable<MutableMap.MutableEntry<String, TradeGood>> {
     fun removeSupplies(good: String, amount: Int) {
         val numGoods = supplies[good]!!.amount
         supplies[good]!!.amount = numGoods - amount
+    }
+
+    fun getTotalSupplies(): Int {
+        return supplies.map { it.value.amount }.sum()
     }
 }
 

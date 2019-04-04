@@ -1,6 +1,5 @@
 package com.communistutopia.spacetrader.model
 
-import com.google.firebase.auth.FirebaseAuth
 import kotlin.random.Random
 
 /**
@@ -37,7 +36,7 @@ data class Player(
     fun firstTimeInit() {
         Universe.generateUniverse()
         solarSystems = Universe.solarSystems
-        val random: Random = Random.Default
+        val random: Random = Random
         val solarIndex = random.nextInt(solarSystems.size)
         this.system = solarSystems.elementAt(solarIndex)
         val planetIndex = random.nextInt(system.planets.size)
@@ -46,6 +45,10 @@ data class Player(
         // get current user
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
         this.uid = auth.uid!!
+    }
+
+    fun removeHalfOfCredits() {
+        credits /= 2
     }
 
 }

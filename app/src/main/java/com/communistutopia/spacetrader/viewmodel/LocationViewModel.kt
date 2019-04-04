@@ -3,7 +3,6 @@ package com.communistutopia.spacetrader.viewmodel
 import android.arch.lifecycle.ViewModel
 import com.communistutopia.spacetrader.model.Planet
 import com.communistutopia.spacetrader.model.SolarSystem
-import com.communistutopia.spacetrader.model.Universe
 import com.communistutopia.spacetrader.repository.PlayerRepository
 
 /**
@@ -22,6 +21,15 @@ class LocationViewModel: ViewModel() {
             var dist = player.value!!.system.getDistance(destinationSystem)
             updateLocation(destinationSystem, destinationPlanet)
             player.value!!.location.rollForRandomEvent()
+            val pirates = player.value!!.location.rollForPirates()
+            if (pirates) {
+                player.value!!.spaceship.hold.removeHalfOfCargo()
+            }
+            val police = player.value!!.location.rollForPolice()
+            if (police && !pirates) {
+                player.value!!.spaceship.hold.removeHalfOfCargo()
+                player.value!!.removeHalfOfCredits()
+            }
             player.value!!.spaceship.updateFuelForTravel(dist)
             player.value = player.value
         }
