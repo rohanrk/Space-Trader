@@ -28,9 +28,9 @@ class MarketplaceActivity : AppCompatActivity() {
         //actionbar
         val actionbar = supportActionBar
         //set actionbar title
-        actionbar!!.title = "Marketplace"
+        actionbar?.title = "Marketplace"
         //set back button
-        actionbar.setDisplayHomeAsUpEnabled(true)
+        actionbar?.setDisplayHomeAsUpEnabled(true)
 
         // Set up the ViewPager (the tabs)
         val fragmentAdapter = MarketplacePagerAdapter(supportFragmentManager)

@@ -55,8 +55,9 @@ class LoginActivity : AppCompatActivity() {
         // Check for existing Google Sign In account, if the user is already signed in
         // the GoogleSignInAccount will be non-null
         val currentUser = auth.currentUser
-        authSuccess(currentUser!!)
-
+        if (currentUser != null) {
+            authSuccess(currentUser!!)
+        }
     }
 
     /**

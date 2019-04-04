@@ -65,20 +65,22 @@
     <TextView
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:textColorHint="@color/white"
+            android:textColor="@color/white"
             android:fontFamily="@font/andromeda"
             android:id="@+id/difficulty_text"
             android:text="Choose your difficulty below"
             android:layout_marginTop="16dp"/>
     <Spinner
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/andromeda"
+            android:layout_height="25dp"
+            android:font="@font/andromeda"
+            android:background="@color/white"
             android:id="@+id/difficulty_spinner"
             android:layout_below="@+id/difficulty_text"/>
     <Button
             android:text="Finish"
             android:textColor="@color/white"
+            android:layout_marginTop="15dip"
             android:textSize="30sp"
             android:layout_width="match_parent"
             android:fontFamily="@font/over_there"

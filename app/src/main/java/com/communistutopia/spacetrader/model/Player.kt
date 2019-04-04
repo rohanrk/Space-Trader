@@ -27,7 +27,7 @@ data class Player(
     var engineerSkill: Int = 0) {
 
     lateinit var system: SolarSystem
-    lateinit var solarSystems: MutableSet<SolarSystem>
+    lateinit var solarSystems: List<SolarSystem>
     lateinit var location: Planet
     lateinit var uid: String
 
@@ -36,7 +36,7 @@ data class Player(
      */
     fun firstTimeInit() {
         Universe.generateUniverse()
-        solarSystems = Universe.solarSystems
+        solarSystems = Universe.solarSystems.toList()
         val random: Random = Random.Default
         val solarIndex = random.nextInt(solarSystems.size)
         this.system = solarSystems.elementAt(solarIndex)
