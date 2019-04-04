@@ -2,8 +2,6 @@ package com.communistutopia.spacetrader.model
 
 import kotlin.math.pow
 import kotlin.math.sqrt
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
 
 /**
  * Class containing planets, tech level, and location of a Solar System
@@ -13,16 +11,15 @@ import kotlinx.android.parcel.Parcelize
  * @property y: y coordinate of solar system's location
  * @author Rohan Rk <rohanrk@gatech.edu>
  */
-@Parcelize
-class SolarSystem(var planets: Set<Planet>, var name: String, val x: Int,val  y: Int): Parcelable {
+class SolarSystem(var planets: List<Planet>, var name: String, val x: Int,val  y: Int) {
 
+    // Blank constructor for Firebase
+    constructor(): this(ArrayList<Planet>(), "", 0, 0)
 
-    var coordinate: Pair<Int, Int>
+    private var coordinate: Pair<Int, Int> = Pair(x, y)
 
     init {
-        this.planets = planets
-        this.name = name
-        this.coordinate = Pair(x, y)
+        coordinate = Pair(x, y)
     }
 
     /**
@@ -56,6 +53,4 @@ class SolarSystem(var planets: Set<Planet>, var name: String, val x: Int,val  y:
                 "planets=$planets, " + "\n" +
                 ")"
     }
-
-
 }

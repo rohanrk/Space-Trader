@@ -81,3 +81,7 @@ lint/outputs/
 lint/tmp/
 # lint/reports/
 # lint/reports/
+
+# firebase
+app/google-services.json
+**/*/res/values/secrets.xml

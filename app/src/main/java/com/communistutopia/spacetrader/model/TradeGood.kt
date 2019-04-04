@@ -18,11 +18,17 @@ package com.communistutopia.spacetrader.model
  * @param GTS = Government Type which heavily supplies this resource, when the same as the market, decrease price
  */
 
-abstract class TradeGood(val MTLP: Int, val MTLU: Int, val TTP: Int, val basePrice: Int, val IPL: Int, val variance: Int,
-                     val IE: Event, val CR: ResourceLevel, val ER: ResourceLevel, val MTL: Int, val MTH: Int,
-                     val GTD: Government, val GTS: Government, val name: String, var amount: Int) {
+class TradeGood(var MTLP: Int, var MTLU: Int, var TTP: Int, var basePrice: Int, var IPL: Int, var variance: Int,
+                     var IE: Event, var CR: ResourceLevel, var ER: ResourceLevel, var MTL: Int, var MTH: Int,
+                     var GTD: Government, var GTS: Government, var name: String, var amount: Int) {
 
-    val MIN_PRICE = 20
+    // this is to make Firebase happy
+    constructor(): this(0, 0, 0, 0, 0, 0,
+        Event.None, ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES),
+        ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES), 0, 0, Government(GovernmentType.Anarchy),
+        Government(GovernmentType.Anarchy), "", 0)
+
+    var MIN_PRICE = 20
     /**
      * A method that calculates the price of the trade good and returns it
      * Prices are calculated by the following model
@@ -33,19 +39,19 @@ abstract class TradeGood(val MTLP: Int, val MTLU: Int, val TTP: Int, val basePri
     fun calculatePrice(market: Market): Int {
         var price: Int = basePrice
 
-        price += IPL * market.techLevel.value() //add price increase per techlevel
+        price += IPL * market.techLevel!!.value() //add price increase per techlevel
 
         if (market.event.equals(IE)) { //checks for radical price increase event
             price = basePrice + (basePrice * variance)
         }
 
-        if (market.resourceLevel.equals(CR)) { //checks for abundance of resources
+        if (market.resourceLevel!!.equals(CR)) { //checks for abundance of resources
             price -= price * (variance / 2) //lower price accordingly
         } else if (market.resourceLevel.equals(ER)) { //checks for scarcity of resources
             price += price * (variance / 2) //increase price accordingly
         }
 
-        if (market.government.equals(GTD)) { //checks for government type demanding
+        if (market.government!!.equals(GTD)) { //checks for government type demanding
             price += price * (variance / 2) //increase price accordingly
         } else if (market.government.equals(GTS)) { //checks for government type supplying
             price -= price * (variance / 2) // decrease price accordingly
@@ -69,7 +75,7 @@ abstract class TradeGood(val MTLP: Int, val MTLU: Int, val TTP: Int, val basePri
      *
      */
     fun isMTLP(market: Market): Boolean {
-        return MTLP <= market.techLevel.value()
+        return MTLP <= market.techLevel!!.value()
     }
 
     /**
@@ -80,7 +86,7 @@ abstract class TradeGood(val MTLP: Int, val MTLU: Int, val TTP: Int, val basePri
      *
      */
     fun isTTP(market: Market): Boolean {
-        return TTP <= market.techLevel.value()
+        return TTP == market.techLevel!!.value()
     }
 
 }

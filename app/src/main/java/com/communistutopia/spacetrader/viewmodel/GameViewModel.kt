@@ -8,7 +8,7 @@ import android.content.Context
 import com.communistutopia.spacetrader.R
 import com.communistutopia.spacetrader.repository.PlayerRepository
 import kotlin.random.Random
-
+import com.google.firebase.firestore.FirebaseFirestore
 
 /**
  * Main game screen
@@ -18,13 +18,6 @@ import kotlin.random.Random
 class GameViewModel : ViewModel() {
     val player = PlayerRepository.player
 
-    private val solarSystems: MutableSet<SolarSystem>
-
-    init {
-        Universe.generateUniverse()
-        solarSystems = Universe.solarSystems
-    }
-
     fun goToSpace(context: Context?) {
         // WARP FACTOR 9
         val mp = MediaPlayer.create(context, R.raw.nasa)
@@ -32,18 +25,5 @@ class GameViewModel : ViewModel() {
             println("Wesley Snipes is coming, GO GO GO GO!")
             mp.start()
         }
-    }
-
-    /**
-     * Sets the start location randomly
-     */
-    fun setStartLoc() {
-        var random: Random = Random.Default
-        val solarIndex = random.nextInt(solarSystems.size)
-        val system = solarSystems.elementAt(solarIndex)
-        player.value?.system = system
-        val planetIndex = random.nextInt(system.planets.size)
-        player.value?.location = system.planets.elementAt(planetIndex)
-        player.value = player.value
     }
 }

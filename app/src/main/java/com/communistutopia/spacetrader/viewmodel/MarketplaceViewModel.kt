@@ -69,14 +69,19 @@ class MarketplaceViewModel : ViewModel() {
 
     /**
      * Goods that meet the tech level which produces the most are initialized to 5 * the base value.
-     *
+     * Goods that do not meet the MTLP are kept at 0
+     * The rest are set to the base amount
      */
     fun initializeInventory() {
         for (entry in player.value!!.location.market.inventory) {
-            if (entry.value.isMTLP(player.value!!.location.market)) {
+            if (entry.value.isTTP(player.value!!.location.market)) {
                 entry.value.amount = BASE_AMOUNT * 5
-                prices.put(entry.key, entry.value.calculatePrice(player.value!!.location.market))
+            } else if(entry.value.isMTLP(player.value!!.location.market)) {
+                entry.value.amount = BASE_AMOUNT
+            } else {
+                entry.value.amount = 0
             }
+            prices.put(entry.key, entry.value.calculatePrice(player.value!!.location.market))
         }
     }
 
@@ -85,7 +90,7 @@ class MarketplaceViewModel : ViewModel() {
      * If the planet's tech level is below the MTLU, the item cannot be sold.
      */
     fun canBeBought(itemMTLU: Int): Boolean {
-        return player.value!!.location.market.techLevel.value() > itemMTLU
+        return player.value!!.location.market.techLevel!!.value() > itemMTLU
     }
 
     fun getPrice(item: String): Int {
