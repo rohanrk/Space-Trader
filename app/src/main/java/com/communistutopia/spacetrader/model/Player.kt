@@ -1,5 +1,6 @@
 package com.communistutopia.spacetrader.model
 
+import com.google.firebase.auth.FirebaseAuth
 import kotlin.random.Random
 
 /**
