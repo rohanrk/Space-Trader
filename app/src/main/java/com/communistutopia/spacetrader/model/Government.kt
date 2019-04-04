@@ -1,7 +1,5 @@
 package com.communistutopia.spacetrader.model
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
 import kotlin.random.Random
 
 /**
@@ -10,8 +8,10 @@ import kotlin.random.Random
  * Initialization is done by the constructor, so all of these parameters are immutable properties
  *  of an instance of a Government once it is created
  */
-@Parcelize
-class Government(val governmentType: GovernmentType): Parcelable {
+class Government(val governmentType: GovernmentType) {
+
+    constructor(): this(GovernmentType.Anarchy)
+
     override fun toString(): String {
         return "Government(governmentType=$governmentType)"
     }

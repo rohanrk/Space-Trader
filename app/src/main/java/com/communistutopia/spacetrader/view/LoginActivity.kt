@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import com.communistutopia.spacetrader.R
 import com.communistutopia.spacetrader.model.Player
+import com.communistutopia.spacetrader.repository.PlayerRepository
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -66,7 +67,7 @@ class LoginActivity : AppCompatActivity() {
     private fun authSuccess(user: FirebaseUser) {
         // Query for player object with associated uid
         val db = FirebaseFirestore.getInstance()
-        val games = db.collection("players").whereEqualTo("uid", user.uid)
+        val games = db.collection("player").whereEqualTo("uid", user.uid)
         games.get().addOnSuccessListener { document ->
             if (document != null) {
                 if (document.documents.size == 0) {
@@ -75,8 +76,13 @@ class LoginActivity : AppCompatActivity() {
                     val intent = Intent(this, ConfigurationActivity::class.java)
                     startActivity(intent)
                 } else {
-                    val player = document.documents.first().toObject(Player::class.java)
-                    Log.d(TAG, "yeehaw player time! ${player?.location?.name}")
+                    val playerDocument = document.documents.first()
+                    val player = playerDocument.toObject(Player::class.java)
+                    val documentId = playerDocument.id
+                    PlayerRepository.documentId = documentId
+                    PlayerRepository.player.value = player
+                    val intent = Intent(this, GameActivity::class.java)
+                    startActivity(intent)
                 }
             } else {
                 Log.d(TAG, "ERROR: No games found.")

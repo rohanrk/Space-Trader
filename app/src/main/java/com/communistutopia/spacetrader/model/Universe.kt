@@ -173,10 +173,10 @@ object Universe {
     fun generateUniverse() {
         var i: Int = NUM_SYSTEMS
         while (i > 0) {
-            val x = random.nextInt(X_SIZE)
-            val y = random.nextInt(Y_SIZE)
+            val x: Int = random.nextInt(X_SIZE)
+            val y: Int = random.nextInt(Y_SIZE)
             val num_planets = random.nextInt(MAX_PLANETS) + 1
-            val pair = Pair(x, y)
+            val pair: Pair<Int, Int> = Pair(x, y)
             if (!locations.containsKey(pair)) {
                 val planetSet = generatePlanets(num_planets)
                 val systemName: String = namesList[random.nextInt(namesList.size)]

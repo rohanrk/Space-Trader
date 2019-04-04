@@ -40,7 +40,6 @@ class GameFragment : Fragment() {
         binding.viewModel = viewModel
         // Start audio
         viewModel.goToSpace(context)
-        viewModel.setStartLoc()
 
         // TODO: Resource string placeholder
         // planet_name.text = "Planet: %s".format(viewModel.player.value?.location?.name)

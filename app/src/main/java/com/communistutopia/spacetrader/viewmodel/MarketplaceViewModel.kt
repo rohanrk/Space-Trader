@@ -85,7 +85,7 @@ class MarketplaceViewModel : ViewModel() {
      * If the planet's tech level is below the MTLU, the item cannot be sold.
      */
     fun canBeBought(itemMTLU: Int): Boolean {
-        return player.value!!.location.market.techLevel.value() > itemMTLU
+        return player.value!!.location.market.techLevel!!.value() > itemMTLU
     }
 
     fun getPrice(item: String): Int {

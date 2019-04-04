@@ -1,8 +1,11 @@
 package com.communistutopia.spacetrader.viewmodel
 
 import android.arch.lifecycle.ViewModel
+import android.util.Log
 import com.communistutopia.spacetrader.model.Difficulty
+import com.communistutopia.spacetrader.model.Player
 import com.communistutopia.spacetrader.repository.PlayerRepository
+import com.google.firebase.firestore.FirebaseFirestore
 
 /**
  * Viewmodel that handles player creation
@@ -10,7 +13,7 @@ import com.communistutopia.spacetrader.repository.PlayerRepository
  * @author Rohan Rk <rohanrk@gatech.edu>
  */
 class ConfigurationViewModel : ViewModel() {
-    val player = PlayerRepository.player
+    val player = Player()
 
     private val TOTAL_POINTS = 16
 
@@ -25,15 +28,13 @@ class ConfigurationViewModel : ViewModel() {
      * @param engineer number of engineer points
      */
     fun updatePlayerFromView(difficulty: Difficulty, name: String, pilot: Int, fighter: Int, trader: Int, engineer: Int): Boolean {
-        player.value?.difficulty = difficulty
-        player.value?.charName = name
-        player.value = player.value
+        player.difficulty = difficulty
+        player.charName = name
         return updatePoints(pilot, fighter, trader, engineer)
     }
 
     fun updateCredits(credits: Int) {
-        player.value?.credits = credits
-        player.value = player.value
+        player.credits = credits
     }
 
     fun updatePoints(pilot: Int, fighter: Int, trader: Int, engineer: Int): Boolean {
@@ -41,12 +42,23 @@ class ConfigurationViewModel : ViewModel() {
         if (pilot < 0 || fighter < 0 || trader < 0 || engineer < 0 || pilot + fighter + trader + engineer != TOTAL_POINTS) {
             return false
         } else {
-            player.value?.pilotSkill = pilot
-            player.value?.fighterSkill = fighter
-            player.value?.traderSkill = trader
-            player.value?.engineerSkill = engineer
-            player.value = player.value
+            player.pilotSkill = pilot
+            player.fighterSkill = fighter
+            player.traderSkill = trader
+            player.engineerSkill = engineer
             return true
         }
+    }
+
+    fun generateAndSavePlayer() {
+        player.firstTimeInit()
+        // save object to firebase
+        val db = FirebaseFirestore.getInstance()
+        db.collection("player").add(this)
+            .addOnSuccessListener { documentReference ->
+                PlayerRepository.documentId = documentReference.id
+                PlayerRepository.player.value = player
+            }
+            .addOnFailureListener { e -> Log.w("YEET", "Error writing document", e) }
     }
 }

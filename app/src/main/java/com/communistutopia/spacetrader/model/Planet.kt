@@ -1,8 +1,5 @@
 package com.communistutopia.spacetrader.model
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
-
 /**
  * @param name the name of the Planet
  * @param techLevel the TechLevel of the Planet
@@ -12,9 +9,12 @@ import kotlinx.android.parcel.Parcelize
  * Initialization is done by the constructor, so all of these parameters are immutable properties
  *  of an instance of a Planet once it is created
  */
-@Parcelize
-class Planet(val name: String, private val techLevel: TechLevel, private val resourceLevel: ResourceLevel,
-             private val government: Government): Parcelable {
+
+class Planet(val name: String, val techLevel: TechLevel, val resourceLevel: ResourceLevel,
+             val government: Government) {
+
+    constructor(): this("", TechLevel(TechLevelType.HiTech), ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES),
+        Government(GovernmentType.Anarchy))
 
     //Initialize the market of the planet from it's properties
     val market: Market = Market(techLevel, resourceLevel, government)
@@ -28,6 +28,4 @@ class Planet(val name: String, private val techLevel: TechLevel, private val res
                 "market=$market" + "\n" +
                 ")"
     }
-
-
 }

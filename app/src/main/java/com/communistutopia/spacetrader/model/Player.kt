@@ -1,7 +1,7 @@
 package com.communistutopia.spacetrader.model
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import com.google.firebase.auth.FirebaseAuth
+import kotlin.random.Random
 
 /**
  * This class represents a player with default values.
@@ -16,21 +16,37 @@ import kotlinx.android.parcel.Parcelize
  * @param traderSkill points attributed to the trader category
  * @param engineerSkill points attributed to the engineer category
  */
-@Parcelize
 data class Player(
     var difficulty: Difficulty = Difficulty.Beginner,
-    var spaceship: Ship = Ship(Inventory(),
-        "Gnat", 1000, 1000, 100, false, false, 30, listOf(Weapon.NONE), listOf(Shield.NONE),
-        listOf(Gadgets.NONE), 15, 1, 0, 1, 1),
+    var spaceship: Ship = Ship(),
     var credits: Int = 1000,
     var charName: String = "",
     var pilotSkill: Int = 0,
     var fighterSkill: Int = 0,
     var traderSkill: Int = 0,
-    var engineerSkill: Int = 0): Parcelable {
+    var engineerSkill: Int = 0) {
 
     lateinit var system: SolarSystem
+    lateinit var solarSystems: MutableSet<SolarSystem>
     lateinit var location: Planet
+    lateinit var uid: String
+
+    /**
+     * Sets the start location randomly
+     */
+    fun firstTimeInit() {
+        Universe.generateUniverse()
+        solarSystems = Universe.solarSystems
+        val random: Random = Random.Default
+        val solarIndex = random.nextInt(solarSystems.size)
+        this.system = solarSystems.elementAt(solarIndex)
+        val planetIndex = random.nextInt(system.planets.size)
+        this.location = system.planets.elementAt(planetIndex)
+
+        // get current user
+        val auth: FirebaseAuth = FirebaseAuth.getInstance()
+        this.uid = auth.uid!!
+    }
 
 }
 
