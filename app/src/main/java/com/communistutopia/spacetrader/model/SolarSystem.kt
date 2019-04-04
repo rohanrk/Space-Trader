@@ -16,12 +16,6 @@ class SolarSystem(var planets: List<Planet>, var name: String, val x: Int,val  y
     // Blank constructor for Firebase
     constructor(): this(ArrayList<Planet>(), "", 0, 0)
 
-    private var coordinate: Pair<Int, Int> = Pair(x, y)
-
-    init {
-        coordinate = Pair(x, y)
-    }
-
     /**
      * Function to calculate Euclidean distance between 2 Solar Systems
      * TODO: Might want to place this in Companion obj. Equivalent to making it static. Not sure yet.
@@ -29,9 +23,9 @@ class SolarSystem(var planets: List<Planet>, var name: String, val x: Int,val  y
      * @param other solar system to compare location to
      */
     fun getDistance(other: SolarSystem): Double {
-        val x_dist: Double = (this.coordinate.first - other.coordinate.first).toDouble()
-        val y_dist = (this.coordinate.second - other.coordinate.second).toDouble()
-        return sqrt(x_dist.pow(2) + y_dist.pow(2))
+        val x_dist: Double = (x - other.x).toDouble()
+        val y_dist = (y - other.y).toDouble()
+        return sqrt(x_dist.pow(2) + y_dist.pow(2)) + 10
     }
 
     /**
@@ -41,15 +35,14 @@ class SolarSystem(var planets: List<Planet>, var name: String, val x: Int,val  y
      * @param loc other location to compare
      */
     fun getDistance(loc: Pair<Int, Int>): Double {
-        val x_dist: Double = (this.coordinate.first - loc.first).toDouble()
-        val y_dist = (this.coordinate.second - loc.second).toDouble()
+        val x_dist: Double = (x - loc.first).toDouble()
+        val y_dist = (y - loc.second).toDouble()
         return sqrt(x_dist.pow(2) + y_dist.pow(2))
     }
 
     override fun toString(): String {
         return "SolarSystem(" + "\n" +
                 "name='$name', " + "\n" +
-                "coordinate=$coordinate" + "\n" +
                 "planets=$planets, " + "\n" +
                 ")"
     }
