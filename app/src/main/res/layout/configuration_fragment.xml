@@ -5,58 +5,85 @@
               android:layout_height="match_parent"
               tools:context=".view.ConfigurationFragment"
               android:orientation="vertical"
+              android:background="@drawable/space"
               android:padding="20dp">
 
     <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:textColorHint="@color/white"
+            android:fontFamily="@font/andromeda"
+            android:layout_height="103dp"
+            android:backgroundTint="@color/white"
             android:hint="Enter your name player!"
+            android:textColor="@color/white"
             android:inputType="text"
             android:id="@+id/player_name"/>
-
     <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="95dp"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/andromeda"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:hint="Enter number of pilot points"
             android:inputType="number"
             android:id="@+id/pilot_points"/>
 
     <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="88dp"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/andromeda"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
             android:hint="Enter number of fighter points"
             android:inputType="number"
             android:id="@+id/fighter_points"/>
 
     <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="86dp"
+            android:fontFamily="@font/andromeda"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:hint="Enter number of trader points"
             android:inputType="number"
             android:id="@+id/trader_points"/>
 
     <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="82dp"
+            android:fontFamily="@font/andromeda"
+            android:backgroundTint="@color/white"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
             android:hint="Enter number of engineer points"
             android:inputType="number"
             android:id="@+id/engineer_points"/>
 
     <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
+            android:textColorHint="@color/white"
+            android:fontFamily="@font/andromeda"
             android:id="@+id/difficulty_text"
             android:text="Choose your difficulty below"
             android:layout_marginTop="16dp"/>
     <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/andromeda"
             android:id="@+id/difficulty_spinner"
             android:layout_below="@+id/difficulty_text"/>
     <Button
             android:text="Finish"
+            android:textColor="@color/white"
+            android:textSize="30sp"
             android:layout_width="match_parent"
+            android:fontFamily="@font/over_there"
             android:layout_height="wrap_content"
-            android:id="@+id/finish"/>
+            android:id="@+id/finish"
+            android:background="@color/common_google_signin_btn_text_dark_disabled"/>
 
 </LinearLayout>

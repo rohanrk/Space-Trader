@@ -3,4 +3,7 @@
     <color name="colorPrimary">#230740</color>
     <color name="colorPrimaryDark">#071843</color>
     <color name="colorAccent">#9d2a45</color>
+    <color name="pitch_black">#FF000000</color>
+    <color name="orange">#D19417</color>
+    <color name="white">#FFFFFF</color>
 </resources>

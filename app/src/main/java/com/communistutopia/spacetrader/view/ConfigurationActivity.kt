@@ -1,8 +1,14 @@
 package com.communistutopia.spacetrader.view
 
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.communistutopia.spacetrader.R
+
+import android.widget.EditText
+
+
+
 
 class ConfigurationActivity : AppCompatActivity() {
 
