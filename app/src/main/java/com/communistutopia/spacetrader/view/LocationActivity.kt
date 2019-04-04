@@ -31,9 +31,9 @@ class LocationActivity: AppCompatActivity() {
         //actionbar
         val actionbar = supportActionBar
         //set actionbar title
-        actionbar!!.title = "Travel"
+        actionbar?.title = "Travel"
         //set back button
-        actionbar.setDisplayHomeAsUpEnabled(true)
+        actionbar?.setDisplayHomeAsUpEnabled(true)
 
         viewModel = ViewModelProviders.of(this).get(LocationViewModel::class.java)
 

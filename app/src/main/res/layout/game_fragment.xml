@@ -1,92 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
                 name="viewModel"
-                type="com.communistutopia.spacetrader.viewmodel.GameViewModel" />
+                type="com.communistutopia.spacetrader.viewmodel.GameViewModel"/>
     </data>
     <android.support.constraint.ConstraintLayout
             android:id="@+id/gameview"
             android:layout_width="match_parent"
+            tools:context=".view.GameFragment"
             android:layout_height="match_parent"
-            tools:context=".view.GameFragment">
+            android:background="@color/pitch_black">
+
         <ImageView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="414dp"
+                android:layout_height="730dp"
                 android:id="@+id/imageView"
-                android:src="@drawable/planet" app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                android:scaleType="centerCrop" android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/travel_button"/>
+                android:src="@drawable/planet"
+                android:scaleType="centerCrop"
+                android:contentDescription="background"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.666"
+                app:layout_constraintVertical_bias="0.0"/>
         <Button
                 android:text="@string/travelBtnStr"
-                android:layout_width="0dp"
+                android:fontFamily="@font/andromeda"
+                android:layout_width="161dp"
+                android:background="@color/common_google_signin_btn_text_dark_disabled"
                 android:layout_height="75dp"
                 android:id="@+id/travel_button"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/imageView"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:textSize="24sp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginStart="8dp"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/market_button"/>
+                android:textColor="@color/orange"
+                android:textSize="36sp"
+                android:layout_marginStart="124dp" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.008" android:layout_marginBottom="236dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView"/>
         <Button
                 android:text="@string/marketBtnStr"
-                android:layout_width="0dp"
+                android:fontFamily="@font/andromeda"
+                android:layout_width="200dp"
                 android:layout_height="75dp"
                 android:id="@+id/market_button"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:textSize="24sp" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/travel_button" android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/button3"/>
-        <Button
-                android:text="@string/shipyardBtnStr"
-                android:layout_width="0dp"
-                android:layout_height="75dp"
-                android:id="@+id/button3"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/market_button" android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/save_button"/>
-        <Button
-                android:text="@string/savegame"
-                android:layout_width="0dp"
-                android:layout_height="75dp"
-                android:id="@+id/save_button"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:textSize="24sp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/button3" android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                android:textColor="@color/orange"
+                android:background="@color/common_google_signin_btn_text_dark_disabled"
+                android:textSize="36sp"
+                android:layout_marginBottom="120dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/travel_button" app:layout_constraintVertical_bias="1.0"
+                android:layout_marginEnd="104dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.979"/>
         <TextView
                 android:text="@{viewModel.player.location.name}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="379dp"
+                android:layout_height="45dp"
                 android:id="@+id/planet_name"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3"
-                android:textColor="@android:color/white" android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView" android:layout_marginStart="4dp"
+                android:textColor="@color/orange"
+                android:layout_marginStart="10dp"
                 app:layout_constraintStart_toStartOf="parent"
-        />
+                app:layout_constraintEnd_toEndOf="parent"
+                android:fontFamily="@font/andromeda"
+                android:layout_marginEnd="8dp" app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toTopOf="parent"/>
         <TextView
                 android:text="@{`Fuel Count: ` + viewModel.player.spaceship.fuelCount}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="170dp"
+                android:layout_height="59dp"
                 android:id="@+id/textView" app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="16dp"
-                app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-                android:textColor="@android:color/white"/>
+                android:fontFamily="@font/andromeda"
+                android:textColor="@color/orange"
+                android:layout_marginEnd="5dp" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="68dp"
+                app:layout_constraintTop_toTopOf="parent"/>
+        <ImageView
+                android:layout_width="402dp"
+                android:layout_height="184dp" app:srcCompat="@drawable/logo"
+                android:id="@+id/logo" android:layout_marginStart="27dp"
+                app:layout_constraintStart_toEndOf="@+id/imageView" app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="70dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginBottom="70dp" app:layout_constraintBottom_toTopOf="@+id/imageView"
+                android:layout_marginEnd="27dp" app:layout_constraintHorizontal_bias="0.96"
+                app:layout_constraintVertical_bias="0.0" android:contentDescription="logo"/>
+
     </android.support.constraint.ConstraintLayout>
+
 </layout>
 
