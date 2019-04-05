@@ -1,9 +1,6 @@
 package com.communistutopia.spacetrader.viewmodel
 
-import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.communistutopia.spacetrader.model.Market
-import com.communistutopia.spacetrader.model.Player
 import com.communistutopia.spacetrader.repository.PlayerRepository
 
 /**
@@ -14,18 +11,13 @@ import com.communistutopia.spacetrader.repository.PlayerRepository
 class MarketplaceViewModel : ViewModel() {
     val player = PlayerRepository.player
 
-    private var prices: MutableMap<String, Int>
+    private var prices: MutableMap<String, Int> = mutableMapOf()
 
-    init {
-        prices = mutableMapOf()
-    }
-
-    val BASE_AMOUNT = 20
+    private val baseAmount = 20
 
     /**
      * A function that buys goods from a Market
      * A player cannot buy items if they do not have enough cargo space.
-     * @param player the player selling the good
      * @param tradeGood the good being sold
      * @param numGoods the number of things being sold
      * @return true if action was successful, false otherwise
@@ -48,7 +40,6 @@ class MarketplaceViewModel : ViewModel() {
      * A function that sells goods to a Market
      * A player cannot sell a good if the planet's tech level is too low or if they do not have enough money
      * TODO add error messages so the player knows why they cannot sell an item in view
-     * @param player the player selling the good
      * @param tradeGood the good being sold
      * @param numGoods the number of things being sold
      * @return true if action was successful, false otherwise
@@ -74,14 +65,12 @@ class MarketplaceViewModel : ViewModel() {
      */
     fun initializeInventory() {
         for (entry in player.value!!.location.market.inventory) {
-            if (entry.value.isTTP(player.value!!.location.market)) {
-                entry.value.amount = BASE_AMOUNT * 5
-            } else if(entry.value.isMTLP(player.value!!.location.market)) {
-                entry.value.amount = BASE_AMOUNT
-            } else {
-                entry.value.amount = 0
+            when {
+                entry.value.isTTP(player.value!!.location.market) -> entry.value.amount = baseAmount * 5
+                entry.value.isMTLP(player.value!!.location.market) -> entry.value.amount = baseAmount
+                else -> entry.value.amount = 0
             }
-            prices.put(entry.key, entry.value.calculatePrice(player.value!!.location.market))
+            prices[entry.key] = entry.value.calculatePrice(player.value!!.location.market)
         }
     }
 
@@ -89,7 +78,8 @@ class MarketplaceViewModel : ViewModel() {
      * This method finds if the market can buy an item on this planet based on this planet's tech level.
      * If the planet's tech level is below the MTLU, the item cannot be sold.
      */
-    fun canBeBought(itemMTLU: Int): Boolean {
+    @Suppress("KotlinDeprecation")
+    private fun canBeBought(itemMTLU: Int): Boolean {
         return player.value!!.location.market.techLevel!!.value() > itemMTLU
     }
 

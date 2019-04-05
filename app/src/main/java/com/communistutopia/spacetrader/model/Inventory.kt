@@ -6,7 +6,7 @@ package com.communistutopia.spacetrader.model
  * @author Rohan Rk <rohanrk@gatech.edu>
  */
 class Inventory: Iterable<MutableMap.MutableEntry<String, TradeGood>> {
-    var supplies: MutableMap<String, TradeGood> = mutableMapOf()
+    private var supplies: MutableMap<String, TradeGood> = mutableMapOf()
 
     init {
         initialize()

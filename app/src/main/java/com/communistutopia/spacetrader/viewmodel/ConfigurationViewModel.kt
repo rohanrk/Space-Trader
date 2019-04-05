@@ -15,7 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 class ConfigurationViewModel : ViewModel() {
     val player = Player()
 
-    private val TOTAL_POINTS = 16
+    private val totalPoints = 16
 
     /**
      * Creates player from view data
@@ -37,16 +37,16 @@ class ConfigurationViewModel : ViewModel() {
         player.credits = credits
     }
 
-    fun updatePoints(pilot: Int, fighter: Int, trader: Int, engineer: Int): Boolean {
+    private fun updatePoints(pilot: Int, fighter: Int, trader: Int, engineer: Int): Boolean {
 
-        if (pilot < 0 || fighter < 0 || trader < 0 || engineer < 0 || pilot + fighter + trader + engineer != TOTAL_POINTS) {
-            return false
+        return if (pilot < 0 || fighter < 0 || trader < 0 || engineer < 0 || pilot + fighter + trader + engineer != totalPoints) {
+            false
         } else {
             player.pilotSkill = pilot
             player.fighterSkill = fighter
             player.traderSkill = trader
             player.engineerSkill = engineer
-            return true
+            true
         }
     }
 

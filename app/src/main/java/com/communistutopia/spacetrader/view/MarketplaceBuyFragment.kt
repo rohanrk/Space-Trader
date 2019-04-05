@@ -10,10 +10,8 @@ import com.communistutopia.spacetrader.R
 import com.communistutopia.spacetrader.adapter.MarketAction
 import com.communistutopia.spacetrader.adapter.MarketItem
 import com.communistutopia.spacetrader.adapter.MarketItemAdapter
-import com.communistutopia.spacetrader.model.Market
 import com.communistutopia.spacetrader.model.Player
 import kotlinx.android.synthetic.main.marketplace_buy_fragment.*
-import kotlinx.android.synthetic.main.marketplace_sell_fragment.*
 
 /**
  * Fragment for buying items.
@@ -35,7 +33,7 @@ class MarketplaceBuyFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        var vm = activity as MarketplaceActivity
+        val vm = activity as MarketplaceActivity
 
         val marketObserver = Observer<Player> { newPlayer: Player? ->
             val newMarket = newPlayer!!.location.market

@@ -51,7 +51,7 @@ class LocationViewModel: ViewModel() {
     /**
      * Returns a set of the systems reachable by the player
      */
-    fun findReachableSystems(): MutableSet<SolarSystem> {
+    private fun findReachableSystems(): MutableSet<SolarSystem> {
         val reachableSolarSystems: MutableSet<SolarSystem> = mutableSetOf()
         for(system: SolarSystem in player.value!!.solarSystems) {
             if(player.value!!.system != system && player.value!!.spaceship.canTravelTo(player.value!!.system, system)) {
@@ -86,7 +86,7 @@ class LocationViewModel: ViewModel() {
     /**
      * This method updates a player's location fields
      */
-    fun updateLocation(solarSystem: SolarSystem, planet: Planet) {
+    private fun updateLocation(solarSystem: SolarSystem, planet: Planet) {
         player.value!!.location = planet
         player.value!!.system = solarSystem
         player.value = player.value

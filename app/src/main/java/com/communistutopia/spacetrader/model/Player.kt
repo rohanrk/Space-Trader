@@ -7,8 +7,6 @@ import kotlin.random.Random
  * This class represents a player with default values.
  *@param difficulty difficulty of game
  * @param spaceship player's ship, default ship is a gnat
- * @param locationPlanet player initial planet, updated to a real planet after the universe is created
- * @param locationSystem player initial system, updated to a real system after the universe is created
  * @param credits players starting money
  * @param charName name
  * @param pilotSkill points attributed to the pilot category
@@ -29,7 +27,7 @@ data class Player(
     lateinit var system: SolarSystem
     lateinit var solarSystems: List<SolarSystem>
     lateinit var location: Planet
-    lateinit var uid: String
+    private lateinit var uid: String
 
     /**
      * Sets the start location randomly

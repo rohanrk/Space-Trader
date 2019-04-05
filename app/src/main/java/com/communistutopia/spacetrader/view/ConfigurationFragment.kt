@@ -36,12 +36,13 @@ class ConfigurationFragment : Fragment(), View.OnClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        var root = inflater.inflate(R.layout.configuration_fragment, container, false)
+        val root = inflater.inflate(R.layout.configuration_fragment, container, false)
 
         button = root.findViewById(R.id.finish)
         difficultySpinner = root.findViewById(R.id.difficulty_spinner)
 
-        var difficultyAdapter: ArrayAdapter<Difficulty> = ArrayAdapter(context!!, android.R.layout.simple_spinner_item, Difficulty.values())
+        val difficultyAdapter: ArrayAdapter<Difficulty> =
+            ArrayAdapter(context!!, android.R.layout.simple_spinner_item, Difficulty.values())
         difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         difficultySpinner.adapter = difficultyAdapter
 
@@ -63,8 +64,8 @@ class ConfigurationFragment : Fragment(), View.OnClickListener {
             startActivity(intent)
 
         } else {
-            var err: String = "Points must be nonnegative integers that add up to 16"
-            Toast.makeText(this.activity, "Player not created. " + err, Toast.LENGTH_LONG).show()
+            val err = "Points must be nonnegative integers that add up to 16"
+            Toast.makeText(this.activity, "Player not created. $err", Toast.LENGTH_LONG).show()
         }
 
     }

@@ -20,10 +20,10 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 
 class LoginActivity : AppCompatActivity() {
-    lateinit var mGoogleSignInClient: GoogleSignInClient
-    val RC_SIGN_IN: Int = 500
+    private lateinit var mGoogleSignInClient: GoogleSignInClient
+    private val rcSignIn: Int = 500
     private lateinit var auth: FirebaseAuth
-    private val TAG: String = "Login"
+    private val tag: String = "LOGIN"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
 
         sign_in_button.setOnClickListener {
             val signInIntent = mGoogleSignInClient.signInIntent
-            startActivityForResult(signInIntent, RC_SIGN_IN)
+            startActivityForResult(signInIntent, rcSignIn)
         }
 
     }
@@ -73,7 +73,7 @@ class LoginActivity : AppCompatActivity() {
             if (document != null) {
                 if (document.documents.size == 0) {
                     // no previous game
-                    Log.d(TAG, "No games found. Generating new one.")
+                    Log.d(tag, "No games found. Generating new one.")
                     val intent = Intent(this, ConfigurationActivity::class.java)
                     startActivity(intent)
                 } else {
@@ -86,10 +86,10 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
             } else {
-                Log.d(TAG, "ERROR: No games found.")
+                Log.d(tag, "ERROR: No games found.")
             }
         }.addOnFailureListener { exception ->
-            Log.d(TAG, "get failed with ", exception)
+            Log.d(tag, "get failed with ", exception)
         }
     }
 
@@ -98,12 +98,12 @@ class LoginActivity : AppCompatActivity() {
      * to the Firebase user.
      */
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
-        Log.d( TAG, "firebaseAuthWithGoogle:" + acct.id!!)
+        Log.d(tag, "firebaseAuthWithGoogle:" + acct.id!!)
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    Log.d(TAG,"signInWithCredential:success")
+                    Log.d(tag, "signInWithCredential:success")
                     val user = auth.currentUser
                     authSuccess(user!!)
                 } else {
@@ -119,7 +119,7 @@ class LoginActivity : AppCompatActivity() {
      */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == RC_SIGN_IN){
+        if (requestCode == rcSignIn) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
                 // Google Sign In was successful, authenticate with Firebase

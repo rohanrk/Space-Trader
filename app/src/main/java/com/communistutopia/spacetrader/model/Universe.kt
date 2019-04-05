@@ -11,21 +11,20 @@ import kotlin.random.Random
 object Universe {
 
     // Constants
-    private val X_SIZE: Int = 150
-    private val Y_SIZE: Int = 100
-    private val NUM_SYSTEMS: Int = 10
+    private const val X_SIZE: Int = 150
+    private const val Y_SIZE: Int = 100
+    private const val NUM_SYSTEMS: Int = 10
     private var MAX_PLANETS: Int = 3
 
     // Objects to help generate universe and handle game events
-    val solarSystems: MutableSet<SolarSystem>
-    private val locations: MutableMap<Pair<Int, Int>, String> // Initializing a 2D array is the most frustrating ordeal. So this is a hacky solution
+    val solarSystems: MutableSet<SolarSystem> = mutableSetOf()
+    private val locations: MutableMap<Pair<Int, Int>, String> =
+        mutableMapOf() // Initializing a 2D array is the most frustrating ordeal. So this is a hacky solution
     private val random: Random
     private var namesList: MutableList<String>
 
 
     init {
-        solarSystems = mutableSetOf()
-        locations = mutableMapOf()
         random = Random.Default
         namesList = mutableListOf(
             "Acamar",
@@ -168,17 +167,16 @@ object Universe {
     /**
      * Generates universe with constant number of solar systems. Each solar system can have one to three planets.
      * Also initializes the player's starting location on the first planet
-     * @param player the player TO-DO
      */
     fun generateUniverse() {
         var i: Int = NUM_SYSTEMS
         while (i > 0) {
             val x: Int = random.nextInt(X_SIZE)
             val y: Int = random.nextInt(Y_SIZE)
-            val num_planets = random.nextInt(MAX_PLANETS) + 1
+            val numPlanets = random.nextInt(MAX_PLANETS) + 1
             val pair: Pair<Int, Int> = Pair(x, y)
             if (!locations.containsKey(pair)) {
-                val planetSet = generatePlanets(num_planets)
+                val planetSet = generatePlanets(numPlanets)
                 val systemName: String = namesList[random.nextInt(namesList.size)]
                 namesList.remove(systemName)
                 solarSystems.add(SolarSystem(planets = planetSet , name = systemName, x = x, y = y))
@@ -193,7 +191,7 @@ object Universe {
      * @return planetSet, a set containing the generated planets
      */
     private fun generatePlanets(num_planets: Int): List<Planet> {
-        var planetSet: MutableSet<Planet> = mutableSetOf()
+        val planetSet: MutableSet<Planet> = mutableSetOf()
         for(i in 0..num_planets) { //converted this to a for loop, might be an off by 1 error
             val planetName: String = namesList[random.nextInt(namesList.size)]
             namesList.remove(planetName)

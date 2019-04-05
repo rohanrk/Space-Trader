@@ -46,7 +46,7 @@ class LocationActivity: AppCompatActivity() {
 
         travel_planet_button.setOnClickListener {
             //Toast.makeText(this, "Traveled!", Toast.LENGTH_SHORT).show()
-            var item = planets_spinner.selectedItem as LocationViewModel.TravelSpinnerEntry
+            val item = planets_spinner.selectedItem as LocationViewModel.TravelSpinnerEntry
             viewModel.travelToPlanet(item.solarSystem, item.planet)
             /*viewModel.policeEvent.observe(this, Observer<Any> {
                 //setup for police popup

@@ -12,14 +12,16 @@ import com.communistutopia.spacetrader.model.SolarSystem
 /**
  * Adapter for a list, used for the debug fragment
  */
-class SolarSystemAdapter(private var context: Context,
-                         private var dataSource: List<SolarSystem>) : BaseAdapter() {
+class SolarSystemAdapter(
+    context: Context,
+    private var dataSource: List<SolarSystem>
+) : BaseAdapter() {
 
     private class ViewHolder(row: View?) {
         var objString: TextView? = null
 
         init {
-            this.objString = row?.findViewById<TextView>(R.id.obj_string)
+            this.objString = row?.findViewById(R.id.obj_string)
         }
     }
 
@@ -38,7 +40,7 @@ class SolarSystemAdapter(private var context: Context,
             viewHolder = view.tag as ViewHolder
         }
 
-        var solarSystem = dataSource[position]
+        val solarSystem = dataSource[position]
         viewHolder.objString?.text = solarSystem.toString()
 
         return view as View

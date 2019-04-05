@@ -23,7 +23,8 @@ import com.communistutopia.spacetrader.viewmodel.MarketplaceViewModel
 class MarketItemAdapter(private var context: Context,
                         private var dataSource: List<MarketItem>, private var sell: Boolean) : BaseAdapter() {
 
-    private var marketplaceViewModel: MarketplaceViewModel
+    private var marketplaceViewModel: MarketplaceViewModel =
+        ViewModelProviders.of(context as FragmentActivity).get(MarketplaceViewModel::class.java)
 
     private class ViewHolder(row: View?) {
         var name: TextView? = null
@@ -36,18 +37,14 @@ class MarketItemAdapter(private var context: Context,
          * Get the components of the row
          */
         init {
-            this.name = row?.findViewById<TextView>(R.id.item_name)
-            this.quantity = row?.findViewById<TextView>(R.id.item_quantity)
-            this.price = row?.findViewById<TextView>(R.id.item_price)
-            this.actionButton = row?.findViewById<Button>(R.id.item_action_button)
+            this.name = row?.findViewById(R.id.item_name)
+            this.quantity = row?.findViewById(R.id.item_quantity)
+            this.price = row?.findViewById(R.id.item_price)
+            this.actionButton = row?.findViewById(R.id.item_action_button)
 
         }
     }
 
-
-    init {
-        marketplaceViewModel = ViewModelProviders.of(context as FragmentActivity).get(MarketplaceViewModel::class.java)
-    }
 
     private val inflater: LayoutInflater
             = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater

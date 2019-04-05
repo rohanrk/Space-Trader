@@ -36,8 +36,8 @@ data class Ship(
      *
      */
     fun canTravelTo(source: SolarSystem, destinationSystem: SolarSystem): Boolean {
-        var dist = source.getDistance(destinationSystem)
-        var rangeLeft = (fuelCount / fuelCapacity) * range
+        val dist = source.getDistance(destinationSystem)
+        val rangeLeft = (fuelCount / fuelCapacity) * range
         if(dist <= rangeLeft) {
             return true
         }

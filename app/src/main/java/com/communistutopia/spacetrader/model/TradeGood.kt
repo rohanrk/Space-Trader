@@ -1,3 +1,5 @@
+@file:Suppress("KotlinDeprecation")
+
 package com.communistutopia.spacetrader.model
 
 /**
@@ -18,9 +20,24 @@ package com.communistutopia.spacetrader.model
  * @param GTS = Government Type which heavily supplies this resource, when the same as the market, decrease price
  */
 
-class TradeGood(var MTLP: Int, var MTLU: Int, var TTP: Int, var basePrice: Int, var IPL: Int, var variance: Int,
-                     var IE: Event, var CR: ResourceLevel, var ER: ResourceLevel, var MTL: Int, var MTH: Int,
-                     var GTD: Government, var GTS: Government, var name: String, var amount: Int) {
+@Suppress("KotlinDeprecation", "KotlinDeprecation")
+class TradeGood(
+    var MTLP: Int,
+    var MTLU: Int,
+    private var TTP: Int,
+    var basePrice: Int,
+    private var IPL: Int,
+    private var variance: Int,
+    private var IE: Event,
+    private var CR: ResourceLevel,
+    private var ER: ResourceLevel,
+    private var MTL: Int,
+    private var MTH: Int,
+    private var GTD: Government,
+    private var GTS: Government,
+    var name: String,
+    var amount: Int
+) {
 
     // this is to make Firebase happy
     constructor(): this(0, 0, 0, 0, 0, 0,
@@ -28,7 +45,7 @@ class TradeGood(var MTLP: Int, var MTLU: Int, var TTP: Int, var basePrice: Int, 
         ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES), 0, 0, Government(GovernmentType.Anarchy),
         Government(GovernmentType.Anarchy), "", 0)
 
-    var MIN_PRICE = 20
+    private var minPrice = 20
     /**
      * A method that calculates the price of the trade good and returns it
      * Prices are calculated by the following model
@@ -36,24 +53,29 @@ class TradeGood(var MTLP: Int, var MTLU: Int, var TTP: Int, var basePrice: Int, 
      *
      * @param market the Market from the planet being traded into
      */
+    @Suppress(
+        "KotlinDeprecation", "KotlinDeprecation", "KotlinDeprecation", "KotlinDeprecation", "KotlinDeprecation",
+        "KotlinDeprecation"
+    )
     fun calculatePrice(market: Market): Int {
         var price: Int = basePrice
 
+        @Suppress("KotlinDeprecation")
         price += IPL * market.techLevel!!.value() //add price increase per techlevel
 
-        if (market.event.equals(IE)) { //checks for radical price increase event
+        if (market.event == (IE)) { //checks for radical price increase event
             price = basePrice + (basePrice * variance)
         }
 
-        if (market.resourceLevel!!.equals(CR)) { //checks for abundance of resources
+        if (market.resourceLevel!! == CR) { //checks for abundance of resources
             price -= price * (variance / 2) //lower price accordingly
-        } else if (market.resourceLevel.equals(ER)) { //checks for scarcity of resources
+        } else if (market.resourceLevel == ER) { //checks for scarcity of resources
             price += price * (variance / 2) //increase price accordingly
         }
 
-        if (market.government!!.equals(GTD)) { //checks for government type demanding
+        if (market.government!! == GTD) { //checks for government type demanding
             price += price * (variance / 2) //increase price accordingly
-        } else if (market.government.equals(GTS)) { //checks for government type supplying
+        } else if (market.government == GTS) { //checks for government type supplying
             price -= price * (variance / 2) // decrease price accordingly
         }
 
@@ -64,7 +86,7 @@ class TradeGood(var MTLP: Int, var MTLU: Int, var TTP: Int, var basePrice: Int, 
             price = basePrice - (basePrice * variance)
         }
 
-        if (price > 0) return price else return MIN_PRICE // Closest thing to a ternary operator in Kotlin
+        return if (price > 0) price else minPrice // Closest thing to a ternary operator in Kotlin
     }
 
     /**

@@ -1,7 +1,6 @@
 package com.communistutopia.spacetrader.viewmodel
 
 import android.arch.lifecycle.ViewModel
-import com.communistutopia.spacetrader.model.Player
 import com.communistutopia.spacetrader.model.SolarSystem
 import com.communistutopia.spacetrader.model.Universe
 

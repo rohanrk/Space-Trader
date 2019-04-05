@@ -1,14 +1,10 @@
 package com.communistutopia.spacetrader.viewmodel
 
 import android.arch.lifecycle.ViewModel
-import com.communistutopia.spacetrader.model.SolarSystem
-import com.communistutopia.spacetrader.model.Universe
-import android.media.MediaPlayer
 import android.content.Context
+import android.media.MediaPlayer
 import com.communistutopia.spacetrader.R
 import com.communistutopia.spacetrader.repository.PlayerRepository
-import kotlin.random.Random
-import com.google.firebase.firestore.FirebaseFirestore
 
 /**
  * Main game screen
