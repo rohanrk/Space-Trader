@@ -43,7 +43,8 @@ class MarketplaceSellFragment : Fragment() {
             val inventory = newPlayer!!.spaceship.hold
             inventory.forEach { item ->
                 if (item.value.amount > 0) {
-                    marketItems.add(MarketItem(item.key, item.value.amount, item.value.calculatePrice(vm.viewModel.player.value!!.location.market), MarketAction.SELL))
+                    marketItems.add(MarketItem(item.key, item.value.amount,
+                        item.value.calculatePrice(vm.viewModel.player.value!!.location.market), MarketAction.SELL))
                 }
             }
             val adapter = MarketItemAdapter(context!!, marketItems, true)

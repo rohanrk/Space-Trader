@@ -38,7 +38,8 @@ class LocationActivity: AppCompatActivity() {
 
         val reachablePlanets = viewModel.getAllReachablePlanets()
 
-        val planetsAdapter: ArrayAdapter<LocationViewModel.TravelSpinnerEntry> = ArrayAdapter(this, android.R.layout.simple_spinner_item, reachablePlanets.toTypedArray())
+        val planetsAdapter: ArrayAdapter<LocationViewModel.TravelSpinnerEntry> = ArrayAdapter(this,
+            android.R.layout.simple_spinner_item, reachablePlanets.toTypedArray())
         planetsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         planets_spinner.adapter = planetsAdapter
 
