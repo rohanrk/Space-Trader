@@ -42,7 +42,8 @@ class MarketplaceBuyFragment : Fragment() {
             val inventory = newMarket.inventory
             inventory.forEach { item ->
                 if (item.value.amount > 0) {
-                    marketItems.add(MarketItem(item.key, item.value.amount, item.value.calculatePrice(vm.viewModel.player.value!!.location.market), MarketAction.BUY))
+                    marketItems.add(MarketItem(item.key, item.value.amount,
+                        item.value.calculatePrice(vm.viewModel.player.value!!.location.market), MarketAction.BUY))
                 }
             }
             val adapter = MarketItemAdapter(context!!, marketItems, false)
