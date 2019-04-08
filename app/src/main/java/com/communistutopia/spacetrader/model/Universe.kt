@@ -192,7 +192,7 @@ object Universe {
      */
     private fun generatePlanets(num_planets: Int): List<Planet> {
         val planetSet: MutableSet<Planet> = mutableSetOf()
-        for(i in 0..num_planets) { //converted this to a for loop, might be an off by 1 error
+        for(i in 0 until num_planets) { //converted this to a for loop, might be an off by 1 error
             val planetName: String = namesList[random.nextInt(namesList.size)]
             namesList.remove(planetName)
             planetSet.add(
