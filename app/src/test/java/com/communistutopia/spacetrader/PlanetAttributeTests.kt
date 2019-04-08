@@ -1,5 +1,9 @@
 package com.communistutopia.spacetrader
 
+/**
+ * @author Nicholas Bayne Grubb
+ * ngrubb3@gatech.edu
+ */
 import com.communistutopia.spacetrader.model.*
 import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertTrue
