@@ -1,11 +1,16 @@
 package com.communistutopia.spacetrader.view
 
 import android.annotation.SuppressLint
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.ArrayAdapter
-import android.widget.Toast
+import android.transition.Slide
+import android.transition.TransitionManager
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.widget.*
 import com.communistutopia.spacetrader.R
 import com.communistutopia.spacetrader.viewmodel.LocationViewModel
 import kotlinx.android.synthetic.main.location_activity.*
@@ -16,7 +21,7 @@ class LocationActivity: AppCompatActivity() {
     private lateinit var viewModel: LocationViewModel
     //lateinit var piratePopUp: PopupWindow
     //lateinit var policePopUp: PopupWindow
-    //ateinit var closePopupBtn: Button
+    lateinit var closePopupBtn: Button
 
 
     @SuppressLint("ResourceType")
@@ -49,12 +54,20 @@ class LocationActivity: AppCompatActivity() {
             //Toast.makeText(this, "Traveled!", Toast.LENGTH_SHORT).show()
             val item = planets_spinner.selectedItem as LocationViewModel.TravelSpinnerEntry
             viewModel.travelToPlanet(item.solarSystem, item.planet)
-            /*viewModel.policeEvent.observe(this, Observer<Any> {
+            val event = viewModel.player.value!!.location.market.event.toString()
+            val planet = item.planet.name
+            val duration = Toast.LENGTH_LONG
+            Toast.makeText(
+                this,
+                "Traveled to $planet, which is experiencing a $event",
+                duration
+            ).show()
+            viewModel.policeEvent.observe(this, Observer<Any> {
                 //setup for police popup
                 val layoutInflater =
                     this@LocationActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
                 val customView = layoutInflater.inflate(R.layout.police_popup, null)
-                var closePopupBtn = customView.findViewById<Button>(R.id.closePopupBtn)
+                closePopupBtn = customView.findViewById<Button>(R.id.button_popup)
                 var popupWindow = PopupWindow(
                     customView,
                     LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -70,8 +83,10 @@ class LocationActivity: AppCompatActivity() {
                 slideOut.slideEdge = Gravity.RIGHT
                 popupWindow.exitTransition = slideOut
                 //display the popup window
+
+                TransitionManager.beginDelayedTransition(findViewById(R.layout.location_activity))
                 popupWindow.showAtLocation(
-                    findViewById(R.layout.location_activity),
+                    root_layout,
                     Gravity.CENTER,
                     0,
                     0
@@ -80,6 +95,7 @@ class LocationActivity: AppCompatActivity() {
                 //close the popup window on button click
                 closePopupBtn.setOnClickListener {
                     popupWindow.dismiss()
+                    finish()
                 }
             })
 
@@ -88,7 +104,7 @@ class LocationActivity: AppCompatActivity() {
                 val layoutInflater =
                     this@LocationActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
                 val customView = layoutInflater.inflate(R.layout.pirate_popup, null)
-                var closePopupBtn = customView.findViewById<Button>(R.id.closePopupBtn)
+                var closePopupBtn = customView.findViewById<Button>(R.id.button_popup)
                 var popupWindow = PopupWindow(
                     customView,
                     LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -105,7 +121,7 @@ class LocationActivity: AppCompatActivity() {
                 popupWindow.exitTransition = slideOut
                 //display the popup window
                 popupWindow.showAtLocation(
-                    findViewById(R.layout.location_activity),
+                    root_layout,
                     Gravity.CENTER,
                     0,
                     0
@@ -114,17 +130,11 @@ class LocationActivity: AppCompatActivity() {
                 //close the popup window on button click
                 closePopupBtn.setOnClickListener {
                     popupWindow.dismiss()
+                    finish()
                 }
-            })*/
-            val event = viewModel.player.value!!.location.market.event.toString()
-            val planet = item.planet.name
-            val duration = Toast.LENGTH_SHORT
-            Toast.makeText(
-                this,
-                "Traveled to $planet, which is experiencing a $event",
-                duration
-            ).show()
-            finish()
+            })
+
+
         }
     }
 
