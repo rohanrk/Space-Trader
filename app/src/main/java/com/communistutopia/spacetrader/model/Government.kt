@@ -16,6 +16,14 @@ class Government(val governmentType: GovernmentType) {
         return "Government(governmentType=$governmentType)"
     }
 
+    fun value(): Int {
+        return governmentType.ordinal
+    }
+
+    fun getGovtLevel(): GovernmentType {
+        return GovernmentType.values()[value()]
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -43,7 +51,7 @@ enum class GovernmentType {
          */
         fun randomGovernmentType(): GovernmentType {
             val values = GovernmentType.values()
-            val random: Random = Random.Default
+            val random: Random = Random(3)
             val pick = random.nextInt(values.size)
             return values[pick]
         }

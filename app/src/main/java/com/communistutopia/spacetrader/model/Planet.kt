@@ -48,6 +48,22 @@ class Planet(val name: String, val techLevel: TechLevel, val resourceLevel: Reso
         return chance > 19
     }
 
+    fun getPName(): String{
+        return name
+    }
+
+    fun getResource(): ResourceLevelType{
+        return resourceLevel.getRLevel()
+    }
+
+    fun getTech(): TechLevelType{
+        return techLevel.getTLevel()
+    }
+
+    fun getGType(): GovernmentType{
+        return government.getGovtLevel()
+    }
+
     override fun toString(): String {
         return "Planet(" + "\n" +
                 "name='$name', " + "\n" +

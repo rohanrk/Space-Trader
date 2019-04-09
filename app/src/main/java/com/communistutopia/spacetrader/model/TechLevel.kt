@@ -20,6 +20,11 @@ class TechLevel(val techLevel: TechLevelType) {
         return techLevel.ordinal
     }
 
+
+    fun getTLevel(): TechLevelType {
+        return TechLevelType.values()[value()]
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
 
@@ -48,7 +53,7 @@ enum class TechLevelType {
          */
         fun randomTechLevelType(): TechLevelType {
             val values = TechLevelType.values()
-            val random: Random = Random.Default
+            val random: Random = Random(3)
             val pick = random.nextInt(values.size)
             return values[pick]
         }

@@ -16,6 +16,15 @@ class ResourceLevel(val resourceLevel: ResourceLevelType) {
         return "ResourceLevel(resourceLevel=$resourceLevel)"
     }
 
+    fun value(): Int {
+        return resourceLevel.ordinal
+    }
+
+
+    fun getRLevel(): ResourceLevelType {
+        return ResourceLevelType.values()[value()]
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -44,7 +53,7 @@ enum class ResourceLevelType {
          */
         fun randomResourceLevelType(): ResourceLevelType {
             val values = ResourceLevelType.values()
-            val random: Random = Random.Default
+            val random: Random = Random(3)
             val pick = random.nextInt(values.size)
             return values[pick]
         }

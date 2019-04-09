@@ -25,7 +25,7 @@ object Universe {
 
 
     init {
-        random = Random.Default
+        random = Random(3)
         namesList = mutableListOf(
             "Acamar",
             "Adahn",		// The alternate personality for The Nameless One in "Planescape: Torment"
@@ -190,9 +190,9 @@ object Universe {
      * @param num_planets the number of planets to generate
      * @return planetSet, a set containing the generated planets
      */
-    private fun generatePlanets(num_planets: Int): List<Planet> {
+    fun generatePlanets(num_planets: Int): List<Planet> {
         val planetSet: MutableSet<Planet> = mutableSetOf()
-        for(i in 0 until num_planets) { //converted this to a for loop, might be an off by 1 error
+        for(i in 0 until num_planets) {
             val planetName: String = namesList[random.nextInt(namesList.size)]
             namesList.remove(planetName)
             planetSet.add(
