@@ -39,7 +39,6 @@ class MarketplaceViewModel : ViewModel() {
     /**
      * A function that sells goods to a Market
      * A player cannot sell a good if the planet's tech level is too low or if they do not have enough money
-     * TODO add error messages so the player knows why they cannot sell an item in view
      * @param tradeGood the good being sold
      * @param numGoods the number of things being sold
      * @return true if action was successful, false otherwise

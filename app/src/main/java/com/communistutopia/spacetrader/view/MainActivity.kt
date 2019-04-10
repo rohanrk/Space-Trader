@@ -13,7 +13,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         /** Go to the configuration activity
-         * TODO: In the future it needs to decide which screen to go on based on state. Is there a user? Then don't
          * go to the config screen.
          */
         FirebaseApp.initializeApp(this)

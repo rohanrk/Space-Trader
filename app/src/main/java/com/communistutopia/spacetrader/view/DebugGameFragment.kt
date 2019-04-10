@@ -29,7 +29,6 @@ class DebugGameFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(DebugGameViewModel::class.java)
-        // TODO: Use the ViewModel
         val solarSystems: List<SolarSystem> = ArrayList<SolarSystem>(viewModel.solarSystems)
         val adapter = SolarSystemAdapter(context!!, solarSystems)
         solar_systems_list.adapter = adapter

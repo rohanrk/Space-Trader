@@ -18,7 +18,6 @@ class SolarSystem(var planets: List<Planet>, var name: String, val x: Int,val  y
 
     /**
      * Function to calculate Euclidean distance between 2 Solar Systems
-     * TODO: Might want to place this in Companion obj. Equivalent to making it static. Not sure yet.
      *
      * @param other solar system to compare location to
      */

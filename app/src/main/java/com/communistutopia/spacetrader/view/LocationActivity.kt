@@ -21,7 +21,7 @@ class LocationActivity: AppCompatActivity() {
     private lateinit var viewModel: LocationViewModel
     //lateinit var piratePopUp: PopupWindow
     //lateinit var policePopUp: PopupWindow
-    lateinit var closePopupBtn: Button
+    private lateinit var closePopupBtn: Button
 
 
     @SuppressLint("ResourceType")
@@ -67,8 +67,8 @@ class LocationActivity: AppCompatActivity() {
                 val layoutInflater =
                     this@LocationActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
                 val customView = layoutInflater.inflate(R.layout.police_popup, null)
-                closePopupBtn = customView.findViewById<Button>(R.id.button_popup)
-                var popupWindow = PopupWindow(
+                closePopupBtn = customView.findViewById(R.id.button_popup)
+                val popupWindow = PopupWindow(
                     customView,
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
@@ -104,8 +104,8 @@ class LocationActivity: AppCompatActivity() {
                 val layoutInflater =
                     this@LocationActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
                 val customView = layoutInflater.inflate(R.layout.pirate_popup, null)
-                var closePopupBtn = customView.findViewById<Button>(R.id.button_popup)
-                var popupWindow = PopupWindow(
+                val closePopupBtn = customView.findViewById<Button>(R.id.button_popup)
+                val popupWindow = PopupWindow(
                     customView,
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
