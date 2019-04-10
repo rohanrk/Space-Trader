@@ -41,7 +41,6 @@ class GameFragment : Fragment() {
         // Start audio
         viewModel.goToSpace(context)
 
-        // TODO: Resource string placeholder
         // planet_name.text = "Planet: %s".format(viewModel.player.value?.location?.name)
 
         market_button.setOnClickListener {

@@ -108,7 +108,6 @@ class LoginActivity : AppCompatActivity() {
                     authSuccess(user!!)
                 } else {
                     // If sign in fails, display a message to the user.
-                    // TODO: Make this a toast or something
                     Log.w("signInWithCredential:failure", task.exception)
                 }
             }
@@ -128,7 +127,6 @@ class LoginActivity : AppCompatActivity() {
 
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
-                // TODO: A toast or something
                 Log.w( "Google sign in failed", e)
             }
         }

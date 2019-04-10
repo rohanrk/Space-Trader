@@ -7,18 +7,31 @@
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:textColorHint">@color/white</item>
+        <item name="android:windowBackground">false</item>
     </style>
 
     <style name="LaunchTheme" parent="Theme.AppCompatDark.NoActionBar.FullScreen">
         <item name="android:windowBackground">@drawable/launch_screen</item>
     </style>
 
-    <style name="TextAppearance.AppCompat.Widget.TextView.SpinnerItem."
-           parent="@android:style/Widget.Holo.DropDownItem.Spinner">
-    <item name="android:textColor">@color/white</item>
-        <item name="android:fontFamily">@font/andromeda</item>
-
+    <style name="login" parent="@style/Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:windowBackground">@drawable/loginscreen</item>
     </style>
+
+    <style name="pirate" parent = "@style/Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:windowBackground">#c7bf98</item>
+    </style>
+
+    <style name="config" parent="@style/Theme.AppCompat.DayNight.NoActionBar">
+        <item name = "android:windowBackground">@drawable/space</item>
+    </style>
+
+
 
 
 </resources>
