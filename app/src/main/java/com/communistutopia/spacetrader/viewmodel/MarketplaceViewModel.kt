@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModel
 import com.communistutopia.spacetrader.repository.PlayerRepository
 
 /**
- * Viewmodel that handlses all marketplace functions
+ * Viewmodel that handles all marketplace functions
  *
  * @author Rohan Rk <rohanrk@gatech.edu>
  */
