@@ -9,6 +9,7 @@
             android:layout_height="0dp"
             android:src="@drawable/transport"
             android:scaleType="centerCrop"
+            android:contentDescription="space system"
             android:id="@+id/transport"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
