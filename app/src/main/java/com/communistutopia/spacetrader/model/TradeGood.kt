@@ -27,20 +27,20 @@ class TradeGood(
     private var TTP: Int,
     var basePrice: Int,
     private var IPL: Int,
-    private var variance: Int,
-    private var IE: Event,
-    private var CR: ResourceLevel,
-    private var ER: ResourceLevel,
+    var variance: Int,
+    var IE: Event,
+    var CR: ResourceLevel,
+    var ER: ResourceLevel,
     private var MTL: Int,
     private var MTH: Int,
-    private var GTD: Government,
-    private var GTS: Government,
+    var GTD: Government,
+    var GTS: Government,
     var name: String,
     var amount: Int
 ) {
 
     // this is to make Firebase happy
-    constructor(): this(0, 0, 0, 0, 0, 0,
+    constructor(): this(0, 0, 0, 10, 0, 0,
         Event.None, ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES),
         ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES), 0, 0, Government(GovernmentType.Anarchy),
         Government(GovernmentType.Anarchy), "", 0)
@@ -61,29 +61,29 @@ class TradeGood(
         var price: Int = basePrice
 
         @Suppress("KotlinDeprecation")
-        price += IPL * market.techLevel!!.value() //add price increase per techlevel
+        price += IPL * market.techLevel.value() //add price increase per techlevel
 
         if (market.event == (IE)) { //checks for radical price increase event
-            price = basePrice + (basePrice * variance)
+            price += (price * variance)
         }
 
-        if (market.resourceLevel!! == CR) { //checks for abundance of resources
-            price -= price * (variance / 2) //lower price accordingly
+        if (market.resourceLevel == CR) { //checks for abundance of resources
+            price -= ((price * variance) / 20) //lower price accordingly
         } else if (market.resourceLevel == ER) { //checks for scarcity of resources
-            price += price * (variance / 2) //increase price accordingly
+            price += ((price * variance) / 20) //increase price accordingly
         }
 
-        if (market.government!! == GTD) { //checks for government type demanding
-            price += price * (variance / 2) //increase price accordingly
+        if (market.government == GTD) { //checks for government type demanding
+            price += ((price * variance) / 20) //increase price accordingly
         } else if (market.government == GTS) { //checks for government type supplying
-            price -= price * (variance / 2) // decrease price accordingly
+            price -= ((price * variance) / 20) // decrease price accordingly
         }
 
         //check if price is within acceptable variance range
-        if (price > basePrice + (basePrice * variance)) {
-            price = basePrice + (basePrice * variance)
-        } else if (price < (basePrice - (basePrice * variance))) {
-            price = basePrice - (basePrice * variance)
+        if (price > (basePrice * variance)) {
+            price = (basePrice * variance)
+        } else if (price < ((basePrice / variance))) {
+            price = (basePrice / variance)
         }
 
         return if (price > 0) price else minPrice // Closest thing to a ternary operator in Kotlin

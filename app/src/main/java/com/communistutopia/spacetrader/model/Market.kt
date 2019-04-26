@@ -10,8 +10,8 @@ package com.communistutopia.spacetrader.model
  * Initialization is done by the constructor, so all of these parameters are immutable properties
  *  of an instance of a Market once it is created
  */
-class Market(val techLevel: TechLevel, val resourceLevel: ResourceLevel,
-             val government: Government) {
+class Market(var techLevel: TechLevel, var resourceLevel: ResourceLevel,
+             var government: Government) {
 
     constructor(): this(TechLevel(TechLevelType.HiTech), ResourceLevel(ResourceLevelType.NOSPECIALRESOURCES),
         Government(GovernmentType.Anarchy))
